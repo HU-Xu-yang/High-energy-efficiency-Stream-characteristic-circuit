@@ -1,0 +1,76 @@
+* 
+* No part of this file can be released without the consent of SMIC.
+*
+************************************************************************************************************
+*  40nm Logic Low Leakage 1P10M(1P9M,1P8M,1P7M,1P6M) Salicide 1.1V/1.8V/2.5V SPICE Model (for HSPICE only) *
+************************************************************************************************************
+*
+* Release version    : 1.4_1r
+*
+* Release date       : 09/25/2012
+*
+* Simulation tool    : Synopsys Star-HSPICE version C-2009.09
+*
+*
+*  MOM Capacitor   :
+*
+*        *-----------------------------------------------------------* 
+*        |                 Type                     |   MOM subckt   |
+*        *-----------------------------------------------------------* 
+*        |                MOM                       |    mom_2t_ckt  | 
+*        *-----------------------------------------------------------*
+*        |                MOM                       |    mom_3t_ckt  | 
+*        *-----------------------------------------------------------*
+*
+*
+*
+*****************************************************************
+*                       40nm MOM Capacitor 2t                   *
+*****************************************************************
+* 1=port1, 2=port2
+.subckt mom_2t_ckt 1 2 l=10u nn=10 mm=1 tm=5 bm=1 mismod=1 flag_width=0
+* mom capacitor model parameters
+.param
+*****base model parameter*****
++layer=tm-bm+1
++cf='(((1.0111E-16*layer-1.36345E-19)*(pwr(l*1e6,(0.00420887*layer+0.970497))))*nn+((-1.70838E-15*(log(layer)/log(2.71828))+6.11592E-17)*(log(l*1e6)/log(2.71828))+(2.61822E-16*layer+3.79969E-16)))*mm'                                      
++ctc1 = -9.0935E-06
++cvc1 = -1.0888E-05            cvc2 = 3.1608E-06
++tcoef(temper) = '1.0+ctc1*(temper-25.0)'
+
+*****mismatch model parameter*****
++dcf_mis_a='((9.1088E-20*(log(layer)/log(2.71828)) - 9.9903E-21)*(l*1e6*nn)+(2.6359E-17*exp(1.1888E-01*layer)))*sigma_mis_mom*mismod'
++dcf_mis_b='((2.2549E-19*pwr(layer,-1.1449E+00))*pwr((l*1e6*nn),(2.5088E-01*(log(layer)/log(2.71828)) + 8.0844E-01)))*sigma_mis_mom*mismod'
++dcf_mis='(dcf_mis_a*((l*nn)<1.6e-3)+dcf_mis_b*((l*nn)>=1.6e-3))'
+
+*equivalent circuit
+cab 1 2  '(1+dmom_mnx)*(1-0.077)*(cf+dcf_mis)*tcoef(temper)*(1.0+v(1,2)*(cvc1+cvc2*v(1,2)))'
+.ends mom_2t_ckt
+
+
+*****************************************************************
+*                       40nm MOM Capacitor 3t                   *
+*****************************************************************
+* 1=port1 , 2=port2, B=port3
+.subckt mom_3t_ckt 1 2 B l=10u nn=10 mm=1 tm=5 bm=1 mismod=1 flag_width=0
+* mom capacitor model parameters
+.param
+*****base model parameter*****
++layer=tm-bm+1
++cf='(((1.0111E-16*layer-1.36345E-19)*(pwr(l*1e6,(0.00420887*layer+0.970497))))*nn+((-1.70838E-15*(log(layer)/log(2.71828))+6.11592E-17)*(log(l*1e6)/log(2.71828))+(2.61822E-16*layer+3.79969E-16)))*mm'
++ctc1 = -9.0935E-06
++cvc1 = -1.0888E-05            cvc2 = 3.1608E-06
++tcoef(temper) = '1.0+ctc1*(temper-25.0)'
+
+*****mismatch model parameter*****
++dcf_mis_a='((9.1088E-20*(log(layer)/log(2.71828)) - 9.9903E-21)*(l*1e6*nn)+(2.6359E-17*exp(1.1888E-01*layer)))*sigma_mis_mom*mismod'
++dcf_mis_b='((2.2549E-19*pwr(layer,-1.1449E+00))*pwr((l*1e6*nn),(2.5088E-01*(log(layer)/log(2.71828)) + 8.0844E-01)))*sigma_mis_mom*mismod'
++dcf_mis='(dcf_mis_a*((l*nn)<1.6e-3)+dcf_mis_b*((l*nn)>=1.6e-3))'
+
++Cpara= 'max((((0.000049775*tm+0.0037947)*l*1e6+(-0.00011828*tm+0.0099648))*nn*(bm==1)+(((0.0000021*layer+0.0026333)*l*1e6+(0.000425*layer+0.0064))*nn)*(1.6461*pwr(bm,-0.7196))*(bm>1))*1e-15,1e-18)'
+
+*equivalent circuit
+cab 1 2  '(1+dmom_mnx)*(1-0.077)*(cf+dcf_mis)*tcoef(temper)*(1.0+v(1,2)*(cvc1+cvc2*v(1,2)))'
+cap 1 B  'Cpara*mm*tcoef(temper)*(1.0+v(1,2)*(cvc1+cvc2*v(1,2)))'
+cbp 2 B  'Cpara*mm*tcoef(temper)*(1.0+v(1,2)*(cvc1+cvc2*v(1,2)))'
+.ends mom_3t_ckt

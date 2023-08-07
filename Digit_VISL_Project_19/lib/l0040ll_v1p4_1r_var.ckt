@@ -1,0 +1,259 @@
+* 
+* no part of this file can be released without the consent of smic.
+*
+* note: smic recommends that users set vntol=1e-9 at .option for more smooth convergence.
+************************************************************************************************************
+*  40nm Logic Low Leakage 1P10M(1P9M,1P8M,1P7M,1P6M) Salicide 1.1V/1.8V/2.5V SPICE Model (for HSPICE only) *
+************************************************************************************************************
+*
+* release version   :  1.4_1r
+*
+* release date      :  09/25/2012
+*
+* simulation tool   :  Synopsys Star-HSPICE version C-2009.09
+*
+*
+*   mosfet varactor  :
+*
+*        *----------------------------------------------------------------*
+*        |   mos varactor subckt   |      1.1v        |       2.5v       |
+*        |=========================|==================|==================|
+*        |     n+poly/nwell        |   pvar11ll_ckt   |   pvar25ll_ckt   | 
+*        *---------------------------------------------------------------*
+*        |     n+poly/dnwell       | dnwpvar11ll_ckt  |  dnwpvar25ll_ckt | 
+*        *---------------------------------------------------------------*
+*        |     p+poly/pwell        |   nvar11ll_ckt   |   nvar25ll_ckt   | 
+*        *---------------------------------------------------------------*
+*        |  p+poly/pwell in DNW    |  dnwnvar11ll_ckt |  dnwnvar25ll_ckt | 
+*        *---------------------------------------------------------------*
+*
+*
+**************************
+* 40nm 1.1v mos varactor * 
+************************** 
+*this model is empirical model, and is provided for special customer.
+* 1=port1, 2=port2, wr=width, lr=length, nf=finger number, mr=multiply number
+.subckt pvar11ll_ckt 1 2 lr=10u wr=10u nf=1 mismod=1 mr=1 
+.param
++lrr='lr*0.9' wrr='wr*0.9'             
+.param
+*** low frequency capacitor
++a1_l0= 14.82558352           a2_l0= -2.131899549           c0_x0= 0.639613319
++a1_l1= 187.0566734           a2_l1= 42.09975983            c0_x1= 13.56360413
++a1_l2= -0.096865892          a2_l2= -2.563769927           cgg_x0= -0.183177372
++a1_w0= 0.010010873           a2_w0= -0.617722087           cgg_dx= -0.065492478
++a1_c0= 0.987340525           a2_c0= 0.7230577              vc0= 2.197839115
++vc1= 0.615203171             cgg_tc= 0.000185603  
+*
++cgg_a1=  '(a1_l2*(lrr*1e6)*(lrr*1e6)+a1_l1*(lrr*1e6)+a1_l0)*pwr((wrr*1e6)*nf,a1_w0*log10(lrr*1e6)+a1_c0)'
++cgg_a2=  '(a2_l2*(lrr*1e6)*(lrr*1e6)+a2_l1*(lrr*1e6)+a2_l0)*pwr((wrr*1e6)*nf,a2_w0*log10(lrr*1e6)+a2_c0)'
+*
+*** mismatch paramters
++dcgg_pvar11llmis = 'mismod*sigma_mis_var*geo_var'
++geo_var = 'ac0_pvar11ll/(wrr*lrr*nf*mr)+bc0_pvar11ll/sqrt(wrr*lrr*nf*mr)+cc0_pvar11ll'   
+*
+*** gate current
++ar     = 'lrr*wrr*nf'            tox     = '2.37e-09+dtox_pvar11ll' 
++gcie   = 1.851990778             gcarc = 34.20347729               gcevgc = 1.564936889
++gcetc  = 903.3925926             gcete = 0.522751839               igg_tc = 2.20E-03
+*
+*** equivalent circuit
+*       
+gg  1 2  current='(v(1,2)*pwr(abs(v(1,2)),gcie)*(gcarc*ar*exp(gcevgc*v(1,2)-gcetc*pwr(tox,gcete))))*2*(1+(temper-25)*igg_tc)' m=mr
+cgg 1 2  c='max((1/(c0_x1+1/exp(v(1,2)/c0_x0)))*(cgg_a2+(cgg_a1-cgg_a2)/(1+exp((v(1,2)-cgg_x0)/(cgg_dx*(vc0+1/exp(v(1,2)/vc1))*(cgg_tc*(temper-25)+1)))))*(1+dcgg_pvar11ll+dcgg_pvar11llmis)*1e-15,1e-18)' m=mr
+*
+.ends pvar11ll_ckt
+********************************************
+.subckt dnwpvar11ll_ckt 1 2 lr=10u wr=10u nf=1 mismod=1 mr=1 
+.param       
++lrr='lr*0.9' wrr='wr*0.9'                  
+.param
+*** low frequency capacitor
++a1_l0= 14.82558352           a2_l0= -2.131899549           c0_x0= 0.639613319
++a1_l1= 187.0566734           a2_l1= 42.09975983            c0_x1= 13.56360413
++a1_l2= -0.096865892          a2_l2= -2.563769927           cgg_x0= -0.183177372
++a1_w0= 0.010010873           a2_w0= -0.617722087           cgg_dx= -0.065492478
++a1_c0= 0.987340525           a2_c0= 0.7230577              vc0= 2.197839115
++vc1= 0.615203171             cgg_tc= 0.000185603  
+*
++cgg_a1=  '(a1_l2*(lrr*1e6)*(lrr*1e6)+a1_l1*(lrr*1e6)+a1_l0)*pwr((wrr*1e6)*nf,a1_w0*log10(lrr*1e6)+a1_c0)'
++cgg_a2=  '(a2_l2*(lrr*1e6)*(lrr*1e6)+a2_l1*(lrr*1e6)+a2_l0)*pwr((wrr*1e6)*nf,a2_w0*log10(lrr*1e6)+a2_c0)'
+*
+*** mismatch paramters
++dcgg_pvar11llmis = 'mismod*sigma_mis_var*geo_var'
++geo_var = 'ac0_pvar11ll/(wrr*lrr*nf*mr)+bc0_pvar11ll/sqrt(wrr*lrr*nf*mr)+cc0_pvar11ll'   
+*
+*** gate current
++ar     = 'lrr*wrr*nf'            tox     = '2.37e-09+dtox_pvar11ll' 
++gcie   = 1.851990778             gcarc = 34.20347729               gcevgc = 1.564936889
++gcetc  = 903.3925926             gcete = 0.522751839               igg_tc = 2.20E-03
+*
+*** equivalent circuit
+*       
+gg  1 2  current='(v(1,2)*pwr(abs(v(1,2)),gcie)*(gcarc*ar*exp(gcevgc*v(1,2)-gcetc*pwr(tox,gcete))))*2*(1+(temper-25)*igg_tc)' m=mr
+cgg 1 2  c='max((1/(c0_x1+1/exp(v(1,2)/c0_x0)))*(cgg_a2+(cgg_a1-cgg_a2)/(1+exp((v(1,2)-cgg_x0)/(cgg_dx*(vc0+1/exp(v(1,2)/vc1))*(cgg_tc*(temper-25)+1)))))*(1+dcgg_pvar11ll+dcgg_pvar11llmis)*1e-15,1e-18)' m=mr
+*      
+.ends dnwpvar11ll_ckt
+*
+***************************************************
+.subckt nvar11ll_ckt 1 2 lr=10u wr=10u nf=1 mismod=1 mr=1 
+.param
++lrr='lr*0.9' wrr='wr*0.9'             
+*
+.param
+*** low frequency capacitor
++a1_l0=	15.31847704       a2_l0= 22.07155253        c0_x0= 0.50282099
++a1_l1= 263.0869101       a2_l1= -115.6080405       c0_x1= 19.5908676
++a1_l2= -0.128010021      a2_l2= 0.235583375        cgg_x0= -0.678722705
++a1_w0= 0.004453267       a2_w0= 0.02872568         cgg_dx= -0.267256273
++a1_c0= 0.985438869       a2_c0= 1.042422434        vc0= 1.35994713
++vc1= 0.210884509         cgg_tc= 0.000219232	
+*
++cgg_a1=  '(a1_l2*(lrr*1e6)*(lrr*1e6)+a1_l1*(lrr*1e6)+a1_l0)*pwr((wrr*1e6)*nf,a1_w0*log10(lrr*1e6)+a1_c0)'
++cgg_a2=  '(a2_l2*(lrr*1e6)*(lrr*1e6)+a2_l1*(lrr*1e6)+a2_l0)*pwr((wrr*1e6)*nf,a2_w0*log10(lrr*1e6)+a2_c0)'
+*
+*** mismatch paramters
++dcgg_nvar11llmis = 'mismod*sigma_mis_var*geo_var'
++geo_var = 'ac0_nvar11ll/(wrr*lrr*nf*mr)+bc0_nvar11ll/sqrt(wrr*lrr*nf*mr)+cc0_nvar11ll'   
+*
+*** gate current
++ar     = 'lrr*wrr*nf'            tox     = '2.37e-09+dtox_nvar11ll' 
++gcie   = 1.597227782             gcarc = 3.320637401               gcevgc = -1.632006974
++gcetc  = 972.0889062             gcete = 0.457180826               igg_tc = 2.74E-03
+*
+*** equivalent circuit
+*       
+gg  1 2  current='(v(1,2)*pwr(abs(v(1,2)),gcie)*(gcarc*ar*exp(gcevgc*v(1,2)-gcetc*pwr(tox,gcete))))*2*(1+(temper-25)*igg_tc)' m=mr
+cgg 1 2  c='max((1/(c0_x1+1/exp((-1)*v(1,2)/c0_x0)))*(cgg_a2+(cgg_a1-cgg_a2)/(1+exp(((-1)*v(1,2)-cgg_x0)/(cgg_dx*(vc0+1/exp((-1)*v(1,2)/vc1))*(cgg_tc*(temper-25)+1)))))*(1+dcgg_nvar11ll+dcgg_nvar11llmis)*1e-15,1e-18)' m=mr
+* 
+.ends nvar11ll_ckt
+****************************************
+.subckt dnwnvar11ll_ckt 1 2 lr=10u wr=10u nf=1 mismod=1 mr=1 
+.param
++lrr='lr*0.9' wrr='wr*0.9'             
+*
+.param
+*** low frequency capacitor
++a1_l0=	15.31847704       a2_l0= 22.07155253        c0_x0= 0.50282099
++a1_l1= 263.0869101       a2_l1= -115.6080405       c0_x1= 19.5908676
++a1_l2= -0.128010021      a2_l2= 0.235583375        cgg_x0= -0.678722705
++a1_w0= 0.004453267       a2_w0= 0.02872568         cgg_dx= -0.267256273
++a1_c0= 0.985438869       a2_c0= 1.042422434        vc0= 1.35994713
++vc1= 0.210884509         cgg_tc= 0.000219232
+*
++cgg_a1=  '(a1_l2*(lrr*1e6)*(lrr*1e6)+a1_l1*(lrr*1e6)+a1_l0)*pwr((wrr*1e6)*nf,a1_w0*log10(lrr*1e6)+a1_c0)'
++cgg_a2=  '(a2_l2*(lrr*1e6)*(lrr*1e6)+a2_l1*(lrr*1e6)+a2_l0)*pwr((wrr*1e6)*nf,a2_w0*log10(lrr*1e6)+a2_c0)'
+*
+*** mismatch paramters
++dcgg_nvar11llmis = 'mismod*sigma_mis_var*geo_var'
++geo_var = 'ac0_nvar11ll/(wrr*lrr*nf*mr)+bc0_nvar11ll/sqrt(wrr*lrr*nf*mr)+cc0_nvar11ll'   
+*
+*** gate current
++ar     = 'lrr*wrr*nf'            tox     = '2.37e-09+dtox_nvar11ll' 
++gcie   = 1.597227782             gcarc = 3.320637401               gcevgc = -1.632006974
++gcetc  = 972.0889062             gcete = 0.457180826               igg_tc = 2.74E-03
+*
+*** equivalent circuit
+*       
+gg  1 2  current='(v(1,2)*pwr(abs(v(1,2)),gcie)*(gcarc*ar*exp(gcevgc*v(1,2)-gcetc*pwr(tox,gcete))))*2*(1+(temper-25)*igg_tc)' m=mr
+cgg 1 2  c='max((1/(c0_x1+1/exp((-1)*v(1,2)/c0_x0)))*(cgg_a2+(cgg_a1-cgg_a2)/(1+exp(((-1)*v(1,2)-cgg_x0)/(cgg_dx*(vc0+1/exp((-1)*v(1,2)/vc1))*(cgg_tc*(temper-25)+1)))))*(1+dcgg_nvar11ll+dcgg_nvar11llmis)*1e-15,1e-18)' m=mr
+*
+.ends dnwnvar11ll_ckt
+*
+**************************
+* 40nm 2.5v mos varactor * 
+************************** 
+*this model is empirical model, and is provided for special customer.
+* 1=port1, 2=port2
+.subckt pvar25ll_ckt 1 2 lr=10u wr=10u nf=1 mismod=1 mr=1 
+.param
++lrr='lr*0.9' wrr='wr*0.9'                  
+*** low frequency capacitor
++a1_l0= 3.912229958         a2_l0= 5.914008633             c0_x0= 4.507342011
++a1_l1= -15.38129273        a2_l1= 34.63365295             c0_x1= 6.219476588
++a1_l2= -0.133050881        a2_l2= -0.287678038            cgg_x0= -18.26572164
++a1_w0= -0.06399424         a2_w0= 0.093098268             cgg_dx= 9.378458997
++a1_c0= 1.147038264         a2_c0= 1.021552893             vc0= 0
++vc1= 0.604084945           cgg_tc= 0.000133284  
+*
++cgg_a1=  '(a1_l2*(lrr*1e6)*(lrr*1e6)+a1_l1*(lrr*1e6)+a1_l0)*pwr((wrr*1e6)*nf,a1_w0*log10(lrr*1e6)+a1_c0)'
++cgg_a2=  '(a2_l2*(lrr*1e6)*(lrr*1e6)+a2_l1*(lrr*1e6)+a2_l0)*pwr((wrr*1e6)*nf,a2_w0*log10(lrr*1e6)+a2_c0)'
+*
+*** mismatch paramters
++dcgg_pvar25llmis = 'mismod*sigma_mis_var*geo_var'
++geo_var = 'ac0_pvar25ll/(wrr*lrr*nf*mr)+bc0_pvar25ll/sqrt(wrr*lrr*nf*mr)+cc0_pvar25ll' 
+*
+*** equivalent circuit
+cgg 1 2  c='max((1/(c0_x1+1/exp(v(1,2)/c0_x0)))*(cgg_a2+(cgg_a1-cgg_a2)/(1+exp((v(1,2)-cgg_x0)/(cgg_dx*(vc0+1/exp(v(1,2)/vc1))*(cgg_tc*(temper-25)+1)))))*(1+dcgg_pvar25ll+dcgg_pvar25llmis)*1e-15,1e-18)' m=mr
+*
+.ends pvar25ll_ckt
+**********************************************
+.subckt dnwpvar25ll_ckt 1 2 lr=10u wr=10u nf=1 mismod=1 mr=1 
+.param
++lrr='lr*0.9' wrr='wr*0.9'                  
+*** low frequency capacitor
++a1_l0= 3.912229958         a2_l0= 5.914008633             c0_x0= 4.507342011
++a1_l1= -15.38129273        a2_l1= 34.63365295             c0_x1= 6.219476588
++a1_l2= -0.133050881        a2_l2= -0.287678038            cgg_x0= -18.26572164
++a1_w0= -0.06399424         a2_w0= 0.093098268             cgg_dx= 9.378458997
++a1_c0= 1.147038264         a2_c0= 1.021552893             vc0= 0
++vc1= 0.604084945           cgg_tc= 0.000133284  
+*
++cgg_a1=  '(a1_l2*(lrr*1e6)*(lrr*1e6)+a1_l1*(lrr*1e6)+a1_l0)*pwr((wrr*1e6)*nf,a1_w0*log10(lrr*1e6)+a1_c0)'
++cgg_a2=  '(a2_l2*(lrr*1e6)*(lrr*1e6)+a2_l1*(lrr*1e6)+a2_l0)*pwr((wrr*1e6)*nf,a2_w0*log10(lrr*1e6)+a2_c0)'
+*
+*** mismatch paramters
++dcgg_pvar25llmis = 'mismod*sigma_mis_var*geo_var'
++geo_var = 'ac0_pvar25ll/(wrr*lrr*nf*mr)+bc0_pvar25ll/sqrt(wrr*lrr*nf*mr)+cc0_pvar25ll' 
+*
+*** equivalent circuit
+cgg 1 2  c='max((1/(c0_x1+1/exp(v(1,2)/c0_x0)))*(cgg_a2+(cgg_a1-cgg_a2)/(1+exp((v(1,2)-cgg_x0)/(cgg_dx*(vc0+1/exp(v(1,2)/vc1))*(cgg_tc*(temper-25)+1)))))*(1+dcgg_pvar25ll+dcgg_pvar25llmis)*1e-15,1e-18)' m=mr
+*
+.ends dnwpvar25ll_ckt
+*
+************************************************
+.subckt nvar25ll_ckt 1 2 lr=10u wr=10u nf=1 mismod=1 mr=1 
+.param
++lrr='lr*0.9' wrr='wr*0.9'                  
+*** low frequency capacitor
++a1_l0= 21.9080355          a2_l0= 27.20284998             c0_x0= 450.9331938
++a1_l1= -85.45160597        a2_l1= 205.1997163             c0_x1= 33.59580936
++a1_l2= -0.45820368         a2_l2= -0.744099518            cgg_x0= -2.136796979
++a1_w0= -0.060126474        a2_w0= 0.034092645             cgg_dx= 0.820054062
++a1_c0= 1.063724318         a2_c0= 0.980478072             vc0= 0.99153645
++vc1= 0.353173651           cgg_tc= 0.000135906
+*
++cgg_a1=  '(a1_l2*(lrr*1e6)*(lrr*1e6)+a1_l1*(lrr*1e6)+a1_l0)*pwr((wrr*1e6)*nf,a1_w0*log10(lrr*1e6)+a1_c0)'
++cgg_a2=  '(a2_l2*(lrr*1e6)*(lrr*1e6)+a2_l1*(lrr*1e6)+a2_l0)*pwr((wrr*1e6)*nf,a2_w0*log10(lrr*1e6)+a2_c0)'
+*
+*** mismatch paramters
++dcgg_nvar25llmis = 'mismod*sigma_mis_var*geo_var'
++geo_var = 'ac0_nvar25ll/(wrr*lrr*nf*mr)+bc0_nvar25ll/sqrt(wrr*lrr*nf*mr)+cc0_nvar25ll' 
+*
+*** equivalent circuit
+cgg 1 2  c='max((1/(c0_x1+1/exp((-1)*v(1,2)/c0_x0)))*(cgg_a2+(cgg_a1-cgg_a2)/(1+exp(((-1)*v(1,2)-cgg_x0)/(cgg_dx*(vc0+1/exp((-1)*v(1,2)/vc1))*(cgg_tc*(temper-25)+1)))))*(1+dcgg_nvar25ll+dcgg_nvar25llmis)*1e-15,1e-18)' m=mr
+*
+.ends nvar25ll_ckt
+***********************************************
+.subckt dnwnvar25ll_ckt 1 2 lr=10u wr=10u nf=1 mismod=1 mr=1 
+.param
++lrr='lr*0.9' wrr='wr*0.9'                  
+*** low frequency capacitor
++a1_l0= 21.9080355          a2_l0= 27.20284998             c0_x0= 450.9331938
++a1_l1= -85.45160597        a2_l1= 205.1997163             c0_x1= 33.59580936
++a1_l2= -0.45820368         a2_l2= -0.744099518            cgg_x0= -2.136796979
++a1_w0= -0.060126474        a2_w0= 0.034092645             cgg_dx= 0.820054062
++a1_c0= 1.063724318         a2_c0= 0.980478072             vc0= 0.99153645
++vc1= 0.353173651           cgg_tc= 0.000135906
+*
++cgg_a1=  '(a1_l2*(lrr*1e6)*(lrr*1e6)+a1_l1*(lrr*1e6)+a1_l0)*pwr((wrr*1e6)*nf,a1_w0*log10(lrr*1e6)+a1_c0)'
++cgg_a2=  '(a2_l2*(lrr*1e6)*(lrr*1e6)+a2_l1*(lrr*1e6)+a2_l0)*pwr((wrr*1e6)*nf,a2_w0*log10(lrr*1e6)+a2_c0)'
+*
+*** mismatch paramters
++dcgg_nvar25llmis = 'mismod*sigma_mis_var*geo_var'
++geo_var = 'ac0_nvar25ll/(wrr*lrr*nf*mr)+bc0_nvar25ll/sqrt(wrr*lrr*nf*mr)+cc0_nvar25ll' 
+*
+*** equivalent circuit
+cgg 1 2  c='max((1/(c0_x1+1/exp((-1)*v(1,2)/c0_x0)))*(cgg_a2+(cgg_a1-cgg_a2)/(1+exp(((-1)*v(1,2)-cgg_x0)/(cgg_dx*(vc0+1/exp((-1)*v(1,2)/vc1))*(cgg_tc*(temper-25)+1)))))*(1+dcgg_nvar25ll+dcgg_nvar25llmis)*1e-15,1e-18)' m=mr
+*
+.ends dnwnvar25ll_ckt

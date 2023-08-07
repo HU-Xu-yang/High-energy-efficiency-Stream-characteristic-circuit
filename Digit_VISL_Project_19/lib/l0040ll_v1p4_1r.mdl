@@ -1,0 +1,2025 @@
+* 
+*  No part of this file can be released without the consent of SMIC.
+*
+************************************************************************************************************
+*  40nm Logic Low Leakage 1P10M(1P9M,1P8M,1P7M,1P6M) Salicide 1.1V/1.8V/2.5V SPICE Model (for HSPICE only) *
+************************************************************************************************************
+*
+*  Release version    : 1.4_1r
+*
+*  Release date       : 09/25/2012
+*
+*  Simulation tool    : Synopsys Star-HSPICE version C-2009.09
+*
+*  Model type         :
+*    MOSFET           : HSPICE Level 54(BSIM4v4.5)
+*
+*  Model name         :
+*    MOSFET           :
+*        *-----------------------------------------------------------------------------------------------*
+*        |     MOSFET type    |   1.1V          |    2.5V          |   2.5V(od 3.3V)  |  2.5V(ud 1.8V)   | 
+*        |===============================================================================================|
+*        |        NMOS        |   n11ll_ckt     |    n25ll_ckt     |   nod33ll_ckt    |    nud18ll_ckt   |
+*        *-----------------------------------------------------------------------------------------------*
+*        |        PMOS        |   p11ll_ckt     |    p25ll_ckt     |   pod33ll_ckt    |    pud18ll_ckt   |
+*        *-----------------------------------------------------------------------------------------------*
+*        |    Native NMOS     |   nt11ll_ckt    |    nt25ll_ckt    |   ntod33ll_ckt   |   ntud18ll_ckt   |
+*        *-----------------------------------------------------------------------------------------------*
+*        |      HVT NMOS      | nhvt11ll_ckt    |
+*        *--------------------------------------*
+*        |      HVT PMOS      | phvt11ll_ckt    |
+*        *--------------------------------------*
+*        |      LVT NMOS      | nlvt11ll_ckt    |
+*        *--------------------------------------*
+*        |      LVT PMOS      | plvt11ll_ckt    |
+*        *-----------------------------------------------------------------------------------------------*
+*        |      DNW NMOS      | n11ll_dnw_ckt   |  n25ll_dnw_ckt   |  nod33ll_dnw_ckt |  nud18ll_dnw_ckt |
+*        *-----------------------------------------------------------------------------------------------*
+*        |   HVT NMOS in DNW  | nhvt11ll_dnw_ckt|
+*        *--------------------------------------*
+*        |   LVT NMOS in DNW  | nlvt11ll_dnw_ckt|
+*        *--------------------------------------*
+*  Valid temperature range is from -40C to 125C
+*
+
+***********************************************************************************
+*                              1.1V CORE NMOS MODEL                               *
+***********************************************************************************
+**
+.model  n11ll_ckt  nmos
++level = 54
+**************************************************************
+*               MODEL FLAG PARAMETERS 
+**************************************************************
++lmin    = 3.6e-008        lmax    = 0.0001          wmin    = 1.08e-007     
++wmax    = 0.0001          version = 4.5             binunit = 2             
++paramchk= 1               mobmod  = 0               capmod  = 2             
++igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0             
++rgeomod = 1               rgatemod= 0               permod  = 1             
++acnqsmod= 0               trnqsmod= 0               tempmod = 0             
++wpemod  = 1             
+**************************************************************
+*               GENERAL MODEL PARAMETERS 
+**************************************************************
++tnom    = 25              toxe    = '2.37e-009+dtoxe_n11ll'       dtox    = 1.08e-010     
++epsrox  = 3.9             toxref  = 2.37e-009       wint    = -2.25e-008    
++lint    = 8.8e-010        ll      = -2.845747e-016  wl      = -9.27071e-016 
++lln     = 1               wln     = 0.86            lw      = -9.6e-016     
++ww      = 2.7e-016        lwn     = 1.02            wwn     = 1             
++lwl     = 3.0135e-023     wwl     = 1.69604e-022    llc     = 0             
++wlc     = 0               lwc     = 0               wwc     = 0             
++lwlc    = 0               wwlc    = 0               xl      = '5.8e-009+dxl_n11ll'      
++xw      = '1.7e-008+dxw_n11ll'        dlc     = 7.62e-009       dwc     = 0             
++dlcig   = 3.5e-010        xpart   = 1             
+**************************************************************
+*               DC PARAMETERS 
+**************************************************************
++vth0 = '0.342677+dvth_n11ll+LPEVTH0_N11LL'           lvth0 = '-7.69232E-10+dlvth0_n11ll'      wvth0   = '-1.0435e-008+dwvth0_n11ll'  
++pvth0   = '-9.38199e-016+dpvth0_n11ll'   k1      = 0.31031         k2      = -0.00895      
++lk2     = 9.738633e-010   wk2     = 8.79636e-009    pk2     = 1.20872e-016  
++k3      = 1.5             wk3     = 1.1e-007        pk3     = 5.25936e-015  
++k3b     = 5.64            w0      = 0               dvt0    = 0             
++ldvt0   = 4.54071e-007    dvt1    = 2.067117        ldvt1   = -6.730999e-008
++wdvt1   = -1.591379e-008  dvt2    = 0               dvt0w   = 0             
++dvt1w   = 5724000         dvt2w   = -0.016          dsub    = 0.56          
++minv    = -0.35216        lminv   = 6.1171e-009     voffl   = -1e-009       
++dvtp0   = 9.535818e-006   dvtp1   = 0               lpe0    = 0             
++llpe0   = 3.681338e-015   plpe0   = 6.35e-022       lpeb    = 0             
++vbm     = -3              xj      = 9.7e-008        ngate   = 2e+021        
++ndep    = 1.3e+017        phin    = 0.144357        cdsc    = 0.0024576     
++cdscb   = 5e-005          cdscd   = 0.0010184       cit     = 0.00175       
++lcit    = '2.1492e-010+dlcit_n11ll'     wcit    = 7.4e-011        pcit    = -9.40227e-018 
++voff    = '-0.154+dvoff_n11ll'          lvoff   = '-3.38616e-009+dlvoff_n11ll'   pvoff   = 1.498176e-016 
++nfactor = 1.3             eta0    = 0.003           leta0   = '7.12952E-9+dleta0_n11ll' 
++peta0   = -6.78536e-017   etab    = -0.150214       letab   = 5.31e-009     
++petab   = -6.4e-017       
++u0      = '(0.02594+du0_n11ll)*LPEU0_N11LL'         
++lu0     = '(1.71624e-009+dlu0_n11ll)*LPELU0_N11LL'  
++wu0     = '4.927918e-010*LPEWU0_N11LL'   
++pu0     = '-9.376731e-017*LPEPU0_N11LL'  
++ua      = -9.9e-010     
++lua     = 1.56e-017       wua     = 6.3145e-017     pua     = -1.7e-024     
++ub      = 1.8e-018        lub     = 1.14e-025       wub     = -5e-027       
++pub     = 7.1e-034        uc      = 1.04912e-010    luc     = 1.12108e-017  
++wuc     = 1e-018          puc     = 4e-025          eu      = 1.67          
++vsat    = 109189.9        lvsat   = '0.0007432+dlvsat_n11ll'       pvsat   = '-9.395e-011+dpvsat_n11ll'   
++a0      = 2.3             la0     = 7.94314e-008    wa0     = -5.024e-007   
++pa0     = 6.30416e-014    ags     = '0.779376+dags_n11ll'        lags    = 3.914205e-007 
++wags    = 4.352e-008      pags    = -7.12395e-014   a1      = 0             
++a2      = 1               b0      = 2.15975e-008    b1      = 0             
++keta    = -0.0085         lketa   = 3.036309e-009   wketa   = -9.53e-009    
++pketa   = 1.18e-015       dwg     = 0               dwb     = 0             
++pclm    = 0.0124311       pdiblc1 = 0               pdiblc2 = 0.0130297     
++lpdiblc2= -5.591418e-010  ppdiblc2= 1.4e-016        pdiblcb = 0             
++drout   = 0.56            pvag    = 0               delta   = 0.0107568     
++ldelta  = 3.22902e-009    pscbe1  = 6.24e+008       pscbe2  = 1e-005        
++pdits   = 1.12335         lpdits  = -4.3343e-008    pditsd  = 0.666075      
++pditsl  = 4357153         rsh     = 18              rsw     = 24            
++rdw     = 24              rdwmin  = 0               rswmin  = 0             
++prwg    = 1               prwb    = 0               wr      = 1             
++alpha0  = 7.286261e-008   alpha1  = 1.272416        lalpha1 = -6.1e-008     
++beta0   = 13.33           lbeta0  = -1e-008         wbeta0  = -1.3e-008     
++agidl   = 4.3e-011        bgidl   = 8.7e+008        cgidl   = 15.662679     
++egidl   = 0               aigbacc = 0.02487         bigbacc = 0.00171       
++cigbacc = 0.075           nigbacc = 1               aigbinv = 0.0111        
++bigbinv = 0.000949        cigbinv = 0.006           eigbinv = 1.1           
++nigbinv = 3               aigc    = 0.0121377       laigc   = -4.9e-011     
++waigc   = 3.18e-011       bigc    = 0.00167         cigc    = 0.03508       
++lcigc   = 3.9e-009        aigsd   = 0.0107898       bigsd   = 0.00055       
++cigsd   = 0.001           nigc    = 2.43            poxedge = 1             
++pigcd   = 3.616           lpigcd  = 3.3e-007        ntox    = 1             
+**************************************************************
+*               CAPACITANCE PARAMETERS 
+**************************************************************
++cgso    = '6.73e-011+dcgso_n11ll'       cgdo    = '6.73e-011+dcgdo_n11ll'       cgbo    = 0             
++cgdl    = '5.7e-011+dcgdl_n11ll'        cgsl    = '5.7e-011+dcgsl_n11ll'        clc     = 1e-007        
++cle     = 0.6             cf      = '7.715e-011+dcf_n11ll'      acde    = 0.247818      
++moin    = 5.4             noff    = 2.0879          voffcv  = -0.12248      
++lnoff = 4.7E-8
++lvoffcv = -1.9E-9 
+**************************************************************
+*               TEMPERATURE PARAMETERS 
+**************************************************************
++tvoff   = 0.003           ltvoff  = -3e-011         kt1     = -0.244        
++lkt1    = '-3.16e-009+dlkt1_n11ll'      wkt1    = -5.4e-009       pkt1    = 7e-017        
++kt2     = -0.04           ute     = -1.03           lute    = 3.98e-008     
++wute    = -1.8e-008       pute    = 6.94e-016       ua1     = 1.612e-009    
++ub1     = -1.46e-018      lub1    = 5e-026          uc1     = 5.2e-011      
++luc1    = 1.2e-017        prt     = 0               at      = 25000         
++lat      = '0+dlat_n11ll'
+**************************************************************
+*               NOISE PARAMETERS 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 4.1e+007      
++ef      = 0.98            noia    = 4.7e+041        noib    = 4.29316e+025  
++noic    = 5.9625e+008     ntnoi   = 1               lintnoi = 0             
+**************************************************************
+*               DIODE PARAMETERS 
+**************************************************************
++jss     = 1.71349e-008    jsws    = 2.56848e-014    jswgs   = 5.96e-013     
++njs     = 0.92934         ijthsfwd= 0.1             ijthsrev= 0.1           
++bvs     = 9.3             xjbvs   = 1               jtss    = 0             
++jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 1e-007          jtsswgd = 1e-007          njts    = 20            
++njtssw  = 20              njtsswg = 20              xtss    = 0.02          
++xtsd    = 0.02            xtssws  = 0.02            xtsswd  = 0.02          
++xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.458831      
++cjs     = '0.001473228+dcjs_n11ll'     mjs     = 0.258409        pbsws   = 0.9848        
++cjsws   = '5.14781e-011+dcjsws_n11ll'    mjsws   = 0.22454         pbswgs  = 0.2      
++cjswgs  = '2.80e-010+dcjswgs_n11ll'    mjswgs  = 0.97            tpb     = 0.000797258   
++tcj     = 0.0005575224    tpbsw   = 0.00169169      tcjsw   = 0.009706073   
++tpbswg  = 0.0001623729    tcjswg  = 0.0005677593    xtis    = 3.38          
+**************************************************************
+*               LAYOUT RELATED PARAMETERS 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0             
++xgw     = 0               xgl     = 0             
+**************************************************************
+*               RF PARAMETERS 
+**************************************************************
+**************************************************************
+*               STRESS PARAMETERS 
+**************************************************************
++web     = 1               wec     = 1               scref   = 1e-006        
++kvth0we = 0.0012          wkvth0we= -1.2e-010       k2we    = 0             
++ku0we   = -0.0003         saref   = 2.61e-007       sbref   = 2.61e-007     
++wlod    = 0               kvth0   = 1.2e-009        lkvth0  = 3e-008        
++wkvth0  = 9e-008          llodvth = 1               wlodvth = 1             
++stk2    = 0               lodk2   = 1               lodeta0 = 1             
++ku0     = -1e-008         lku0    = 1e-006          wku0    = 2e-006        
++pku0    = 0               llodku0 = 1               wlodku0 = 1             
++kvsat   = 1               steta0  = -6e-010         tku0    = 0             
+
+*
+***********************************************************************************
+*                              1.1V CORE PMOS MODEL                               *
+***********************************************************************************
+**
+.model  p11ll_ckt  pmos  level = 54
+**************************************************************
+*               MODEL FLAG PARAMETERS 
+**************************************************************
++lmin    = 3.6e-008        lmax    = 0.0001          wmin    = 1.08e-007       wmax    = 0.0001        
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0               wpemod  = 1             
+**************************************************************
+*               GENERAL MODEL PARAMETERS 
+**************************************************************
++tnom    = 25              toxe    = '2.7e-009+dtoxe_p11ll'        dtox    = 2.1e-010        epsrox  = 3.9           
++toxref  = 2.7e-009        wint    = -2.2913e-008    lint    = -1.0129674e-008  ll      = 2.1686916e-016
++wl      = 0               lln     = 1.05            wln     = 1               lw      = 0             
++ww      = 3.0931e-015     lwn     = 1               wwn     = 0.98            lwl     = 0             
++wwl     = -6e-023         llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '5.1e-009+dxl_p11ll'      
++xw      = '1.8e-008+dxw_p11ll'        dlc     = 8.28e-009     dwc     = 0               dlcig   = 2.7974e-009        
++xpart   = 1             
+**************************************************************
+*               DC PARAMETERS 
+**************************************************************
++vth0    = '-0.366+dvth_p11ll+LPEVTH0_P11LL'          lvth0   = '3.314e-009+dlvth0_p11ll'      wvth0   = '5.2560735e-009+dwvth0_p11ll'  pvth0   = '-4.879e-016+dpvth0_p11ll'   
++k1      = 0.29049         k2      = -0.03273        lk2     = 2.2e-009        wk2     = -9e-010       
++pk2     = 8.1432e-017     k3      = 0.5             wk3     = -8e-008         k3b     = 0.9348        
++w0      = 9e-006          dvt0    = 0.61918         ldvt0   = 1.5522e-008     wdvt0   = 6e-009
++dvt1    = 0.7             dvt2    = -0.002          dvt0w   = 0               dvt1w   = 5300000       
++dvt2w   = -0.032          dsub    = 0.56            minv    = -0.28           lminv   = -9.6e-010     
++pminv   = -2.7013e-015    voffl   = 0               dvtp0   = 1.2947e-006     wdvtp0  = 1.2e-014
++dvtp1   = 0               lambda  = 0               lpe0    = 1.0733e-008     llpe0   = 4.3e-015      
++plpe0   = -8.16e-024      lpeb    = 7.08e-009       xj      = 8.6e-008        ngate   = 8e+020        
++ndep    = 1e+017          nsd     = 1e+020          phin    = 0.06            cdsc    = 0.00024       
++ud      = 1e+014          up      = 0               lp      = 1e-008          cdscb   = 0             
++cdscd   = 0               cit     = 1e-007          lcit    = 2.25e-010       pcit    = -9e-018       
++voff    = '-0.128+dvoff_p11ll'          lvoff   = -4.1236e-009    wvoff   = 4e-010          pvoff   = '2.1312e-017+dpvoff_p11ll'   
++nfactor = 1               lnfactor= 2e-008          pnfactor= 4e-015          eta0    = '0.080058+deta0_p11ll'      
++leta0   = -1.6578e-009    peta0   = -5e-018         etab    = -0.010299       letab   = -1.5e-010     
++vfb     = -1              u0      = '(0.00896+du0_p11ll)*LPEU0_P11LL'         lu0     = '(8.4135e-011+dlu0_p11ll)*LPELU0_P11LL'     wu0     = '(2.412e-010+dwu0_p11ll)*LPEWU0_P11LL'
++pu0     = '(1.5e-017+dpu0_p11ll)*LPEPU0_P11LL'        ua      = -1.8e-010       lua     = -3.5426e-017    pua     = -5.2456e-024  
++ub      = 1.052e-018      lub     = 1.1653e-025     wub     = 1.456e-026      pub     = 1.4314e-032   
++uc      = -6e-012         luc     = 7e-018          puc     = 8e-025          eu      = 1             
++vsat    = '146900+dvsat_p11ll'          lvsat   = '-0.00235+dlvsat_p11ll'      pvsat   = '-4.8002e-011+dpvsat_p11ll'    a0      = 2.3           
++la0     = -9e-009         wa0     = -2e-008         pa0     = 2e-014          ags     = 0.32262       
++lags    = 5.8966e-007     wags    = 3.8e-008        pags    = -5e-014         a1      = 0             
++a2      = 1               b0      = 0               b1      = 0               keta    = -0.002        
++lketa   = 1e-009          wketa   = 5e-009          pketa   = -4e-017         dwg     = 0             
++dwb     = 0               pclm    = 0.3             lpclm   = -1.4762543e-009  ppclm   = -1.5e-016     
++pdiblc1 = 7.28e-008       pdiblc2 = 0.0035          lpdiblc2= 1.51e-009       ppdiblc2= -9e-017       
++pdiblcb = 0               drout   = 0.56            pvag    = 1               delta   = 0.01          
++ldelta  = 2e-009          pscbe1  = 4.24e+008       pscbe2  = 1e-005          fprout  = 0.0001        
++pdits   = 0.47451         pditsd  = 0.9             pditsl  = 100000          rsh     = 10            
++rsw     = 70.8            rdw     = 70.8            rdswmin = 0               rdwmin  = 0             
++rswmin  = 0               prwg    = 0               prwb    = 0               wr      = 1             
++alpha0  = 5.7912e-007     lalpha0 = -9.0086e-016    palpha0 = 3e-022          alpha1  = 2.0873        
++lalpha1 = -6.2301e-007    palpha1 = 5.612e-015      beta0   = 17.8            lbeta0  = -1.2e-007     
++pbeta0  = 1e-014          agidl   = 8.7e-011        bgidl   = 8e+008     cgidl   = 0.5           
++egidl   = 0.8             aigbacc = 0.017         bigbacc = 0.0060789       cigbacc = 0.063         
++nigbacc = 1               aigbinv = 0.35            bigbinv = 0.03            cigbinv = 0.006         
++eigbinv = 1               nigbinv = 3               aigc    = 0.006958        waigc   = -3e-012       
++bigc    = 0.0006          cigc    = 0.03            aigsd   = 0.00632         laigsd  = -2.6e-011     
++bigsd   = 0               cigsd   = 0.02            nigc    = 1               poxedge = 1             
++pigcd   = 0.3             lpigcd  = 3e-006          wpigcd  = -4e-008         ntox    = 1             
+**************************************************************
+*               CAPACITANCE PARAMETERS 
+**************************************************************
++cgso    = '5.4e-011+dcgso_p11ll'     cgdo    = '5.4e-011+dcgdo_p11ll'     cgbo    = 0               cgdl    = '7e-011+dcgdl_p11ll'   
++cgsl    = '7e-011+dcgsl_p11ll'     clc     = 0             
++cle     = 0.6             cf      = '6.6e-011+dcf_p11ll'       ckappas = 0.6             ckappad = 0.6           
++vfbcv   = -1              acde    = 0.48084         moin    = 10.44           noff    = 1.6874        
++lnoff   = 2e-008          voffcv  = -0.046692       lvoffcv = -2.928e-009       
+**************************************************************
+*               TEMPERATURE PARAMETERS 
+**************************************************************
++tvoff   = 0.0015          kt1     = -0.26591        lkt1    = -4.8613e-009    wkt1    = 3e-009        
++pkt1    = 1e-016          kt1l    = 0               kt2     = -0.0285         lkt2    = -2e-010       
++ute     = '-0.9592+dute_p11ll'         lute    = 5e-009         wute    = 5.796e-008      pute    = '-2.6665e-015+dpute_p11ll' 
++ua1     = 3.5729e-009     lua1    = 5.824e-017      wua1    = 1.6e-016        pua1    = 8.8e-024      
++ub1     = -4.935e-018     lub1    = -6.1769e-026    pub1    = -1.9567e-032    uc1     = -5.6e-011     
++puc1    = -2e-024         prt     = 0               at      = 33000           lat     = -0.00082932   
++wat     = -0.0005         pat     = -4.06e-011    
+**************************************************************
+*               NOISE PARAMETERS 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 6e+007          ef      = 1.1             
++noia    = 4e+042          noib    = 1.01e+025       noic    = 1e+010        ntnoi   = 1             
++lintnoi = -1e-008            
+**************************************************************
+*               DIODE PARAMETERS 
+**************************************************************
++jss     = 4.378592e-008       jsws    = 1.2e-013        jswgs   = 1.53e-012       njs     = 0.999269          
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 8.55             xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 8e-008          jtsswgd = 8e-008          njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.789952           cjs     = '0.001410098+dcjs_p11ll'       
++mjs     = 0.358642           pbsws   = 0.278277           cjsws   = '5.495582e-011+dcjsws_p11ll'       mjsws   = 0.122442         
++pbswgs  = 0.20           cjswgs  = '1.81e-010+dcjswgs_p11ll'       mjswgs  = 0.9               tpb     = 0.001306596       
++tcj     = 0.00070724        tpbsw   = 0.00108         tcjsw   = 0.000821187        tpbswg  = 1e-5        
++tcjswg  = 0.0022          xtis    = 6.68536            
+**************************************************************
+*               LAYOUT RELATED PARAMETERS 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0             
++xgl     = 0             
+**************************************************************
+*               RF PARAMETERS 
+**************************************************************
+**************************************************************
+*               STRESS PARAMETERS 
+**************************************************************
++web     = 1               wec     = 1               scref   = 1e-006          kvth0we = -0.004        
++lkvth0we= 1.092e-010      wkvth0we= 5e-010          pkvth0we= -1.3e-017       k2we    = 0             
++ku0we   = -0.001          wku0we  = 1.2e-010        pku0we  = -5.4e-018       saref   = 2.61e-007     
++sbref   = 2.61e-007       wlod    = 0               kvth0   = -7.5e-010       lkvth0  = -2.784e-008   
++wkvth0  = 0               pkvth0  = 2e-016          llodvth = 1               wlodvth = 1             
++stk2    = 0               lodk2   = 1               lodeta0 = 1               ku0     = 1.25e-009     
++lku0    = 1e-008          wku0    = 0               pku0    = 0               llodku0 = 1             
++wlodku0 = 1               kvsat   = 1               steta0  = 0               tku0    = 0             
+
+*
+***********************************************************************************
+*                              1.1V HVT CORE NMOS MODEL                           *
+***********************************************************************************
+**
+.model  nhvt11ll_ckt  nmos  level = 54
+**************************************************************
+*               model flag parameters 
+**************************************************************
++lmin    = 3.6e-008        lmax    = 0.0001          wmin    = 1.08e-007       wmax    = 0.0001        
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0               wpemod  = 1             
+**************************************************************
+*               general model parameters 
+**************************************************************
++tnom    = 25              toxe    = '2.37e-9+dtoxe_nhvt11ll'  dtox    = 1.08e-010       epsrox  = 3.9           
++toxref  = 2.37e-009       wint    = -2.47e-008      lint    = -6.4864e-009    ll      = -1.176598e-017
++wl      = 0               lln     = 1.09            wln     = 0.86            lw      = -9.6e-016     
++ww      = 2.3e-016        lwn     = 1.02            wwn     = 1               lwl     = 5.6297e-024   
++wwl     = -9.357215e-023  llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '5.8e-9+dxl_nhvt11ll'
++xw      = '1.7e-8+dxw_nhvt11ll'  dlc     = 6.16e-009       dwc     = 0               dlcig   = 3.5e-010      
++xpart   = 1             
+**************************************************************
+*               dc parameters 
+**************************************************************
++vth0    = '0.379839+dvth_nhvt11ll+lpevth0_nhvt11ll'  
++lvth0   = '4.77771e-10+dlvth0_nhvt11ll'  
++wvth0   = '-1.0935e-8+dwvth0_nhvt11ll'  
++pvth0   = '-9.28873e-16+dpvth0_nhvt11ll'
++k1      = 0.31031         k2      = -0.00835        lk2     = 1.410721e-009   wk2     = 7.735728e-009 
++pk2     = 2.82308e-016    k3      = 1.5             wk3     = 1.7e-007        pk3     = 7.88904e-015  
++k3b     = 5.64            w0      = 0               dvt0    = 0               ldvt0   = 1.018898e-006 
++dvt1    = 2.316205        ldvt1   = -9.40167e-008   wdvt1   = -1.67238e-008   dvt2    = -0.018        
++dvt0w   = 0               dvt1w   = 5724000         dvt2w   = -0.016          dsub    = 0.56          
++minv    = -0.207774       lminv   = -1.957472e-009  voffl   = -1e-009         dvtp0   = 1.008207e-005 
++dvtp1   = 0               lpe0    = 0               llpe0   = 3.774614e-015   wlpe0   = -1.1e-015     
++plpe0   = 5.95e-022       lpeb    = 0               vbm     = -3              xj      = 9.7e-008      
++ngate   = 2e+021          ndep    = 1.5e+017        phin    = 0.175365        cdsc    = 0.00324       
++cdscb   = 5e-005          cdscd   = 2e-005          cit     = 0.002468        lcit    = '1.2784e-10+dlcit_nhvt11ll'
++wcit    = 1.3e-011        voff    = '-0.16+dvoff_nhvt11ll'  lvoff   = '-3.47924e-9+dlvoff_nhvt11ll'  pvoff   = 1.498176e-016 
++nfactor = 1.3             eta0    = 0               leta0   = '8.35736e-9+dleta0_nhvt11ll'  peta0   = 1.271464e-016 
++etab    = -0.20217        letab   = 8.075e-009      petab   = -6.4e-017       
++u0      = '(0.02665+du0_nhvt11ll)*lpeu0_nhvt11ll'
++lu0     = '(1.353831e-9+dlu0_nhvt11ll)*lpelu0_nhvt11ll'  
++wu0     = '4.927918e-10*lpewu0_nhvt11ll'  
++pu0     = '-1.168208e-016*lpepu0_nhvt11ll'  
++ua      = -1.210768e-009
++lua     = 1.56e-017       wua     = 6.3145e-017     pua     = -1.7e-024       ub      = 2.0637e-018   
++lub     = 1.14e-025       wub     = -5e-027         pub     = 7.1e-034        uc      = 1.04912e-010  
++luc     = 1.85162e-017    eu      = 1.67            vsat    = 1.281899e5  lvsat   = '1.061246e-3+dlvsat_nhvt11ll'
++pvsat   = '4.6648e-11+dpvsat_nhvt11ll'  a0      = 1.61            la0     = 3.590299e-007   wa0     = -5.024e-007   
++pa0     = 6.30416e-014    ags     = '0.727907+dags_nhvt11ll'  lags    = 4.814205e-007   pags    = -7.12395e-014 
++a1      = 0               a2      = 1               b0      = 2.15975e-008    b1      = 0             
++keta    = -0.03298        lketa   = 5.930833e-009   wketa   = -9.53e-009      pketa   = 9.6e-016      
++dwg     = 0               dwb     = 0               pclm    = 0.0124311       pdiblc1 = 0             
++pdiblc2 = 0.0150297       lpdiblc2= -7.88112e-010   ppdiblc2= 1.6e-016        pdiblcb = 0             
++drout   = 0.56            pvag    = 0               delta   = 0.0107568       ldelta  = 3.607114e-009 
++pscbe1  = 6.24e+008       pscbe2  = 1e-005          pdits   = 1.12335         lpdits  = -6.0343e-008  
++pditsd  = 0.666075        pditsl  = 4357153         rsh     = 12              rsw     = 24            
++rdw     = 24              rdwmin  = 0               rswmin  = 0               prwg    = 1             
++prwb    = 0               wr      = 1               alpha0  = 6.28626e-008    alpha1  = 1.342382      
++lalpha1 = -1.708e-008     beta0   = 13.33           lbeta0  = 4e-009          wbeta0  = -3.9e-008     
++agidl   = '6.92e-011+dagidl_nhvt11ll'       lagidl  = '2.5e-018+dlagidl_nhvt11ll'        pagidl  = 9e-025          bgidl   = 8.774e+008    
++lbgidl  = -5              cgidl   = 63              lcgidl  = -3e-006         egidl   = 0.1           
++aigbacc = 0.02487         bigbacc = 0.00171         cigbacc = 0.075           nigbacc = 1             
++aigbinv = 0.0111          bigbinv = 0.000949        cigbinv = 0.006           eigbinv = 1.1           
++nigbinv = 3               aigc    = 0.0117877       laigc   = -4.536e-011     
++waigc   = 6.47e-011       paigc   = -3e-018         
++bigc    = 0.00176         cigc    = 0.0582328       lcigc   = 3.9e-009        aigsd   = 0.0110998     
++bigsd   = 0.00065         cigsd   = 0.002           nigc    = 2.43            poxedge = 1             
++pigcd   = 3.616           lpigcd  = 3.3e-007        ntox    = 1             
+**************************************************************
+*               capacitance parameters 
+**************************************************************
++cgso    = '4.93e-11+dcgso_nhvt11ll'  cgdo    = '4.93e-11+dcgdo_nhvt11ll'  cgbo    = 0               cgdl    = '5.7e-11+dcgdl_nhvt11ll'
++cgsl    = '5.7e-11+dcgsl_nhvt11ll'  clc     = 1e-007          cle     = 0.6             cf      = '7.715e-11+dcf_nhvt11ll'
++acde    = 0.247818        moin    = 5.4             noff    = 2.0879          lnoff   = 6e-008        
++voffcv  = -0.16748        lvoffcv = -6e-010       
+**************************************************************
+*               temperature parameters 
+**************************************************************
++tvoff   = 0.003           ltvoff  = -4e-012         kt1     = -0.273          lkt1    = -2.15e-010    
++pkt1    = -1.25e-016      kt2     = -0.044          lkt2    = 5e-010          ute     = -1.03         
++lute    = 5.3644e-008     wute    = -1.4e-008       pute    = -1.1e-015       ua1     = 1.612e-009    
++ub1     = -1.46e-018      lub1    = 5e-026          uc1     = 5.2e-011        luc1    = 1.2e-017      
++prt     = 0               at      = 84000           lat     = -0.00308        wat     = -0.0064       
+**************************************************************
+*               noise parameters 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 4.1e+007        ef      = 0.97          
++noia    = 6.7e+041        noib    = 7.29316e+025    noic    = 4.9625e+008     ntnoi   = 1             
++lintnoi = -5e-009       
+**************************************************************
+*               diode parameters 
+**************************************************************
++jss     = 1.85973e-008    jsws    = 9.1548e-015     jswgs   = 5.96e-013       njs     = 0.893926      
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 9.3             xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 0               jtsswgd = '9e-007+djtsswgd_nhvt11ll'          njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.495432        cjs     = '1.504653e-3+dcjs_nhvt11ll'
++mjs     = 0.271939        pbsws   = 0.93907         cjsws   = '5.701237e-11+dcjsws_nhvt11ll'  mjsws   = 0.279405      
++pbswgs  = 0.5        cjswgs  = '3.0e-10+dcjswgs_nhvt11ll'  mjswgs  = 0.8          tpb     = 0.001194821   
++tcj     = 0.0008055109    tpbsw   = 1e-005          tcjsw   = 0.000467432     tpbswg  = 0.000353      
++tcjswg  = 0.000582        xtis    = 4.88          
+**************************************************************
+*               layout related parameters 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0             
++xgl     = 0             
+**************************************************************
+*               rf parameters 
+**************************************************************
+**************************************************************
+*               stress parameters 
+**************************************************************
++web     = 1               wec     = 1               scref   = 1e-006          kvth0we = 0.0012        
++lkvth0we= -1.1e-011       wkvth0we= -1.3e-010       k2we    = 0               ku0we   = -0.0003       
++saref   = 2.61e-007       sbref   = 2.61e-007       wlod    = 0               kvth0   = 1.2e-009      
++lkvth0  = 3e-008          wkvth0  = 9e-008          llodvth = 1               wlodvth = 1             
++stk2    = 0               lodk2   = 1               lodeta0 = 1               ku0     = -1e-008       
++lku0    = 1e-006          wku0    = 2e-006          pku0    = 0               llodku0 = 1             
++wlodku0 = 1               kvsat   = 1               steta0  = -1.1e-009       tku0    = 0             
+
+*
+***********************************************************************************
+*                              1.1V CORE HVT PMOS MODEL                           *
+***********************************************************************************
+**
+.model  phvt11ll_ckt  pmos  level = 54
+**************************************************************
+*               MODEL FLAG PARAMETERS 
+**************************************************************
++lmin    = 3.6e-008        lmax    = 0.0001          wmin    = 1.08e-007       wmax    = 0.0001        
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0               wpemod  = 1             
+**************************************************************
+*               GENERAL MODEL PARAMETERS 
+**************************************************************
++tnom    = 25              toxe    = '2.7e-009+dtoxe_phvt11ll'        dtox    = 2.1e-010        epsrox  = 3.9           
++toxref  = 2.7e-009        wint    = -2.2913e-008    lint    = -1.5964e-008    ll      = 2.1686916e-016
++wl      = 0               lln     = 1.05            wln     = 1               lw      = 0             
++ww      = 3.0931e-015     lwn     = 1               wwn     = 0.98            lwl     = 0             
++wwl     = -5e-023         llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '5.1e-009+dxl_phvt11ll'      
++xw      = '1.8e-008+dxw_phvt11ll'        dlc     = 6.6528e-009     dwc     = 0               dlcig   = 4e-009        
++xpart   = 1             
+**************************************************************
+*               DC PARAMETERS 
+**************************************************************
++vth0    = '-0.33609+dvth_phvt11ll+lpevth0_phvt11ll'        lvth0   = '6.13e-009+dlvth0_phvt11ll'          wvth0   = '5.2560735e-009+dwvth0_phvt11ll'  pvth0   = '-2.4165e-016+dpvth0_phvt11ll'  
++k1      = 0.29049         k2      = -0.024252       lk2     = 4.4037e-009     wk2     = -9e-010       
++pk2     = -1.1e-016       k3      = 0.5             wk3     = -8e-008         k3b     = 0.9348        
++w0      = 9e-006          dvt0    = 0.029075        ldvt0   = 8e-008          pdvt0   = -1e-015       
++dvt1    = 0.7             dvt2    = -0.002          dvt0w   = 0               dvt1w   = 5300000       
++dvt2w   = -0.032          dsub    = 0.56            minv    = -0.28           lminv   = 8e-009        
++wminv   = 1.1e-007        pminv   = -5.72e-015      voffl   = 0               dvtp0   = 1.2936e-005   
++dvtp1   = 0               lambda  = 0               lpe0    = 1.212e-008      llpe0   = 8.6398e-015   
++plpe0   = -4.2e-023       lpeb    = 1.2319e-009     xj      = 8.6e-008        ngate   = 8e+020        
++ndep    = 1e+017          nsd     = 1e+020          phin    = 0.06            cdsc    = 0.00024       
++ud      = 1e+014          up      = 0               lp      = 1e-008          cdscb   = 0             
++cdscd   = 0               cit     = 1e-007          lcit    = 2.25e-010       pcit    = -9e-018       
++voff    = '-0.1327+dvoff_phvt11ll'         lvoff   = '-3.5344e-009+dlvoff_phvt11ll'    wvoff   = -5e-010         pvoff   = 1e-016        
++nfactor = 2               lnfactor= -1e-008         pnfactor= 2e-015          eta0    = 0.088808      
++leta0   = '-1.8126e-009+dleta0_phvt11ll'    peta0   = '-1.1456e-016+dpeta0_phvt11ll'    etab    = -0.053          letab   = 6e-010        
++petab   = 6e-017          vfb     = -1              u0      = '(0.00896+du0_phvt11ll)*lpeu0_phvt11ll'         lu0     = '(4.4948e-011+dlu0_phvt11ll)*lpelu0_phvt11ll'   
++wu0     = '1.2928e-010*lpewu0_phvt11ll'     pu0     = '(-2.9261e-017+dpu0_phvt11ll)*lpepu0_phvt11ll'    ua      = -7.5523e-010    lua     = -8.9107e-018  
++wua     = -7.5e-018       pua     = 1.215e-024      ub      = 1.75e-018       lub     = 5.6163e-026   
++wub     = 5e-027          pub     = -8.5769e-033    uc      = 5e-011          luc     = 1.0317e-017   
++puc     = -1.35e-024      eu      = 1               vsat    = 146900          lvsat   = '-0.0027515+dlvsat_phvt11ll'    
++wvsat   = '-0.011984+dwvsat_phvt11ll'       pvsat   = 4.3645e-010     a0      = 2.97            la0     = 2.9118e-007   
++wa0     = -2e-007         pa0     = 2.8e-014        ags     = 0.27            lags    = 7.29e-007     
++wags    = -9.416e-008     pags    = 5.1497e-014     a1      = 0               a2      = 1             
++b0      = 0               b1      = 0               keta    = -0.002          lketa   = 4.3846e-009   
++pketa   = -4e-016         dwg     = 0               dwb     = 0               pclm    = 0.3           
++ppclm   = -7.5e-017       pdiblc1 = 7.28e-008       pdiblc2 = 0.01            lpdiblc2= 1.401e-009    
++pdiblcb = 0               drout   = 0.56            pvag    = 1               delta   = 0.01          
++ldelta  = 2e-009          pscbe1  = 4.24e+008       pscbe2  = 1e-005          fprout  = 0             
++pdits   = 0.645           pditsd  = 0.8             pditsl  = 100000          rsh     = 10            
++rsw     = 70.8            rdw     = 70.8            rdswmin = 0               rdwmin  = 0             
++rswmin  = 0               prwg    = 0               prwb    = 0               wr      = 1             
++alpha0  = 5.7687e-008     lalpha0 = 1.8109e-015     palpha0 = 4.014e-022      alpha1  = 1.4982        
++lalpha1 = -9.0629e-008    walpha1 = -6.66e-008      palpha1 = -2.7e-015    beta0   = 17.5          
++lbeta0  = -1.2e-007       wbeta0  = -1.5e-007       pbeta0  = 1e-014          agidl   = 1.762e-012    
++bgidl   = 5.5892e+008     cgidl   = 7.4             egidl   = 0.10374         aigbacc = 0.019       
++bigbacc = 0.0060789       cigbacc = 0.063           nigbacc = 1               aigbinv = 0.35          
++bigbinv = 0.03            cigbinv = 0.006           eigbinv = 1               nigbinv = 3             
++aigc    = 0.00703         paigc   = -6.5e-018       bigc    = 0.0006          cigc    = 0.015         
++aigsd   = 0.007           laigsd  = -6.6e-011       bigsd   = 0               cigsd   = 0.068208      
++nigc    = 1               poxedge = 1               pigcd   = 2.8503          lpigcd  = 4.1383e-007   
++ntox    = 1             
+**************************************************************
+*               CAPACITANCE PARAMETERS 
+**************************************************************
++cgso    = '3.5e-011+dcgso_phvt11ll'        cgdo    = '3.5e-011+dcgdo_phvt11ll'        cgbo    = 0               cgdl    = '6.4e-011+dcgdl_phvt11ll'      
++cgsl    = '6.4e-011+dcgsl_phvt11ll'        clc     = 0               cle     = 0.6             cf      = '7.28e-011+dcf_phvt11ll'     
++ckappas = 0.6             ckappad = 0.6             vfbcv   = -1              acde    = 0.51161       
++moin    = 8.36            noff    = 1.6952          lnoff   = 6.6339e-008     voffcv  = -0.035032     
++lvoffcv = -3.9218e-009  
+**************************************************************
+*               TEMPERATURE PARAMETERS 
+**************************************************************
++tvoff   = 0               kt1     = -0.40982        lkt1    = -5.5085e-009    wkt1    = 5e-009        
++kt2     = -0.046868       lkt2    = 5e-010          ute     = '-1.344+dute_phvt11ll'          lute    = '3e-008+dlute_phvt11ll'        
++ua1     = 3.2493e-009     lua1    = 4.4906e-017     ub1     = -4.6538e-018    pub1    = -3e-033       
++uc1     = 0               prt     = 0               at      = 33000           lat     = 0.0002        
++pat     = -3e-011  
+**************************************************************
+*               NOISE PARAMETERS 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 6e+007          ef      = 1.1             
++noia    = 4e+041          noib    = 1.01e+025       noic    = 3e+010        ntnoi   = 1             
++lintnoi = 1e-008           
+**************************************************************
+*               DIODE PARAMETERS 
+**************************************************************
++jss     = 1.382677e-008   jsws    = 1.2e-013        jswgs   = 1.53e-012       njs     = 0.967337      
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 8.55            xjbvs   = 1             
++pbs     = 0.785273        cjs     = '0.001398522+dcjs_phvt11ll'     mjs     = 0.356722        pbsws   = 0.397351      
++cjsws   = '5.240103e-011+dcjsws_phvt11ll'   mjsws   = 0.0966028       pbswgs  = 0.45           cjswgs  = '2.3e-010+dcjswgs_phvt11ll'  
++mjswgs  = 0.9         tpb     = 0.001195637     tcj     = 0.0006734626    tpbsw   = 0.0013467     
++tcjsw   = 0.002832762     tpbswg  = 1e-005          tcjswg  = 0.0022          xtis    = 6.68536      
+**************************************************************
+*               LAYOUT RELATED PARAMETERS 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0             
++xgl     = 0             
+**************************************************************
+*               RF PARAMETERS 
+**************************************************************
+**************************************************************
+*               STRESS PARAMETERS 
+**************************************************************
++web     = 1               wec     = 1               scref   = 1e-006          kvth0we = -0.0025       
++lkvth0we= 5e-011          wkvth0we= 3.216e-010      pkvth0we= -4.2167e-018    k2we    = 0             
++ku0we   = 0.0005          wku0we  = -1.1e-010       pku0we  = -1.3e-017       saref   = 2.61e-007     
++sbref   = 2.61e-007       wlod    = 0               kvth0   = -7.5e-010       lkvth0  = -2.784e-008   
++wkvth0  = 0               pkvth0  = 2e-016          llodvth = 1               wlodvth = 1             
++stk2    = 0               lodk2   = 1               lodeta0 = 1               ku0     = 1.25e-009     
++lku0    = 1e-008          wku0    = 0               pku0    = 0               llodku0 = 1             
++wlodku0 = 1               kvsat   = 1               steta0  = 0               tku0    = 0             
+
+***********************************************************************************
+*                              1.1V CORE LVT NMOS MODEL                           *
+***********************************************************************************
+**
+.model  nlvt11ll_ckt  nmos  level = 54
+**************************************************************
+*               model flag parameters 
+**************************************************************
++lmin    = 3.6e-008        lmax    = 0.0001          wmin    = 1.08e-007       wmax    = 0.0001        
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0               wpemod  = 1             
+**************************************************************
+*               general model parameters 
+**************************************************************
++tnom    = 25              toxe    = '2.37e-9+dtoxe_nlvt11ll'  dtox    = 1.08e-010       epsrox  = 3.9           
++toxref  = 2.37e-009       wint    = -2.38e-008      lint    = 1.9752e-009     ll      = -2.411985e-016
++wl      = -9.27071e-016   lln     = 1.02            wln     = 0.86            lw      = -9.6e-016     
++ww      = 2.7e-016        lwn     = 1.02            wwn     = 1               lwl     = 1.70675e-023  
++wwl     = 2.19604e-022    llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '5.8e-9+dxl_nlvt11ll'
++xw      = '1.7e-8+dxw_nlvt11ll'  dlc     = 7.92e-009       dwc     = 0               dlcig   = 3.5e-010      
++xpart   = 1             
+**************************************************************
+*               dc parameters 
+**************************************************************
++vth0    = '0.346477+dvth_nlvt11ll+lpevth0_nlvt11ll'  
++lvth0   = '-6.000784e-9+dlvth0_nlvt11ll'  
++wvth0   = '-2.768119e-8+dwvth0_nlvt11ll'  
++pvth0   = '-1.122615e-15+dpvth0_nlvt11ll'
++k1      = 0.31031         k2      = -0.01406        lk2     = 2.690576e-010   wk2     = 7.644e-009    
++pk2     = 1.80872e-016    k3      = 1.5             wk3     = 5.7e-007        pk3     = 5.25936e-015  
++k3b     = 5.64            w0      = 0               dvt0    = 0               ldvt0   = 5.367796e-007 
++dvt1    = 1.919208        ldvt1   = -6.11221e-008   wdvt1   = -2.337069e-008  dvt2    = 0.027         
++dvt0w   = 0               dvt1w   = 5724000         dvt2w   = -0.016          dsub    = 0.56          
++minv    = -0.35216        lminv   = 6.1171e-009     voffl   = -1e-009         dvtp0   = 4.81582e-006  
++wdvtp0  = 4.6e-012        dvtp1   = 0               lpe0    = 0               llpe0   = 5.547559e-015 
++plpe0   = 7.17e-022       lpeb    = 0               vbm     = -3              xj      = 9.7e-008      
++ngate   = 2e+021          ndep    = 1.5e+017        phin    = 0.134357        cdsc    = 0.006659232   
++cdscb   = 5e-005          cdscd   = 2e-005          cit     = 0.00155         lcit    = 1.708576e-010 
++wcit    = 7.4e-011        pcit    = -9.40227e-018   voff    = '-0.168+dvoff_nlvt11ll'  lvoff   = '-1.89308e-9+dlvoff_nlvt11ll'
++pvoff   = 1.498176e-016   nfactor = 1.3             eta0    = 0.001           leta0   = '9.64031e-9+dleta0_nlvt11ll'
++weta0   = 2.1e-008        peta0   = -5.99854e-016   etab    = -0.245068       letab   = 1.11e-008     
++petab   = -3e-018         
++u0      = '(0.02424+du0_nlvt11ll)*lpeu0_nlvt11ll'  
++lu0     = '(1.62024e-9+dlu0_nlvt11ll)*lpelu0_nlvt11ll'  
++wu0     = '4.927918e-10*lpewu0_nlvt11ll'
++pu0     = '(-8.676731e-017+dpu0_nlvt11ll)*lpepu0_nlvt11ll'  
++ua      = -1.02e-009      lua     = -1.2e-018       wua     = 6.3145e-017   
++pua     = -1.7e-024       ub      = 1.8e-018        lub     = 1.31e-025       wub     = -5e-027       
++pub     = 7.1e-034        uc      = 6.667168e-011   luc     = 1.19108e-017    wuc     = 7.6272e-018   
++eu      = 1.67            vsat    = 1.0199e5  lvsat   = '1.6732e-3+dlvsat_nlvt11ll'  pvsat   = '-1.3195e-10+dpvsat_nlvt11ll'
++a0      = 2.3             la0     = 7.94314e-008    wa0     = -5.624e-007     pa0     = 6.30416e-014  
++ags     = '0.779376+dags_nlvt11ll'  lags    = 4.714205e-007   wags    = 4.352e-008      pags    = -7.12395e-014 
++a1      = 0               a2      = 1               b0      = 2.15975e-008    b1      = 0             
++keta    = -0.02036        lketa   = 3.936309e-009   wketa   = -9.53e-009      pketa   = 1.1904e-015   
++dwg     = 0               dwb     = 0               pclm    = 0.0054311       pdiblc1 = 0             
++pdiblc2 = 0.006266422     lpdiblc2= -3.06e-010      pdiblcb = 0               drout   = 0.56          
++pvag    = 0               delta   = 0.0107568       ldelta  = 4.581083e-009   pscbe1  = 6.24e+008     
++pscbe2  = 1e-005          fprout  = 100             pdits   = 0.916213        lpdits  = -4.7343e-008  
++pditsd  = 0.406738        lpditsd = 2.827336e-008   pditsl  = 4357153         rsh     = 12            
++rsw     = 24              rdw     = 24              rdwmin  = 0               rswmin  = 0             
++prwg    = 1               prwb    = 0               wr      = 1               alpha0  = 7.286261e-008 
++alpha1  = 1.272416        lalpha1 = -6.1e-008       beta0   = 13.47           lbeta0  = -3.9e-008     
++wbeta0  = -3.536e-008     agidl   = 2e-012          bgidl   = 3.6e+008        cgidl   = 15.206484     
++egidl   = 0               aigbacc = 0.02487         bigbacc = 0.00171         cigbacc = 0.075         
++nigbacc = 1               aigbinv = 0.0111          bigbinv = 0.000949        cigbinv = 0.006         
++eigbinv = 1.1             nigbinv = 3               aigc    = 0.0121977       laigc   = -4.1e-011     
++waigc   = 3.18e-011       bigc    = 0.00176         cigc    = 0.04108         lcigc   = 3.9e-009      
++aigsd   = 0.0104298       bigsd   = 0.00045         cigsd   = 0               nigc    = 2.43          
++poxedge = 1               pigcd   = 3.616           lpigcd  = 3.3e-007        ntox    = 1             
+**************************************************************
+*               capacitance parameters 
+**************************************************************
++cgso    = '8.53e-11+dcgso_nlvt11ll'  cgdo    = '8.53e-11+dcgdo_nlvt11ll'  cgbo    = 0               cgdl    = '5.7e-11+dcgdl_nlvt11ll'
++cgsl    = '5.7e-11+dcgsl_nlvt11ll'  clc     = 1e-007          cle     = 0.6             cf      = '7.715e-11+dcf_nlvt11ll'
++acde    = 0.277818        moin    = 5.4             noff    = 2.0879          lnoff   = 4.2e-008      
++voffcv  = -0.11648        lvoffcv = -2.6e-009     
+**************************************************************
+*               temperature parameters 
+**************************************************************
++tvoff   = 0.003           ltvoff  = -4e-012         kt1     = -0.228          lkt1    = -3.26e-009    
++wkt1    = -8.1e-009       pkt1    = -3e-017         kt2     = -0.04           lkt2    = 5e-010        
++ute     = -1.03           lute    = 4.04e-008       wute    = -1.4e-008       pute    = 1.224e-015    
++ua1     = 1.612e-009      ub1     = -1.46e-018      lub1    = 5e-026          uc1     = 5.2e-011      
++luc1    = 1.2e-017        prt     = 0               at      = 30000           wat     = -0.0016       
+**************************************************************
+*               noise parameters 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 2.1e+007        ef      = 0.98          
++noia    = 8.7e+041        noib    = 1.29316e+025    noic    = 1.1e+008        ntnoi   = 1             
++lintnoi = 0             
+**************************************************************
+*               diode parameters 
+**************************************************************
++jss     = 2.192675e-008   jsws    = 1.66848e-014    jswgs   = 5.96e-013       njs     = 0.916382      
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 9.3             xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 1e-007          jtsswgd = 1e-007          njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.535463        cjs     = '1.497809e-3+dcjs_nlvt11ll'
++mjs     = 0.27193         pbsws   = 0.932           cjsws   = '5.010512e-11+dcjsws_nlvt11ll'  mjsws   = 0.202349      
++pbswgs  = 0.42        cjswgs  = '2.5e-10+dcjswgs_nlvt11ll'  mjswgs  = 0.90           tpb     = 0.0009569575  
++tcj     = 0.0006308669    tpbsw   = 0.0006440152    tcjsw   = 0.0006440152    tpbswg  = 0.000353      
++tcjswg  = 0.000582        xtis    = 3.38          
+**************************************************************
+*               layout related parameters 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0             
++xgl     = 0             
+**************************************************************
+*               rf parameters 
+**************************************************************
+**************************************************************
+*               stress parameters 
+**************************************************************
++web     = 1               wec     = 1               scref   = 1e-006          kvth0we = 0.0012        
++wkvth0we= -1.2e-010       k2we    = 0               ku0we   = -0.0003         saref   = 2.61e-007     
++sbref   = 2.61e-007       wlod    = 0               kvth0   = 1.2e-009        lkvth0  = 3e-008        
++wkvth0  = 9e-008          llodvth = 1               wlodvth = 1               stk2    = 0             
++lodk2   = 1               lodeta0 = 1               ku0     = -1e-008         lku0    = 1e-006        
++wku0    = 2e-006          pku0    = 0               llodku0 = 1               wlodku0 = 1             
++kvsat   = 1               steta0  = -1.1e-009       tku0    = 0             
+
+***********************************************************************************
+*                              1.1V CORE  LVT PMOS MODEL                          *
+***********************************************************************************
+**
+.model  plvt11ll_ckt  pmos  level = 54
+**************************************************************
+*               model flag parameters
+**************************************************************
++lmin    = 3.6e-008        lmax    = 0.0001          wmin    = 1.08e-007       wmax    = 0.0001
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0
++tempmod = 0               wpemod  = 1
+**************************************************************
+*               general model parameters
+**************************************************************
++tnom    = 25              toxe    = '2.7e-009+dtoxe_plvt11ll'        dtox    = 2.1e-010        epsrox  = 3.9
++toxref  = 2.7e-009        wint    = -6e-009         lint    = -2e-009         ll      = 1e-017
++wl      = -2e-016         lln     = 1               wln     = 1               lw      = 0
++ww      = 2.5e-016        lwn     = 1               wwn     = 1.05            lwl     = 0
++wwl     = 1.8e-023        llc     = 0               wlc     = 0               lwc     = 0
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '5.1e-009+dxl_plvt11ll'
++xw      = '1.8e-008+dxw_plvt11ll'        dlc     = 8.1e-009        dwc     = 0               dlcig   = 4e-009
++xpart   = 1
+**************************************************************
+*               dc parameters
+**************************************************************
++vth0    = '-0.396+dvth_plvt11ll+lpevth0_plvt11ll'          lvth0   = '3.26e-009+dlvth0_plvt11ll'       wvth0   = '4.5e-009+dwvth0_plvt11ll'        pvth0   = '-3.4e-016+dpvth0_plvt11ll'
++k1      = 0.3             k2      = -0.03           lk2     = -3.5e-009       k3      = 1
++k3b     = 0.9348          w0      = 1e-005          dvt0    = 0.1             ldvt0   = 3.94e-009
++dvt1    = 0.3             dvt2    = 0.19            dvt0w   = 0.102           dvt1w   = 5300000
++dvt2w   = -0.032          dsub    = 0.56            minv    = -0.35           lminv   = 2.5e-008
++voffl   = 0               dvtp0   = 4e-007          dvtp1   = 0               lambda  = 0
++lpe0    = 0               llpe0   = 2.53e-015       lpeb    = 1.5e-008        xj      = 8.6e-008
++ngate   = 3.0e+021        ndep    = 1e+017          nsd     = 1e+020          phin    = 0.065
++cdsc    = 0               ud      = 0               ud1     = 0               up      = 0.08
++lp      = 1e-006          cdscb   = 0               cdscd   = 0.0005          pcdscd  = -2e-018
++cit     = 0.0001          lcit    = 2e-010          pcit    = -6e-018         voff    = '-0.15+dvoff_plvt11ll'
++lvoff   = '-2e-009+dlvoff_plvt11ll'         nfactor = 1               eta0    = 0.088           leta0   = '-2.41e-010+dleta0_plvt11ll'
++peta0   = -1.8e-016       etab    = -0.01           vfb     = -1              u0      = '(0.00881+du0_plvt11ll)*lpeu0_plvt11ll'
++lu0     = '(-1.08e-010+dlu0_plvt11ll)*lpelu0_plvt11ll'      ua      = -7.4e-010       lua     = -3.2e-018       wua     = -3.6e-017
++ub      = 1.65e-018       lub     = -1.1e-026       uc      = 2.5e-011        luc     = -1e-018
++eu      = 1.67            vsat    = 120000          lvsat   = '-0.00172+dlvsat_plvt11ll'        pvsat   = '1e-011+dpvsat_plvt11ll'
++a0      = 0.9             ags     = 0.5             wags    = 4e-008          a1      = 0
++a2      = 1               b0      = 0               b1      = 0               keta    = -0.002
++lketa   = 2e-009          dwg     = 0               dwb     = 0               pclm    = 0.1
++pdiblc1 = 0.05            pdiblc2 = 0.001           pdiblcb = 0               drout   = 0.56
++pvag    = 1               delta   = 0.01            pscbe1  = 4.24e+008       pscbe2  = 1e-005
++fprout  = 100             pdits   = 0.82            pditsd  = 0.7             pditsl  = 3000000
++rsh     = 12              rsw     = 95              rdw     = 95              rdswmin = 0
++rdwmin  = 0               rswmin  = 0               prwg    = 0               prwb    = 0
++wr      = 1               alpha0  = 0               lalpha0 = 4.4e-017        alpha1  = 0.0028
++beta0   = 7.4             agidl   = 0               bgidl   = 2.3e+009        cgidl   = 0.5
++egidl   = 0.8             aigbacc = 0.014          bigbacc = 0.00171         cigbacc = 0.075
++nigbacc = 1               aigbinv = 0.0111          bigbinv = 0.000949        cigbinv = 0.006
++eigbinv = 1.1             nigbinv = 3               aigc    = 0.007           bigc    = 0.0006
++cigc    = 0.03            aigsd   = 0.0059          bigsd   = 0               cigsd   = 0.03
++nigc    = 1               poxedge = 1               pigcd   = 2.8             ntox    = 1
+**************************************************************
+*               capacitance parameters
+**************************************************************
++cgso    = '6e-011+dcgso_plvt11ll'          cgdo    = '6e-011+dcgdo_plvt11ll'          cgbo    = 0               cgdl    = '6.5e-011+dcgdl_plvt11ll'
++cgsl    = '6.5e-011+dcgsl_plvt11ll'        clc     = 1e-007          cle     = 0.6             cf      = '7.44e-011+dcf_plvt11ll'
++ckappas = 0.6             ckappad = 0.6             acde    = 0.5            moin    = 8.5
++noff    = 1.7             lnoff   = 3e-008          voffcv  = -0.065
+**************************************************************
+*               temperature parameters
+**************************************************************
++tvoff   = 0.004           wtvoff  = 2e-010          ptvoff  = -2.6e-017       kt1     = -0.12
++wkt1    = 1.1e-008        pkt1    = -7.1e-016       kt1l    = -4.6e-009       kt2     = -0.025
++pkt2    = 3e-017          ute     = -0.8            lute    = 3e-008          wute    = 3e-008
++ua1     = 1e-009          ub1     = -1e-018         lub1    = 5e-026          wub1    = 7e-026
++uc1     = 5e-011          prt     = 0               at      = 10000           lat     = -0.0006
++pat     = 1e-010
+**************************************************************
+*               noise parameters
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 1.14e+008       ef      = 1.1
++noia    = 1.74e+042       noib    = -1.55e+026      noic    = 1.24e+010       ntnoi   = 1
++lintnoi = -7.17e-009
+**************************************************************
+*               diode parameters
+**************************************************************
++jss     = 1.418e-008      jsws    = 1.2e-013        jswgs   = 1.53e-012       njs     = 0.998
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 8.55            xjbvs   = 1
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0
++jtsswgs = 1e-009          jtsswgd = 1e-009          njts    = 20              njtssw  = 20
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02
++xtsswd  = 0.02            xtsswgs = 0.4             xtsswgd = 0.4             tnjts   = 0
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.731           cjs     = '0.001404+dcjs_plvt11ll'
++mjs     = 0.356           pbsws   = 0.982           cjsws   = '5.484e-011+dcjsws_plvt11ll'      mjsws   = 0.231
++pbswgs  = 0.204           cjswgs  = '1.671e-010+dcjswgs_plvt11ll'      mjswgs  = 0.9085          tpb     = 0.001006
++tcj     = 0.0006843       tpbsw   = 0.001967        tcjsw   = 0.000349        tpbswg  = 1e-005
++tcjswg  = 0.0022          xtis    = 6.685
+**************************************************************
+*               layout related parameters
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0
++xgl     = 0
+**************************************************************
+*               rf parameters
+**************************************************************
+**************************************************************
+*               stress parameters
+**************************************************************
++web     = 1               wec     = 1               scref   = 1e-006          kvth0we = -0.0008
++wkvth0we= 7.5e-011        k2we    = 0               ku0we   = -0.0015         wku0we  = 8e-011
++saref   = 2.61e-007       sbref   = 2.61e-007       wlod    = 0               kvth0   = -1.5e-009     
++lkvth0  = -1.8e-008       wkvth0  = 0               pkvth0  = 1e-015          llodvth = 1             
++wlodvth = 1               stk2    = 0               lodk2   = 1               lodeta0 = 1             
++ku0     = 5e-010          lku0    = 0               wku0    = 0               pku0    = -1e-015       
++llodku0 = 1               wlodku0 = 1               kvsat   = 1               steta0  = -5e-010       
++tku0    = 0
+
+***********************************************************************************
+*                              1.1V CORE Native NMOS MODEL                        *
+***********************************************************************************
+**
+.model  nt11ll_ckt  nmos  level = 54
+**************************************************************
+*               model flag parameters 
+**************************************************************
++lmin    = 2.7e-007        lmax    = 0.0001          wmin    = 3.6e-007        wmax    = 0.0001        
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 2               igbmod  = 1               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0               wpemod  = 0             
+**************************************************************
+*               general model parameters 
+**************************************************************
++tnom    = 25              toxe    = '2.37e-009+dtoxe_nt11ll'       dtox    = 1.08e-010       epsrox  = 3.9           
++toxref  = 2.37e-009       wint    = -9e-009         lint    = -5e-009         ll      = -2e-015       
++wl      = 0               lln     = 0.95            wln     = 1               lw      = 0             
++ww      = 0               lwn     = 1               wwn     = 1               lwl     = 0             
++wwl     = -6e-022         llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '5.8e-009+dxl_nt11ll'      
++xw      = '1.7e-008+dxw_nt11ll'        dlc     = 1.65e-008       dwc     = 0               dlcig   = 4e-009        
++xpart   = 1             
+**************************************************************
+*               dc parameters 
+**************************************************************
++vth0    = '0.0433+dvth_nt11ll'          lvth0   = '2.96e-009+dlvth0_nt11ll'       pvth0   = '-3.6e-016+dpvth0_nt11ll'       k1      = 0             
++k2      = 0.013           wk2     = 5e-009          k3      = 1               k3b     = 5.64          
++w0      = 3e-006          dvt0    = 0               dvt1    = 0               dvt2    = 0.032         
++dvt0w   = 0               dvt1w   = 5000000         dvt2w   = -0.032          dsub    = 0.56          
++minv    = 0.2             lminv   = 2e-007          voffl   = -3e-009         dvtp0   = 1.5e-005      
++ldvtp0  = 4e-012          dvtp1   = 0               lpe0    = 0               vbm     = -3            
++xj      = 2.68e-007       ngate   = 1.6e+021        ndep    = 1e+017          phin    = 0.24          
++cdsc    = 0               cdscb   = 0               cdscd   = 0               cit     = 0.0012        
++lcit    = 3e-010          voff    = '-0.04+dvoff_nt11ll'           nfactor = 1.5             eta0    = 0.5           
++etab    = 0               u0      = '0.043+du0_nt11ll'           lu0     = '1.44e-009+dlu0_nt11ll'       pu0     = '-8e-016+dpu0_nt11ll'       
++ua      = -6e-010         lua     = 3.3e-016        wua     = 3e-017          pua     = -5.8e-023     
++ub      = 2.5e-018        lub     = -3e-025         uc      = 3e-011          wuc     = -2e-017       
++eu      = 1.67            vsat    = 85000           lvsat   = '-0.005+dlvsat_nt11ll'          pvsat   = '-8e-010+dpvsat_nt11ll'       
++a0      = '1+da0_nt11ll'               ags     = 9.5             wags    = -2.4e-006       a1      = 0             
++a2      = 1               b0      = 0               b1      = 0               keta    = 0             
++lketa   = 1e-008          dwg     = 0               dwb     = 0               pclm    = 0.85          
++pdiblc1 = 0.1             pdiblc2 = 0.001           pdiblcb = 0               drout   = 0.56          
++pvag    = 0               delta   = 0.01            pscbe1  = 4.24e+008       pscbe2  = 1e-005        
++fprout  = 65              pdits   = 0.45            pditsd  = 0               pditsl  = 0             
++rsh     = 12              rsw     = 113             rdw     = 113             rdwmin  = 0             
++rswmin  = 0               prwg    = 1               prwb    = 0               wr      = 1             
++alpha0  = 0               alpha1  = 0.055           beta0   = 8               agidl   = 4e-006        
++bgidl   = 2.3e+009        cgidl   = 0.5             egidl   = 0.8             aigbacc = 0.038         
++bigbacc = 0.054           cigbacc = 0.075           nigbacc = 1               aigbinv = 0.35          
++bigbinv = 0.03            cigbinv = 0.006           eigbinv = 1.1             nigbinv = 3             
++aigc    = 0.01268         bigc    = 0.00176         cigc    = 0.005           aigsd   = 0.0102        
++bigsd   = 0               cigsd   = 0.04            nigc    = 1               poxedge = 1             
++pigcd   = 3               ntox    = 1             
++ud      = 0               ud1     = 0               up      = 0               lp      = 1e-008          
+**************************************************************
+*               capacitance parameters 
+**************************************************************
++cgso    = '2e-011+dcgso_nt11ll'          cgdo    = '2e-011+dcgdo_nt11ll'          cgbo    = 0               cgdl    = '2.4e-010+dcgdl_nt11ll'      
++cgsl    = '2.4e-010+dcgsl_nt11ll'        clc     = 1e-007          cle     = 0.6             cf      = '7.72e-011+dcf_nt11ll'     
++acde    = 0.45            moin    = 6               noff    = 0.6             lnoff   = 7e-007        
++voffcv  = -0.055          lvoffcv = -1.4e-008
+**************************************************************
+*               temperature parameters 
+**************************************************************
++tvoff   = 0.02            kt1     = -0.16           wkt1    = -1.5e-008       pkt1    = 1e-015        
++kt1l    = -2e-009         kt2     = -0.01           lkt2    = 3.4e-009        pkt2    = 1e-015        
++ute     = -1.55           lute    = 1.5e-007        wute    = -2e-008         ua1     = 0             
++ub1     = 0               uc1     = 2e-011          luc1    = -2e-017         puc1    = -1e-023       
++prt     = 0               at      = 1000          
+**************************************************************
+*               noise parameters 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 1.49e+006       ef      = 0.904         
++noia    = 1.04e+043       noib    = 6.09e+025       noic    = -6.87e+007      ntnoi   = 1             
++lintnoi = -2.31e-007    
+**************************************************************
+*               diode parameters 
+**************************************************************
++jss     = 1.798e-006      jsws    = 1.346e-013      jswgs   = 5.96e-013       njs     = 1.044         
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 15.25           xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 0               jtsswgd = 0               njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.707           cjs     = '0.0002921+dcjs_nt11ll'     
++mjs     = 0.164           pbsws   = 0.341           cjsws   = '2.937e-011+dcjsws_nt11ll'      mjsws   = 0.174         
++pbswgs  = 0.2             cjswgs  = '1.807e-010+dcjswgs_nt11ll'      mjswgs  = 0.989           tpb     = 0.002271      
++tcj     = 0.0005694       tpbsw   = 0.0003027       tcjsw   = 0.0008201       tpbswg  = 0.0002436     
++tcjswg  = 0.0007508       xtis    = 7.624         
+**************************************************************
+*               layout related parameters 
+**************************************************************
++dmcg    = 6.3e-008        dmci    = 1.98e-007       dwj     = 0               xgw     = 0             
++xgl     = 0             
+**************************************************************
+*               rf parameters 
+**************************************************************
+**************************************************************
+*               stress parameters 
+**************************************************************
++web     = 0               wec     = 0               scref   = 1e-006          kvth0we = 0             
++k2we    = 0               ku0we   = 0               saref   = 2.61e-007       sbref   = 2.61e-007     
++wlod    = 0               kvth0   = 1e-008          lkvth0  = 2e-007          wkvth0  = 6e-007        
++pkvth0  = 2e-013          llodvth = 1.05            wlodvth = 1               stk2    = 0             
++lodk2   = 1               lodeta0 = 1               ku0     = -7e-008         lku0    = 2.8e-007      
++wku0    = 2e-007          pku0    = 0               llodku0 = 1.14            wlodku0 = 1             
++kvsat   = 1               steta0  = 0               tku0    = 0             
++wvth0     = '0+dwvth0_nt11ll'
++wu0     = '0+dwu0_nt11ll'
+
+***********************************************************************************
+*                              2.5V IO NMOS MODEL                                 *
+***********************************************************************************
+**
+.model  n25ll_ckt  nmos  level = 54
+**************************************************************
+*               model flag parameters
+**************************************************************
++lmin    = 2.43e-007       lmax    = 0.0001          wmin    = 2.88e-007       wmax    = 0.0001
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0
++capmod  = 2               igcmod  = 0               igbmod  = 0               geomod  = 0
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0
++tempmod = 0               wpemod  = 1
+**************************************************************
+*               general model parameters
+**************************************************************
++tnom    = 25              toxe    = '5.63e-009+dtoxe_n25ll'       toxm    = 5.63e-009       dtox    = -1.0364e-010
++epsrox  = 3.9             toxref  = 5.63e-009       wint    = -2.8317e-008    lint    = 1.59e-008
++ll      = 6.5527e-015     wl      = -1.8578e-014    lln     = 1               wln     = 1
++lw      = 3.8074e-015     ww      = -6.7163e-015    lwn     = 1               wwn     = 1
++lwl     = 1.0766e-022     wwl     = 1.9644e-021     llc     = 0               wlc     = 0
++lwc     = 0               wwc     = 0               lwlc    = 0               wwlc    = 0
++xl      = '1e-008+dxl_n25ll'          xw      = '1.5e-008+dxw_n25ll'        dlc     = '5.4489e-008+2.2e-8'     dwc     = '0-6.5e-8'
++dlcig   = 0               xpart   = 1
+**************************************************************
+*               dc parameters
+**************************************************************
++vth0    = '0.6+dvth0_n25ll+lpevth0_n25ll'             lvth0   = '3.4487e-009+dlvth0_n25ll'     pvth0   = '-8.6089e-015+dpvth0_n25ll'    k1      = 0.63806
++k2      = 0.0030102       lk2     = -6.36e-009      pk2     = 2.2408e-015     k3      = -2.9837
++k3b     = 0               w0      = -9.0931e-008    dvt0    = 1.0306          pdvt0   = -1.8182e-014
++dvt1    = 0.10127         dvt2    = 0               dvt0w   = 0.52309         dvt1w   = 1179800
++dvt2w   = 1.0643          dsub    = 0.7             minv    = -0.6978         voffl   = 9.6667e-010
++lpe0    = 6.9232e-008     plpe0   = 5.5014e-021     lpeb    = 0               vbm     = -3
++xj      = 1.42e-007       ngate   = 2.27e+022       ndep    = 1.3e+017        nsd     = 1e+020
++phin    = 0.15            cdsc    = 5e-005          cdscb   = 2.0016e-005     cdscd   = 0
++cit     = 0.00075207      lcit    = -4.2148e-011    pcit    = -3.6966e-018    voff    = '-0.18427+dvoff_n25ll'
++nfactor = 1.4137          eta0    = 0.037734        etab    = -0.12125        u0      = '(0.03413+du0_n25ll)*lpeu0_n25ll'
++lu0     = '(1.06e-008+dlu0_n25ll)*lpelu0_n25ll'       wu0     = '(-3.4692e-009+dwu0_n25ll)*lpewu0_n25ll'    pu0     = '(-2.8217e-015+dpu0_n25ll)*lpepu0_n25ll'    ua      = -9.715e-010
++lua     = 5.6837e-016     pua     = 4.7025e-023     ub      = 2.378e-018      lub     = -1.8433e-027
++wub     = -2.145e-025     pub     = -2.1778e-031    uc      = 1.2094e-010     luc     = 1.8678e-017
++wuc     = -2.829e-017     puc     = -1.0911e-023    eu      = 1.67            vsat    = 86617
++lvsat   = '-0.00045508+dlvsat_n25ll'     wvsat   = '-0.010644+dwvsat_n25ll'       pvsat   = '-5.7365e-010+dpvsat_n25ll'    a0      = 1
++ags     = 0.29977         wags    = 2.3335e-008     pags    = 7.7714e-014     a1      = 0
++a2      = 1               b0      = 5.9532e-008     b1      = 0               keta    = -0.003203
++dwg     = 8.451e-009      dwb     = 1.096e-013      pclm    = 0.348           pdiblc1 = 0.28699
++ppdiblc1= -1.2664e-014    pdiblc2 = 0.00017664      pdiblcb = 0.18904         drout   = 0.56
++pvag    = 1               delta   = 0.0032628       ldelta  = 1.0688e-008     pscbe1  = 4.24e+008
++pscbe2  = 3.4911e-008     fprout  = 0               pdits   = 0               pditsd  = 0
++rsh     = 13.2            rsw     = 162.84          rdw     = 162.84          rdswmin = 0
++rdwmin  = 0               rswmin  = 0               prwg    = 0               prwb    = 0.028
++wr      = 1               alpha0  = 3.6565e-008     alpha1  = 9.5811          lalpha1 = 7.6428e-007
++walpha1 = 3.0993e-007     beta0   = 22.906          lbeta0  = 2.3349e-008     pbeta0  = 1.264e-014
++agidl   = 1.6561e-014     lagidl  = 5.7324e-018     bgidl   = 1.656e+009      cgidl   = 0.548
++lcgidl  = 3e-011          egidl   = 0.496           aigbacc = 0.000949        bigbacc = 0.00171
++cigbacc = 0.075           nigbacc = 1               aigbinv = 0.0111          bigbinv = 0.000949
++cigbinv = 0.006           eigbinv = 1.1             nigbinv = 3               aigc    = 0.0136
++bigc    = 0.00171         cigc    = 0.075           aigsd   = 0.0136          bigsd   = 0.00171
++cigsd   = 0.075           nigc    = 1               poxedge = 1               pigcd   = 1
++ntox    = 1
+**************************************************************
+*               capacitance parameters
+**************************************************************
++cgso    = '1.5e-012+dcgso_n25ll'        cgdo    = '1.5e-012+dcgdo_n25ll'        cgbo    = 0               cgdl    = '3.7e-010+dcgdl_n25ll'
++cgsl    = '3.7e-010+dcgsl_n25ll'        clc     = 1e-007          cle     = 0.6             cf      = '5.902e-011+dcf_n25ll'
++ckappas = 0.6             ckappad = 0.6             acde    = 0.28642         moin    = 5.0988
++noff    = 1.9535          lnoff   = 1.2996e-007     voffcv  = -0.14311        lvoffcv = -1.5147e-008
+**************************************************************
+*               temperature parameters
+**************************************************************
++tvoff   = 0.003           ltvoff  = -4.4e-011       kt1     = -0.173          lkt1    = 1.1e-009
++wkt1    = -2e-009         pkt1    = -5.1215e-016    kt1l    = 3.4172e-009     kt2     = -0.03838
++lkt2    = 4e-009          ute     = -0.97632        lute    = -3.976e-008     wute    = -3.6452e-008
++pute    = 2.3925e-014     ua1     = 2.5576e-009     lua1    = 5.9714e-016     wua1    = -1.8198e-016
++pua1    = -7.4248e-024    ub1     = -2.4182e-018    lub1    = -5.9811e-025    wub1    = -2e-026
++pub1    = 2.5249e-031     uc1     = -1e-012         luc1    = -2e-017         puc1    = 1e-023
++prt     = 0               at      = 13800           pat     = -5.7348e-011
+**************************************************************
+*               noise parameters
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 5.5793e+011     ef      = 0.94893
++noia    = 2.2225e+041     noib    = 5.3177e+024     noic    = 6.5604e+007     ntnoi   = 1
++lintnoi = -1.0749e-007
+**************************************************************
+*               diode parameters
+**************************************************************
++jss     = 2.308258e-007   jsws    = 1.01297e-013    jswgs   = 5.6e-014        njs     = 0.980683
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 9.45            xjbvs   = 1
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0
++jtsswgs = 1.2e-018        jtsswgd = 1.2e-018        njts    = 20              njtssw  = 20
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.583233        cjs     = '0.001322092+dcjs_n25ll'
++mjs     = 0.236285        pbsws   = 0.392174        cjsws   = '8.04844e-011+dcjsws_n25ll'    mjsws   = 0.22034
++pbswgs  = 0.976           cjswgs  = '1.3653e-010+dcjswgs_n25ll'     mjswgs  = 0.6             tpb     = 0.001578537
++tcj     = 0.0008075215    tpbsw   = 0.000648798     tcjsw   = 0.0003398484    tpbswg  = 0.0003669435
++tcjswg  = 0.00059364      xtis    = 3
+**************************************************************
+*               layout related parameters
+**************************************************************
++dmcg    = 9.9e-008        dmci    = 1.62e-007       dmdg    = 0               dmcgt   = 0
++dwj     = 0               xgw     = 0               xgl     = 0
+**************************************************************
+*               rf parameters
+**************************************************************
+**************************************************************
+*               stress parameters
+**************************************************************
++web     = -460            wec     = -300            scref   = 1e-006          kvth0we = 0.01789
++lkvth0we= 1.5792e-009     wkvth0we= 1e-009          pkvth0we= -4.4088e-016    k2we    = 0
++ku0we   = -0.018464       wku0we  = 4.324e-009      pku0we  = -6.528e-016     saref   = 2.61e-007
++sbref   = 2.61e-007       wlod    = 0               kvth0   = 2.48e-009       lkvth0  = -1.3009e-007
++wkvth0  = -1.5e-007       pkvth0  = 6.3e-014        llodvth = 1               wlodvth = 1
++stk2    = 0               lodk2   = 1               lodeta0 = 1               ku0     = -5.7096e-008
++lku0    = 1.3248e-006     wku0    = 1e-008          pku0    = -5.7e-014       llodku0 = 1
++wlodku0 = 1               kvsat   = 0.4             steta0  = -3.3393e-009    tku0    = 0
++wvth0     = '0+dwvth0_n25ll'
+
+***********************************************************************************
+*                              2.5V(od 3.3V) IO NMOS MODEL                        *
+***********************************************************************************
+**
+.model  nod33ll_ckt  nmos
++level = 54
+**************************************************************
+*               model flag parameters
+**************************************************************
++lmin    = 4.95e-007       lmax    = 0.0001          wmin    = 2.88e-007
++wmax    = 0.0001          version = 4.5             binunit = 2
++paramchk= 1               mobmod  = 0               capmod  = 2
++igcmod  = 0               igbmod  = 0               geomod  = 0
++diomod  = 2               rdsmod  = 1               rbodymod= 0
++rgeomod = 1               rgatemod= 0               permod  = 1
++acnqsmod= 0               trnqsmod= 0               tempmod = 0
++wpemod  = 1
+**************************************************************
+*               general model parameters
+**************************************************************
++tnom    = 25              toxe    = '5.63e-009+dtoxe_nod33ll'       toxm    = 5.63e-009
++dtox    = -1.0364e-010    epsrox  = 3.9             toxref  = 5.63e-009
++wint    = -2.8317e-008    lint    = 3.1708e-008     ll      = 7.7726e-015
++wl      = -1.8578e-014    lln     = 1               wln     = 1
++lw      = 3.8074e-015     ww      = -6.7163e-015    lwn     = 1
++wwn     = 1               lwl     = 1.3229e-022     wwl     = 2.3958e-021
++llc     = 0               wlc     = 0               lwc     = 0
++wwc     = 0               lwlc    = 0               wwlc    = 0
++xl      = '1e-008+2.7e-8+dxl_nod33ll'  xw      = '1.5e-008+dxw_nod33ll'        dlc     = '6.4652e-008+2.2e-8'
++dwc     = '0-6.5e-8'      dlcig   = 0               xpart   = 1
+**************************************************************
+*               dc parameters
+**************************************************************
++vth0    = '0.6+dvth0_nod33ll+lpevth0_nod33ll'             lvth0   = '3.3368e-009+dlvth0_nod33ll'     pvth0   = '-1.2394e-014+dpvth0_nod33ll'
++k1      = 0.63806         k2      = 0.0030102       lk2     = -6.36e-009
++pk2     = 2.2408e-015     k3      = -2.9066         pk3     = 2.24e-013
++k3b     = 0               w0      = -9.0931e-008    dvt0    = 0.65827
++pdvt0   = -1.3757e-014    dvt1    = 0.10127         dvt2    = 0
++dvt0w   = 0.52309         dvt1w   = 1179800         dvt2w   = 1.0643
++dsub    = 0.7             minv    = -0.6978         voffl   = 9.6667e-010
++lpe0    = 5.5616e-008     plpe0   = 5.0239e-021     lpeb    = 0
++vbm     = -3              xj      = 1.42e-007       ngate   = 2.27e+022
++ndep    = 1.3e+017        nsd     = 1e+020          phin    = 0.15
++cdsc    = 5e-005          cdscb   = 2.0016e-005     cdscd   = 0
++cit     = 0.00075207      lcit    = -5.2938e-011    pcit    = -2.632e-018
++voff    = '-0.18427+dvoff_nod33ll'        nfactor = 1.4137          eta0    = 0.11798
++peta0   = -3.6104e-015    etab    = -0.12125        u0      = '(0.03396+du0_nod33ll)*lpeu0_nod33ll'
++lu0     = '(8.2557e-009+dlu0_nod33ll)*lpelu0_nod33ll'     wu0     = '(-3.4137e-009+dwu0_nod33ll)*lpewu0_nod33ll'    pu0     = '(-2.3828e-015+dpu0_nod33ll)*lpepu0_nod33ll'
++ua      = -9.715e-010     lua     = 5.6837e-016     pua     = 4.7025e-023
++ub      = 2.378e-018      lub     = -1.8433e-027    wub     = -2.145e-025
++pub     = -2.1778e-031    uc      = 1.2094e-010     luc     = 1.8678e-017
++wuc     = -2.829e-017     puc     = -1.0911e-023    eu      = 1.67
++vsat    = 94005           lvsat   = '-0.0083638+dlvsat_nod33ll'      wvsat   = '-0.019126+dwvsat_nod33ll'
++pvsat   = '3.0299e-009+dpvsat_nod33ll'     a0      = 1               ags     = 0.3474
++wags    = 4.3684e-009     pags    = 2.1558e-013     a1      = 0
++a2      = 1               b0      = 5.9532e-008     b1      = 0
++keta    = -0.003203       dwg     = 8.451e-009      dwb     = 1.096e-013
++pclm    = 0.348           lpclm   = 6.7968e-008     ppclm   = 2.4e-014
++pdiblc1 = 0.024626        pdiblc2 = 0.00017664      pdiblcb = 0.18904
++drout   = 0.56            pvag    = 1               delta   = 0.0032628
++ldelta  = 1.0688e-008     pscbe1  = 4.24e+008       pscbe2  = 3.4911e-008
++fprout  = 0               pdits   = 0               pditsd  = 0
++rsh     = 13.2            rsw     = 162.84          rdw     = 162.84
++rdswmin = 0               rdwmin  = 0               rswmin  = 0
++prwg    = 0               prwb    = 0.028           wr      = 1
++alpha0  = 3.6565e-008     alpha1  = 9.5811          lalpha1 = 7.6428e-007
++walpha1 = 3.0993e-007     beta0   = 22.906          lbeta0  = 2.2981e-008
++pbeta0  = -5.4403e-014    agidl   = 9.4225e-009     lagidl  = 3.5695e-015
++wagidl  = 2.9048e-014     pagidl  = 1.3672e-020     bgidl   = 2.6364e+009
++cgidl   = 130.08          lcgidl  = 1.53e-005       egidl   = 0.496
++aigbacc = 0.000949        bigbacc = 0.00171         cigbacc = 0.075
++nigbacc = 1               aigbinv = 0.0111          bigbinv = 0.000949
++cigbinv = 0.006           eigbinv = 1.1             nigbinv = 3
++aigc    = 0.0136          bigc    = 0.00171         cigc    = 0.075
++aigsd   = 0.0136          bigsd   = 0.00171         cigsd   = 0.075
++nigc    = 1               poxedge = 1               pigcd   = 1
++ntox    = 1
+**************************************************************
+*               capacitance parameters
+**************************************************************
++cgso    = '1.5e-012+dcgso_nod33ll'        cgdo    = '1.5e-012+dcgdo_nod33ll'        cgbo    = 0
++cgdl    = '3.7e-010+dcgdl_nod33ll'        cgsl    = '3.7e-010+dcgsl_nod33ll'        clc     = 1e-007
++cle     = 0.6             cf      = '5.902e-011+dcf_nod33ll'      ckappas = 0.6
++ckappad = 0.6             acde    = 0.28642         moin    = 5.0988
++noff    = 1.9535          lnoff   = 1.2996e-007     voffcv  = -0.14311
++lvoffcv = -1.5147e-008
+**************************************************************
+*               temperature parameters
+**************************************************************
++tvoff   = 0.003           ltvoff  = -4.4e-011       kt1     = -0.173
++lkt1    = 1.1e-009        wkt1    = -2e-009         pkt1    = -5.1215e-016
++kt1l    = 3.4172e-009     kt2     = -0.03838        lkt2    = 4e-009
++ute     = -0.97632        lute    = -3.976e-008     wute    = -3.6452e-008
++pute    = 2.3925e-014     ua1     = 2.5576e-009     lua1    = 5.9714e-016
++wua1    = -1.8198e-016    pua1    = -7.4248e-024    ub1     = -2.4182e-018
++lub1    = -5.9811e-025    wub1    = -2e-026         pub1    = 2.5249e-031
++uc1     = -1e-012         luc1    = -2e-017         puc1    = 1e-023
++prt     = 0               at      = 13800           pat     = -5.7348e-011
+**************************************************************
+*               noise parameters
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 3.308e+011
++ef      = 0.95755         noia    = 2.0643e+041     noib    = 7.4033e+024
++noic    = 4.8623e+007     ntnoi   = 1               lintnoi = -3.9047e-008
+**************************************************************
+*               diode parameters
+**************************************************************
++jss     = 2.308258e-007   jsws    = 1.01297e-013    jswgs   = 5.6e-014
++njs     = 0.980683        ijthsfwd= 0.1             ijthsrev= 0.1
++bvs     = 9.45            xjbvs   = 1               jtss    = 0
++jtsd    = 0               jtssws  = 0               jtsswd  = 0
++jtsswgs = 1.2e-018        jtsswgd = 1.2e-018        njts    = 20
++njtssw  = 20              njtsswg = 20              xtss    = 0.02
++xtsd    = 0.02            xtssws  = 0.02            xtsswd  = 0.02
++xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.583233
++cjs     = '0.001322092+dcjs_nod33ll'     mjs     = 0.236285        pbsws   = 0.392174
++cjsws   = '8.04844e-011+dcjsws_nod33ll'    mjsws   = 0.22034         pbswgs  = 0.976
++cjswgs  = '1.3653e-010+dcjswgs_nod33ll'     mjswgs  = 0.6             tpb     = 0.001578537
++tcj     = 0.0008075215    tpbsw   = 0.000648798     tcjsw   = 0.0003398484
++tpbswg  = 0.0003669435    tcjswg  = 0.00059364      xtis    = 3
+**************************************************************
+*               layout related parameters
+**************************************************************
++dmcg    = 9.9e-008        dmci    = 1.62e-007       dmdg    = 0
++dmcgt   = 0               dwj     = 0               xgw     = 0
++xgl     = 0
+**************************************************************
+*               rf parameters
+**************************************************************
+**************************************************************
+*               stress parameters
+**************************************************************
++web     = -460            wec     = -300            scref   = 1e-006
++kvth0we = 0.01789         lkvth0we= 1.5792e-009     wkvth0we= 1e-009
++pkvth0we= -4.4088e-016    k2we    = 0               ku0we   = -0.018464
++wku0we  = 4.324e-009      pku0we  = -6.528e-016     saref   = 2.61e-007
++sbref   = 2.61e-007       wlod    = 0               kvth0   = 2.48e-009
++lkvth0  = -1.3009e-007    wkvth0  = -1.5e-007       pkvth0  = 6.3e-014
++llodvth = 1               wlodvth = 1               stk2    = 0
++lodk2   = 1               lodeta0 = 1               ku0     = -5.7096e-008
++lku0    = 1.3248e-006     wku0    = 1e-008          pku0    = -5.7e-014
++llodku0 = 1               wlodku0 = 1               kvsat   = 0.4
++steta0  = -3.3393e-009    tku0    = 0
++wvth0     = '0+dwvth0_nod33ll'
+
+***********************************************************************************
+*                              2.5V(ud 1.8V) IO NMOS MODEL                        *
+***********************************************************************************
+**
+.model  nud18ll_ckt  nmos  level = 54
+**************************************************************
+*               model flag parameters
+**************************************************************
++lmin    = 2.16e-007       lmax    = 0.0001          wmin    = 2.88e-007       wmax    = 0.0001
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0
++capmod  = 2               igcmod  = 0               igbmod  = 0               geomod  = 0
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0
++tempmod = 0               wpemod  = 1
+**************************************************************
+*               general model parameters
+**************************************************************
++tnom    = 25              toxe    = '5.63e-009+dtoxe_nud18ll'       toxm    = 5.63e-009       dtox    = -1.0364e-010
++epsrox  = 3.9             toxref  = 5.63e-009       wint    = -2.8317e-008    lint    = 1.59e-008
++ll      = 4.6125e-015     wl      = -1.8578e-014    lln     = 1               wln     = 1
++lw      = 3.8074e-015     ww      = -7.403e-015     lwn     = 1               wwn     = 1
++lwl     = -3.2255e-022    wwl     = 2.0104e-021     llc     = 0               wlc     = 0
++lwc     = 0               wwc     = 0               lwlc    = 0               wwlc    = 0
++xl      = '1e-008+dxl_nud18ll'          xw      = '1.5e-008+dxw_nud18ll'        dlc     = '5.4489e-008+2.2e-8'     dwc     = '0-6.5e-8'
++dlcig   = 0               xpart   = 1
+**************************************************************
+*               dc parameters
+**************************************************************
++vth0    = '0.59772+dvth0_nud18ll+lpevth0_nud18ll'         lvth0   = '4.966e-009+dlvth0_nud18ll'      pvth0   = '-6.3281e-015+dpvth0_nud18ll'    k1      = 0.63806
++k2      = 0.0030102       lk2     = -4.1161e-009    pk2     = -8.3493e-016    k3      = -3.0135
++k3b     = 0               w0      = -9.0931e-008    dvt0    = 1.2072          pdvt0   = -3.0162e-014
++dvt1    = 0.10127         dvt2    = 0               dvt0w   = 0.52309         dvt1w   = 1179800
++dvt2w   = 1.0643          dsub    = 0.7             minv    = -0.6978         voffl   = 9.6667e-010
++lpe0    = 7.0707e-008     plpe0   = 1.7385e-021     lpeb    = 0               vbm     = -3
++xj      = 1.42e-007       ngate   = 2.27e+022       ndep    = 1.3e+017        nsd     = 1e+020
++phin    = 0.15            cdsc    = 5e-005          cdscb   = 2.0016e-005     cdscd   = 0
++cit     = 0.00075207      lcit    = -2.5032e-012    pcit    = -2.0073e-017    voff    = '-0.18427+dvoff_nud18ll'
++nfactor = 1.4137          eta0    = 0.10303         etab    = -0.12125        u0      = '(0.03428+du0_nud18ll)*lpeu0_nud18ll'
++lu0     = '(8.7015e-009+dlu0_nud18ll)*lpelu0_nud18ll'     wu0     = '(-3.7467e-009+dwu0_nud18ll)*lpewu0_nud18ll'    pu0     = '(-2.5169e-015+dpu0_nud18ll)*lpepu0_nud18ll'    ua      = -9.715e-010
++lua     = 5.6837e-016     pua     = 3.1977e-023     ub      = 2.378e-018      lub     = -1.8091e-025
++wub     = -2.145e-025     pub     = -2.7005e-031    uc      = 1.2094e-010     luc     = 6.6154e-018
++wuc     = -2.829e-017     puc     = -6.372e-024     eu      = 1.67            vsat    = 92256
++lvsat   = '-0.00032611+dlvsat_nud18ll'     wvsat   = '-0.017076+dwvsat_nud18ll'       pvsat   = '-2.1202e-010+dpvsat_nud18ll'    a0      = 1
++ags     = 0.17871         wags    = 5.5654e-008     pags    = 1.9764e-013     a1      = 0
++a2      = 1               b0      = 5.9532e-008     b1      = 0               keta    = -0.003203
++dwg     = 8.451e-009      dwb     = 1.096e-013      pclm    = 0.348           pdiblc1 = 0.0021949
++lpdiblc1= 3.7293e-008     ppdiblc1= -1.3254e-014    pdiblc2 = 0.00017664      pdiblcb = 0.18904
++drout   = 0.56            pvag    = 1               delta   = 0.0032628       ldelta  = 1.0688e-008
++pscbe1  = 4.24e+008       pscbe2  = 3.4911e-008     fprout  = 0               pdits   = 0
++pditsd  = 0               rsh     = 13.2            rsw     = 162.84          rdw     = 162.84
++rdswmin = 0               rdwmin  = 0               rswmin  = 0               prwg    = 0
++prwb    = 0.028           wr      = 1               alpha0  = 3.6565e-008     alpha1  = 9.5811
++lalpha1 = 1.0853e-006     walpha1 = 3.0993e-007     beta0   = 22.906          pbeta0  = 1.264e-014
++agidl   = 1.6561e-014     lagidl  = 5.7324e-018     bgidl   = 1.656e+009      cgidl   = 0.548
++lcgidl  = 3e-011          egidl   = 0.496           aigbacc = 0.000949        bigbacc = 0.00171
++cigbacc = 0.075           nigbacc = 1               aigbinv = 0.0111          bigbinv = 0.000949
++cigbinv = 0.006           eigbinv = 1.1             nigbinv = 3               aigc    = 0.0136
++bigc    = 0.00171         cigc    = 0.075           aigsd   = 0.0136          bigsd   = 0.00171
++cigsd   = 0.075           nigc    = 1               poxedge = 1               pigcd   = 1
++ntox    = 1
+**************************************************************
+*               capacitance parameters
+**************************************************************
++cgso    = '1.5e-012+dcgso_nud18ll'        cgdo    = '1.5e-012+dcgdo_nud18ll'        cgbo    = 0               cgdl    = '3.7e-010+dcgdl_nud18ll'
++cgsl    = '3.7e-010+dcgsl_nud18ll'        clc     = 1e-007          cle     = 0.6             cf      = '5.902e-011+dcf_nud18ll'
++ckappas = 0.6             ckappad = 0.6             acde    = 0.28642         moin    = 5.0988
++noff    = 1.9535          lnoff   = 1.2996e-007     voffcv  = -0.14311        lvoffcv = -1.5147e-008
+**************************************************************
+*               temperature parameters
+**************************************************************
++tvoff   = 0.003           ltvoff  = -4.4e-011       kt1     = -0.173          lkt1    = 1.1e-009
++wkt1    = -2e-009         pkt1    = -5.1215e-016    kt1l    = 3.4172e-009     kt2     = -0.03838
++lkt2    = 4e-009          ute     = -0.97632        lute    = -3.976e-008     wute    = -3.6452e-008
++pute    = 2.3925e-014     ua1     = 2.5576e-009     lua1    = 5.9714e-016     wua1    = -1.8198e-016
++pua1    = -7.4248e-024    ub1     = -2.4182e-018    lub1    = -5.9811e-025    wub1    = -2e-026
++pub1    = 2.5249e-031     uc1     = -1e-012         luc1    = -2e-017         puc1    = 1e-023
++prt     = 0               at      = 13800           pat     = -5.7348e-011
+**************************************************************
+*               noise parameters
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 4.2708e+010     ef      = 0.94893
++noia    = 2.6226e+041     noib    = 3.5212e+025     noic    = 6.7014e+007     ntnoi   = 1
++lintnoi = -1.4397e-007
+**************************************************************
+*               diode parameters
+**************************************************************
++jss     = 2.308258e-007   jsws    = 1.01297e-013    jswgs   = 5.6e-014        njs     = 0.980683
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 9.45            xjbvs   = 1
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0
++jtsswgs = 1.2e-018        jtsswgd = 1.2e-018        njts    = 20              njtssw  = 20
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.583233        cjs     = '0.001322092+dcjs_nud18ll'
++mjs     = 0.236285        pbsws   = 0.392174        cjsws   = '8.04844e-011+dcjsws_nud18ll'    mjsws   = 0.22034
++pbswgs  = 0.976           cjswgs  = '1.3653e-010+dcjswgs_nud18ll'     mjswgs  = 0.6             tpb     = 0.001578537
++tcj     = 0.0008075215    tpbsw   = 0.000648798     tcjsw   = 0.0003398484    tpbswg  = 0.0003669435
++tcjswg  = 0.00059364      xtis    = 3
+**************************************************************
+*               layout related parameters
+**************************************************************
++dmcg    = 9.9e-008        dmci    = 1.62e-007       dmdg    = 0               dmcgt   = 0
++dwj     = 0               xgw     = 0               xgl     = 0
+**************************************************************
+*               rf parameters
+**************************************************************
+**************************************************************
+*               stress parameters
+**************************************************************
++web     = -460            wec     = -300            scref   = 1e-006          kvth0we = 0.01789
++lkvth0we= 1.5792e-009     wkvth0we= 1e-009          pkvth0we= -4.4088e-016    k2we    = 0
++ku0we   = -0.018464       wku0we  = 4.324e-009      pku0we  = -6.528e-016     saref   = 2.61e-007
++sbref   = 2.61e-007       wlod    = 0               kvth0   = 2.48e-009       lkvth0  = -1.3009e-007
++wkvth0  = -1.5e-007       pkvth0  = 6.3e-014        llodvth = 1               wlodvth = 1
++stk2    = 0               lodk2   = 1               lodeta0 = 1               ku0     = -5.7096e-008
++lku0    = 1.3248e-006     wku0    = 1e-008          pku0    = -5.7e-014       llodku0 = 1
++wlodku0 = 1               kvsat   = 0.4             steta0  = -3.3393e-009    tku0    = 0
++wvth0     = '0+dwvth0_nud18ll'
+
+***********************************************************************************
+*                              2.5V IO PMOS MODEL                                 *
+***********************************************************************************
+**
+.model  p25ll_ckt  pmos  level = 54
+**************************************************************
+*               model flag parameters
+**************************************************************
++lmin    = 2.43e-007       lmax    = 0.0001          wmin    = 2.88e-007       wmax    = 0.0001
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0
++capmod  = 2               igcmod  = 0               igbmod  = 0               geomod  = 0
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0
++tempmod = 0               wpemod  = 1
+**************************************************************
+*               general model parameters
+**************************************************************
++tnom    = 25              toxe    = '6.02e-009+dtoxe_p25ll'       dtox    = 1.4e-010        epsrox  = 3.9
++toxref  = 6.02e-009       wint    = -2e-008         lint    = 4e-009          ll      = -2e-015
++wl      = -1.1e-014       lln     = 0.9             wln     = 1               lw      = 0
++ww      = 9e-015          lwn     = 1               wwn     = 0.96            lwl     = 0
++wwl     = 0               llc     = 0               wlc     = 0               lwc     = 0
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '1e-008+dxl_p25ll'
++xw      = '1.5e-008+dxw_p25ll'        dlc     = '5.1064e-008+2.2e-8'     dwc     = '0-6.5e-8'               dlcig   = 5e-009
++xpart   = 1
+**************************************************************
+*               dc parameters
+**************************************************************
++vth0    = '-0.6+dvth0_p25ll+lpevth0_p25ll'            lvth0   = '-1.7288e-009+dlvth0_p25ll'    wvth0   = 2e-009          pvth0   = '3e-015+dpvth0_p25ll'
++k1      = 0.6             k2      = -0.05           pk2     = 6.52e-016       k3      = 0
++k3b     = 0.7             w0      = 0               dvt0    = 7               dvt1    = 0.36
++pdvt1   = 3e-015          dvt2    = 0.015           dvt0w   = 0               dvt1w   = 0
++dvt2w   = 0               dsub    = 0.56            minv    = -0.08           voffl   = -1.68e-008
++dvtp0   = -1e-007         dvtp1   = 0               lpe0    = 7e-008          lpeb    = 0
++vbm     = -3              xj      = 1.37e-007       ngate   = 1e+021          ndep    = 1e+017
++nsd     = 1e+020          phin    = 0.045968        cdsc    = 0               up      = 0
++cdscb   = 0               cdscd   = 0               cit     = 0.00063         lcit    = -2e-010
++voff    = -0.125          pvoff   = 3.5e-015        nfactor = 1.05            eta0    = 0.08
++leta0   = 1.1729e-007     peta0   = 6e-015          etab    = -0.152          letab   = 1.7e-008
++u0      = '(0.011013+du0_p25ll)*lpeu0_p25ll'        lu0     = '(1.5742e-009+dlu0_p25ll)*lpelu0_p25ll'     wu0     = '(2e-010)*lpewu0_p25ll'          ua      = 2.3191e-010
++lua     = 2e-016          wua     = -6.12e-017      pua     = 9e-023          ub      = 1.3622e-018
++lub     = 4.5e-026        wub     = 4e-026          pub     = -1.1704e-031    uc      = 3.5e-012
++luc     = 3.1823e-018     puc     = -1e-023         eu      = 1.67            vsat    = 85000
++lvsat   = -0.003          pvsat   = -2e-009         a0      = 1.2             la0     = -9e-007
++wa0     = 5e-009          pa0     = 1e-014          ags     = 0.3             lags    = 1.5e-007
++a1      = 0               a2      = 1               b0      = 0               b1      = 0
++keta    = -0.002248       lketa   = -3.24e-009      wketa   = 3.031e-009      dwg     = 0
++dwb     = 0               pclm    = 0.362           pdiblc1 = 0               pdiblc2 = 3.06e-005
++lpdiblc2= 7e-010          pdiblcb = 0               drout   = 0.56            pvag    = 0
++delta   = 0.004           ldelta  = 3.23e-009       pscbe1  = 4.24e+009       pscbe2  = 1e-008
++rsh     = 14              rdsw    = 477             rsw     = 270             rdw     = 270
++rdswmin = 0               rdwmin  = 0               rswmin  = 0               prwg    = 0
++prwb    = 0               wr      = 1               alpha0  = -5.2853e-006    lalpha0 = 7.7203e-013
++alpha1  = 15.901          beta0   = 33.447          lbeta0  = -1.837e-006     agidl   = 5e-010
++wagidl  = 1e-014          pagidl  = -2e-021         bgidl   = 2e+009          cgidl   = 0.5
++egidl   = 0.37            aigbacc = 0.000949        bigbacc = 0.00171         cigbacc = 0.075
++nigbacc = 1               aigbinv = 0.0111          bigbinv = 0.000949        cigbinv = 0.006
++eigbinv = 1.1             nigbinv = 3               aigc    = 0.0098          bigc    = 0.000759
++cigc    = 0.03            aigsd   = 0.0098          bigsd   = 0.000759        cigsd   = 0.03
++nigc    = 1               poxedge = 1               pigcd   = 1               ntox    = 1
+**************************************************************
+*               capacitance parameters
+**************************************************************
++cgso    = '1e-011+dcgso_p25ll'          cgdo    = '1e-011+dcgdo_p25ll'          cgbo    = 0               cgdl    = '3.4e-010+dcgdl_p25ll'
++cgsl    = '3.4e-010+dcgsl_p25ll'        clc     = 1e-007          cle     = 0.6             cf      = '5.766e-011+dcf_p25ll'
++ckappas = 0.6             ckappad = 0.6             vfbcv   = -1              acde    = 0.50369
++moin    = 8               noff    = 1.4             lnoff   = 6e-007          voffcv  = -0.02
++lvoffcv = -4e-008
+**************************************************************
+*               temperature parameters
+**************************************************************
++tvoff   = 0.005           wtvoff  = 6.4e-010        kt1     = -0.2            wkt1    = 1.7e-008
++pkt1    = -1.5e-015       kt1l    = 1.5e-008        kt2     = -0.02903        lkt2    = 1.2271e-009
++ute     = -1.1            ua1     = 1.6547e-009     lua1    = 3.45e-017       pua1    = 3.4384e-024
++ub1     = -3.0285e-018    lub1    = 1e-027          wub1    = 1.94e-025       pub1    = 8e-033
++uc1     = 4.849e-012      puc1    = 2.2e-024        prt     = 0               at      = 60000
++lat     = -0.022          wat     = 0.023           pat     = -4.56e-009
+**************************************************************
+*               noise parameters
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 6.6569e+007     ef      = 1.18638
++noia    = 3e+041          noib    = 1.45588e+026    noic    = 5.99794e+008    ntnoi   = 1
++lintnoi = -2e-009
+**************************************************************
+*               diode parameters
+**************************************************************
++jss     = 1.5934e-007     jsws    = 1.01297e-013    jswgs   = 1.53e-012       njs     = 0.983873
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 8.55            xjbvs   = 1
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0
++jtsswgs = '8.568e-010+djtsswgs_p25ll'      jtsswgd = '8.568e-010+djtsswgd_p25ll'      njts    = 20              njtssw  = 20
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0
++tnjtssw = 0               tnjtsswg= 0               vtss    = 10              vtsd    = 10
++vtssws  = 10              vtsswd  = 10              vtsswgs = 10              vtsswgd = 10
++pbs     = 0.728959        cjs     = '0.00123277+dcjs_p25ll'      mjs     = 0.316785        pbsws   = 1.03005
++cjsws   = '5.792877e-011+dcjsws_p25ll'   mjsws   = 0.178399        pbswgs  = 0.831684        cjswgs  = '1.617078e-010+dcjswgs_p25ll'
++mjswgs  = 0.465017        tpb     = 0.001659304     tcj     = 0.0008478976    tpbsw   = 0.00282876
++tcjsw   = 0.0005029756    tpbswg  = 0.0003036724    tcjswg  = 0.0002          xtis    = 3
+**************************************************************
+*               layout related parameters
+**************************************************************
++dmcg    = 9.9e-008        dmci    = 1.62e-007       dwj     = 0               xgw     = 0
++xgl     = 0
+**************************************************************
+*               rf parameters
+**************************************************************
+
+**************************************************************
+*               stress parameters
+**************************************************************
++web     = 10              wec     = 0               scref   = 1e-006          kvth0we = -0.008        
++lkvth0we= -6e-010         wkvth0we= 3e-010          pkvth0we= 1e-016          k2we    = 0             
++ku0we   = -0.004          wku0we  = -1e-010         pku0we  = -8e-017         saref   = 2.61e-007     
++sbref   = 2.61e-007       wlod    = 0               kvth0   = 4e-009          lkvth0  = 7e-007        
++wkvth0  = 3e-007          pkvth0  = 2e-013          llodvth = 1               wlodvth = 1             
++stk2    = 0               lodk2   = 1               lodeta0 = 1               ku0     = 3e-009        
++lku0    = 2e-006          wku0    = 0               pku0    = 0               llodku0 = 1             
++wlodku0 = 1               kvsat   = 1               steta0  = 0               tku0    = 0             
++pu0     = '(0+dpu0_p25ll)*lpepu0_p25ll'
+
+***********************************************************************************
+*                           2.5V(od 3.3V) IO PMOS MODEL                           *
+***********************************************************************************
+**
+.model  pod33ll_ckt  pmos  level = 54
+**************************************************************
+*               model flag parameters
+**************************************************************
++lmin    = 3.96e-007       lmax    = 0.0001          wmin    = 2.88e-007       wmax    = 0.0001
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0
++capmod  = 2               igcmod  = 0               igbmod  = 0               geomod  = 0
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0
++tempmod = 0               wpemod  = 1
+**************************************************************
+*               general model parameters
+**************************************************************
++tnom    = 25              toxe    = '6.02e-009+dtoxe_pod33ll'       dtox    = 1.4e-010        epsrox  = 3.9
++toxref  = 6.02e-009       wint    = -2e-008         lint    = 4e-009          ll      = -5e-015
++wl      = -1.1e-014       lln     = 0.9             wln     = 0.98            lw      = 0
++ww      = 9e-015          lwn     = 1               wwn     = 0.96            lwl     = 0
++wwl     = 0               llc     = 0               wlc     = 0               lwc     = 0
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '1e-008+dxl_pod33ll'
++xw      = '1.5e-008+dxw_pod33ll'        dlc     = '5.1064e-008+2.2e-8'     dwc     = '0-6.5e-8'              dlcig   = 5e-009
++xpart   = 1
+**************************************************************
+*               dc parameters
+**************************************************************
++lvth0   = '-3.8e-9+dlvth0_pod33ll+lpevth0_pod33ll'                    leta0   = 4.292e-008     lu0    = '(1.3148e-009+dlu0_pod33ll)*lpelu0_pod33ll'     
++vth0    = '-0.6+dvth0_pod33ll+lpevth0_pod33ll'        wvth0   = 2e-009          pvth0   = '3e-015+dpvth0_pod33ll'
++k1      = 0.6             k2      = -0.05           pk2     = -1e-016         k3      = 0
++k3b     = 0.7             w0      = 0               dvt0    = 7               dvt1    = 0.36
++pdvt1   = 5.016e-015      dvt2    = 0.01            dvt0w   = 0               dvt1w   = 0
++dvt2w   = 0               dsub    = 0.56            minv    = -0.08           voffl   = -1.4e-008
++dvtp0   = -1e-007         dvtp1   = 0               lpe0    = 7e-008          lpeb    = 0
++vbm     = -3              xj      = 1.37e-007       ngate   = 1e+021          ndep    = 1e+017
++nsd     = 1e+020          phin    = 0.045968        cdsc    = 0               up      = 0
++cdscb   = 0               cdscd   = 0               cit     = 0.00063         lcit    = -2e-010
++voff    = -0.132          pvoff   = -2.128e-015     nfactor = 1.05            eta0    = 0.08
++peta0   = 1.08e-014       etab    = -0.152          letab   = 1.7e-008
++u0      = '(0.011013+du0_pod33ll)*lpeu0_pod33ll'         wu0     = '(2e-010)*lpewu0_pod33ll'            ua      = 2.5788e-010
++lua     = 1.616e-016          wua     = -6.12e-017      pua     = 4.5962e-023     ub      = 1.2312e-018
++lub     = -1e-025    wub     = 1.9958e-026     pub     = -3.3046e-032    uc      = -2e-011
++luc     = 4.7046e-018     puc     = -1.25e-024      eu      = 1.67            vsat    = 85000
++lvsat   = '0.0055947+dlvsat_pod33ll'      pvsat   = -2.0285e-009     lpclm =1.3e-7           wpclm =-1e-8
++a0      = 1.495           la0     = -9e-007
++wa0     = 5e-009          pa0     = 9.04e-014       ags     = 0.275           lags    = 2.5e-007
++a1      = 0               a2      = 1               b0      = 0               b1      = 0
++keta    = -0.002248       lketa   = -3.24e-009      wketa   = 3.031e-009      dwg     = 0
++dwb     = 0               pclm    = 0.362           pdiblc1 = 0               pdiblc2 = 3.06e-005
++lpdiblc2= 6e-010          pdiblcb = 0               drout   = 0.56            pvag    = 0
++delta   = 0.004           ldelta  = 3.23e-009       pscbe1  = 4.24e+009       pscbe2  = 1e-008
++rsh     = 14              rdsw    = 477             rsw     = 270             rdw     = 270
++rdswmin = 0               rdwmin  = 0               rswmin  = 0               prwg    = 0
++prwb    = 0               wr      = 1               alpha0  = -5.2853e-006    lalpha0 = 8.3379e-013
++alpha1  = 15.901          beta0   = 33.6            lbeta0  = -1.837e-006     agidl   = 5e-010
++lagidl  = '1e-017+dlagidl_pod33ll'          wagidl  = 6e-016          pagidl  = '-1e-022+dpagidl_pod33ll'         bgidl   = 2e+009
++cgidl   = 0.5             egidl   = 0.37            aigbacc = 0.000949        bigbacc = 0.00171
++cigbacc = 0.075           nigbacc = 1               aigbinv = 0.0111          bigbinv = 0.000949
++cigbinv = 0.006           eigbinv = 1.1             nigbinv = 3               aigc    = 0.0098
++bigc    = 0.000759        cigc    = 0.03            aigsd   = 0.0098          bigsd   = 0.000759
++cigsd   = 0.03            nigc    = 1               poxedge = 1               pigcd   = 1
++ntox    = 1
+**************************************************************
+*               capacitance parameters
+**************************************************************
++cgso    = '1e-011+dcgso_pod33ll'          cgdo    = '1e-011+dcgdo_pod33ll'          cgbo    = 0               cgdl    = '3.4e-010+dcgdl_pod33ll'
++cgsl    = '3.4e-010+dcgsl_pod33ll'        clc     = 1e-007          cle     = 0.6             cf      = '5.766e-011+dcf_pod33ll'
++ckappas = 0.6             ckappad = 0.6             vfbcv   = -1              acde    = 0.50369
++moin    = 8               noff    = 1.4             lnoff   = 6e-007          voffcv  = -0.02
++lvoffcv = -4e-008
+**************************************************************
+*               temperature parameters
+**************************************************************
++tvoff   = 0.005           wtvoff  = 6.4e-010        kt1     = -0.17928        wkt1    = 1.0291e-008
++pkt1    = 8e-015          kt1l    = 2e-008          kt2     = -0.02903        lkt2    = 1.2271e-009
++ute     = -1              ua1     = 1.7678e-009     lua1    = 3.45e-017       pua1    = 3.4384e-024
++ub1     = -3.0285e-018    lub1    = 1e-025          wub1    = 1.94e-025       pub1    = 8e-033
++uc1     = 4.849e-012      puc1    = 2.2e-024        prt     = 0               at      = 60000
++lat     = -0.07           wat     = 0.023           pat     = 5e-009
+**************************************************************
+*               noise parameters
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 2e+009          ef      = 1.2099
++noia    = 5.22274e+041    noib    = 1.3985e+026     noic    = 6e+009          ntnoi   = 1
++lintnoi = -1.8e-008
+**************************************************************
+*               diode parameters
+**************************************************************
++jss     = 1.5934e-007     jsws    = 1.01297e-013    jswgs   = 1.53e-012       njs     = 0.983873
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 8.55            xjbvs   = 1
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0
++jtsswgs = '3e-009+djtsswgs_pod33ll'          jtsswgd = '3e-009+djtsswgd_pod33ll'          njts    = 20              njtssw  = 20
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0
++tnjtssw = 0               tnjtsswg= 0               vtss    = 10              vtsd    = 10
++vtssws  = 10              vtsswd  = 10              vtsswgs = 10              vtsswgd = 10
++pbs     = 0.728959        cjs     = '0.00123277+dcjs_pod33ll'      mjs     = 0.316785        pbsws   = 1.03005
++cjsws   = '5.792877e-011+dcjsws_pod33ll'   mjsws   = 0.178399        pbswgs  = 0.831684        cjswgs  = '1.617078e-010+dcjswgs_pod33ll'
++mjswgs  = 0.465017        tpb     = 0.001659304     tcj     = 0.0008478976    tpbsw   = 0.00282876
++tcjsw   = 0.0005029756    tpbswg  = 0.0003036724    tcjswg  = 0.0002          xtis    = 3
+**************************************************************
+*               layout related parameters
+**************************************************************
++dmcg    = 9.9e-008        dmci    = 1.62e-007       dwj     = 0               xgw     = 0
++xgl     = 0
+**************************************************************
+*               rf parameters
+**************************************************************
+
+**************************************************************
+*               stress parameters
+**************************************************************
++web     = 10              wec     = 0               scref   = 1e-006          kvth0we = -0.008        
++lkvth0we= -6e-010         wkvth0we= 3e-010          pkvth0we= 1e-016          k2we    = 0             
++ku0we   = -0.004          wku0we  = -1e-010         pku0we  = -8e-017         saref   = 2.61e-007     
++sbref   = 2.61e-007       wlod    = 0               kvth0   = 4e-009          lkvth0  = 7e-007        
++wkvth0  = 3e-007          pkvth0  = 2e-013          llodvth = 1               wlodvth = 1             
++stk2    = 0               lodk2   = 1               lodeta0 = 1               ku0     = 3e-009        
++lku0    = 2e-006          wku0    = 0               pku0    = 0               llodku0 = 1             
++wlodku0 = 1               kvsat   = 1               steta0  = 0               tku0    = 0             
++pu0     = '(0+dpu0_pod33ll)*lpepu0_pod33ll'
+
+*     
+***********************************************************************************
+*                           2.5V(ud 1.8V) IO PMOS MODEL                           *
+***********************************************************************************
+**
+.model  pud18ll_ckt  pmos  level = 54
+**************************************************************
+*               model flag parameters
+**************************************************************
++lmin    = 2.16e-007       lmax    = 0.0001          wmin    = 2.88e-007       wmax    = 0.0001
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0
++capmod  = 2               igcmod  = 0               igbmod  = 0               geomod  = 0
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0
++tempmod = 0               wpemod  = 1
+**************************************************************
+*               general model parameters
+**************************************************************
++tnom    = 25              toxe    = '6.02e-009+dtoxe_pud18ll'       dtox    = 1.4e-010        epsrox  = 3.9
++toxref  = 6.02e-009       wint    = -2e-008         lint    = 4e-009          ll      = -1e-015
++wl      = -7.5e-015       lln     = 0.88            wln     = 1               lw      = 0
++ww      = 1e-014          lwn     = 1               wwn     = 0.9466          lwl     = 0
++wwl     = 0               llc     = 0               wlc     = 0               lwc     = 0
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '1e-008+dxl_pud18ll'
++xw      = '1.5e-008+dxw_pud18ll'        dlc     = '5.2752e-008+2.2e-8'     dwc     = '0-6.5e-8'               dlcig   = 5e-009
++xpart   = 1
+**************************************************************
+*               dc parameters
+**************************************************************
++vth0    = '-0.6+dvth0_pud18ll+lpevth0_pud18ll'            lvth0   = '1.8204e-009+dlvth0_pud18ll'     wvth0   = '3e-009+dwvth0_pud18ll'          pvth0   = '8e-015+dpvth0_pud18ll'
++k1      = 0.6             k2      = -0.05           lk2     = 8e-009          pk2     = 6e-016
++k3      = 0               wk3     = 6e-008          pk3     = 2e-013          k3b     = 0.3
++w0      = 0               dvt0    = 7               dvt1    = 0.36            dvt2    = -0.0135
++dvt0w   = 0               dvt1w   = 5300000         dvt2w   = 0               dsub    = 0.56
++minv    = -0.08           voffl   = -1e-008         dvtp0   = -1e-007         dvtp1   = 0
++lpe0    = 7e-008          plpe0   = 5.2e-021        lpeb    = 0               vbm     = -3
++xj      = 1.37e-007       ngate   = 1e+021          ndep    = 1e+017          nsd     = 1e+020
++phin    = 0.045968        cdsc    = 0               up      = 0               cdscb   = 0
++cdscd   = 0               cit     = 0.00063         lcit    = -2e-010         voff    = -0.125
++nfactor = 1.05            eta0    = 0.08            leta0   = 1.3804e-007     peta0   = -9e-015
++etab    = -0.152          letab   = 1.7e-008        u0      = '(0.011013+du0_pud18ll)*lpeu0_pud18ll'        lu0     = '(1.8524e-009+dlu0_pud18ll)*lpelu0_pud18ll'
++wu0     = '(2e-010)*lpewu0_pud18ll'          ua      = 2.3191e-010     lua     = 3.5e-016        wua     = -6.12e-017
++pua     = 1.8e-022        ub      = 1.3098e-018     lub     = -2.1e-025       wub     = 2.4e-026
++pub     = -3.5e-031       uc      = -1e-011         luc     = -1.6365e-018    puc     = -1e-025
++eu      = 1.67            vsat    = 85000           lvsat   = -0.004          pvsat   = -7.2e-010
++a0      = 1.2             la0     = -8e-007         pa0     = 8e-015          ags     = 0.3
++lags    = 2.2e-007        wags    = -1.6e-008       a1      = 0               a2      = 1
++b0      = 0               b1      = 0               keta    = -0.002248       lketa   = -3.24e-009
++wketa   = 3.031e-009      dwg     = 0               dwb     = 0               pclm    = 0.4
++lpclm   = -4.55e-008      pdiblc1 = 0               pdiblc2 = 0.001           lpdiblc2= 1e-009
++pdiblcb = 0               drout   = 0.56            pvag    = 0               delta   = 0.004
++ldelta  = 3e-009          pscbe1  = 8e+008          pscbe2  = 1e-005          rsh     = 14
++rdsw    = 477             rsw     = 270             rdw     = 270             rdswmin = 0
++rdwmin  = 0               rswmin  = 0               prwg    = 0               prwb    = 0
++wr      = 1               alpha0  = -4.947e-006     lalpha0 = 7.3497e-013     alpha1  = 15.901
++beta0   = 33.542          lbeta0  = -1.837e-006     agidl   = 5e-010          wagidl  = 1e-014
++bgidl   = 2e+009          cgidl   = 0.5             egidl   = 0.37            aigbacc = 0.000949
++bigbacc = 0.00171         cigbacc = 0.075           nigbacc = 1               aigbinv = 0.0111
++bigbinv = 0.000949        cigbinv = 0.006           eigbinv = 1.1             nigbinv = 3
++aigc    = 0.0098          bigc    = 0.000759        cigc    = 0.03            aigsd   = 0.0098
++bigsd   = 0.000759        cigsd   = 0.03            nigc    = 1               poxedge = 1
++pigcd   = 1               ntox    = 1
+**************************************************************
+*               capacitance parameters
+**************************************************************
++cgso    = '1e-011+dcgso_pud18ll'          cgdo    = '1e-011+dcgdo_pud18ll'          cgbo    = 0               cgdl    = '3.4e-010+dcgdl_pud18ll'
++cgsl    = '3.4e-010+dcgsl_pud18ll'        clc     = 1e-007          cle     = 0.6             cf      = '5.766e-011+dcf_pud18ll'
++ckappas = 0.6             ckappad = 0.6             vfbcv   = -1              acde    = 0.50369
++moin    = 8               noff    = 1.4             lnoff   = 6e-007          voffcv  = -0.02
++lvoffcv = -4e-008
+**************************************************************
+*               temperature parameters
+**************************************************************
++tvoff   = 0.005           wtvoff  = 6.4e-010        kt1     = -0.17928        wkt1    = -1e-008
++pkt1    = 6e-015          kt1l    = 5e-009          kt2     = -0.02903        lkt2    = 1.2271e-009
++ute     = -1              ua1     = 1.7678e-009     lua1    = 3.45e-017       pua1    = 3.4384e-024
++ub1     = -3.0285e-018    lub1    = 1e-025          wub1    = 1.94e-025       pub1    = 8e-033
++uc1     = 4.849e-012      puc1    = 2.2e-024        prt     = 0               at      = 60000
++lat     = -0.019093       wat     = 0.023           pat     = -4.56e-009
+**************************************************************
+*               noise parameters
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 2e+009          ef      = 1.2099
++noia    = 2.16479e+041    noib    = 1.181e+026      noic    = 8.4544e+008     ntnoi   = 1
++lintnoi = -2e-008
+**************************************************************
+*               diode parameters
+**************************************************************
++jss     = 1.5934e-007     jsws    = 1.01297e-013    jswgs   = 1.53e-012       njs     = 0.983873
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 8.55            xjbvs   = 1
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0
++jtsswgs = '9e-010+djtsswgs_pud18ll'          jtsswgd = '9e-010+djtsswgd_pud18ll'          njts    = 20              njtssw  = 20
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0
++tnjtssw = 0               tnjtsswg= 0               vtss    = 10              vtsd    = 10
++vtssws  = 10              vtsswd  = 10              vtsswgs = 10              vtsswgd = 10
++pbs     = 0.728959        cjs     = '0.00123277+dcjs_pud18ll'      mjs     = 0.316785        pbsws   = 1.03005
++cjsws   = '5.792877e-011+dcjsws_pud18ll'   mjsws   = 0.178399        pbswgs  = 0.831684        cjswgs  = '1.617078e-010+dcjswgs_pud18ll'
++mjswgs  = 0.465017        tpb     = 0.001659304     tcj     = 0.0008478976    tpbsw   = 0.00282876
++tcjsw   = 0.0005029756    tpbswg  = 0.0003036724    tcjswg  = 0.0002          xtis    = 3
+**************************************************************
+*               layout related parameters
+**************************************************************
++dmcg    = 9.9e-008        dmci    = 1.62e-007       dwj     = 0               xgw     = 0
++xgl     = 0
+**************************************************************
+*               rf parameters
+**************************************************************
+**************************************************************
+*               stress parameters
+**************************************************************
++web     = 10              wec     = 0               scref   = 1e-006          kvth0we = -0.008        
++lkvth0we= -6e-010         wkvth0we= 3e-010          pkvth0we= 1e-016          k2we    = 0             
++ku0we   = -0.004          wku0we  = -1e-010         pku0we  = -8e-017         saref   = 2.61e-007     
++sbref   = 2.61e-007       wlod    = 0               kvth0   = 4e-009          lkvth0  = 7e-007        
++wkvth0  = 3e-007          pkvth0  = 2e-013          llodvth = 1               wlodvth = 1             
++stk2    = 0               lodk2   = 1               lodeta0 = 1               ku0     = 3e-009        
++lku0    = 2e-006          wku0    = 0               pku0    = 0               llodku0 = 1             
++wlodku0 = 1               kvsat   = 1               steta0  = 0               tku0    = 0             
++pu0     = '(0+dpu0_pud18ll)*lpepu0_pud18ll'
+
+*
+***********************************************************************************
+*                          2.5V IO Native NMOS MODEL                              *
+***********************************************************************************
+**
+.model  nt25ll_ckt  nmos  level = 54
+**************************************************************
+*               model flag parameters 
+**************************************************************
++lmin    = 1.08e-006       lmax    = 1e-004          wmin    = 3.6e-007        wmax    = 0.0001        
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 0               igbmod  = 0               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0             
+**************************************************************
+*               general model parameters 
+**************************************************************
++tnom    = 25              toxe    = '5.63e-009+dtoxe_nt25ll'       dtox    = -7e-011         epsrox  = 3.9           
++toxref  = 5.63e-009       wint    = -8.5e-009       lint    = -9.5e-008       ll      = 3.8164e-015   
++wl      = -1e-014         lln     = 1.0215          wln     = 1.05            lw      = -5e-015       
++ww      = -1.6e-014       lwn     = 1               wwn     = 0.96            lwl     = 0             
++wwl     = 5e-021          llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '1e-008+dxl_nt25ll'        
++xw      = '1.5e-008+dxw_nt25ll'        dlc     = 1.1e-007        dwc     = 0               dlcig   = 9.5e-009      
++xpart   = 1             
+**************************************************************
+*               dc parameters 
+**************************************************************
++vth0    = '-0.138+dvth0_nt25ll'          lvth0   = '-2.11e-008+dlvth0_nt25ll'      wvth0   = '-5e-011+dwvth0_nt25ll'         pvth0   = '1.45e-014+dpvth0_nt25ll'     
++k1      = 0.008           k2      = 0.028           lk2     = 1.9e-008        wk2     = 1.4e-008      
++pk2     = -7e-015         k3      = 10              k3b     = -3.248          w0      = 1e-007        
++dvt0    = 2               dvt1    = 0.2             dvt2    = 0               dvt0w   = 0             
++dvt1w   = 0               dvt2w   = 0               dsub    = 0.11789         minv    = -0.23892      
++voffl   = 0               dvtp0   = 0               dvtp1   = 0               lambda  = 0             
++vtl     = 0               lpe0    = 0               lpeb    = 0               vbm     = -3            
++xj      = 3.88e-007       ngate   = 5e+021          ndep    = 5e+016          nsd     = 1e+020        
++phin    = 0               cdsc    = 0.00024         ud      = 0               ud1     = 0             
++up      = 0               lp      = 1e-008          cdscb   = 0               cdscd   = 0.0001        
++cit     = 0               voff    = -0.09           nfactor = 0.5             eta0    = 0.219           
++peta0   = -7e-014         etab    = 0.12            u0      = '0.0525+du0_nt25ll'          lu0     = '8.48e-009+dlu0_nt25ll'      
++wu0     = '-5e-010+dwu0_nt25ll'         pu0     = '1.2e-016+dpu0_nt25ll'        ua      = 8e-010          lua     = -8e-017       
++wua     = 1.5e-016        pua     = -1.0107e-022    ub      = 1.7e-018        lub     = -8e-026       
++wub     = -3e-025         pub     = 1.0146e-032     uc      = 8e-012          luc     = 1e-017        
++wuc     = -1.4382e-017    eu      = 1.67            vsat    = 82000           pvsat   = 1e-009        
++a0      = 2               la0     = -1e-007         pa0     = -3e-013         ags     = 1.45          
++lags    = -1e-007         wags    = -3.4e-007       pags    = 1e-015          a1      = 0             
++a2      = 1               b0      = 0               b1      = 0               keta    = -0.032        
++lketa   = -2.2e-008       wketa   = 4.14e-009       pketa   = -2e-015         dwg     = 5.9251e-010   
++dwb     = 0               pclm    = 0.2             lpclm   = 2e-007          ppclm   = -9e-014       
++pdiblc1 = 0.01            pdiblc2 = 0.0005          lpdiblc2= 6e-009          pdiblcb = 0             
++drout   = 0.56            pvag    = 3               delta   = 0.005           ldelta  = 1e-009        
++pscbe1  = 4.24e+008       pscbe2  = 1e-008          fprout  = 100             pdits   = 0             
++pditsd  = 0               pditsl  = 0               rsh     = 14.13           rsw     = 137           
++rdw     = 137             rswmin  = 0               prwg    = 0               prwb    = 0             
++wr      = 1               alpha0  = 5e-008          alpha1  = 0.014           lalpha1 = 5.5e-008      
++walpha1 = 8e-008          palpha1 = -5e-015         beta0   = 15              lbeta0  = -1e-006       
++agidl   = 1e-009          bgidl   = 2.5e+009        cgidl   = 0.5             egidl   = 0.5           
++aigbacc = 0.000949        bigbacc = 0.00171         cigbacc = 0.075           nigbacc = 1             
++aigbinv = 0.0111          bigbinv = 0.000949        cigbinv = 0.006           eigbinv = 1.1           
++nigbinv = 3               aigc    = 0.0136          bigc    = 0.00171         cigc    = 0.075         
++aigsd   = 0.0136          bigsd   = 0.00171         cigsd   = 0.075           nigc    = 1             
++poxedge = 1               pigcd   = 1               ntox    = 1             
+**************************************************************
+*               capacitance parameters 
+**************************************************************
++cgso    = '1.5e-010+dcgso_nt25ll'        cgdo    = '1.5e-010+dcgdo_nt25ll'        cgbo    = 0               cgdl    = '4.5e-010+dcgdl_nt25ll'      
++cgsl    = '4.5e-010+dcgsl_nt25ll'        cf      = '5.902e-011+dcf_nt25ll'      ckappas = 0.6             ckappad = 0.6           
++vfbcv   = -1              acde    = 0.25            moin    = 25              noff    = 4             
++voffcv  = -0.1          
+**************************************************************
+*               temperature parameters 
+**************************************************************
++tvoff   = 0.004426        kt1     = -0.17           lkt1    = -1.3e-008       wkt1    = 2.9e-009      
++pkt1    = 1.5e-015        kt1l    = -1.8e-008       pkt1l   = 4e-022          kt2     = -0.024938     
++lkt2    = -1e-009         pkt2    = 1.5e-015        ute     = -1.5035         wute    = 9e-009        
++pute    = -2e-014         ua1     = 3.1266e-009     lua1    = -1.424e-015     ub1     = -6.0992e-018  
++lub1    = 2.1035e-024     wub1    = -3.078e-025     pub1    = 5.5e-031        uc1     = -1.9e-011     
++luc1    = -4.856e-017     prt     = 0               at      = 150000          lat     = -0.2          
++wat     = 0.04            pat     = -6e-008       
+**************************************************************
+*               noise parameters 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 500000          ef      = 0.9           
++noia    = 1e+041          noib    = -1e+024         noic    = 5e+007          ntnoi   = 1             
++lintnoi = -1e-007       
+**************************************************************
+*               diode parameters 
+**************************************************************
++jss     = 1.38e-006       jsws    = 4.59e-013       jswgs   = 1.15e-010       njs     = 0.991             
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 15.25           xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 0               jtsswgd = 0               njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.95            cjs     = '3.278926E-4+dcjs_nt25ll'      
++mjs     = 0.135308        pbsws   = 0.182312        cjsws   = '4.168795E-11+dcjsws_nt25ll'       mjsws   = 0.160048         
++pbswgs  = 0.174258        cjswgs  = '7.241891E-11+dcjswgs_nt25ll'       mjswgs  = 0.628233           tpb     = 0.00211       
++tcj     = 0.00148         tpbsw   = 0.001           tcjsw   = 0.0001          tpbswg  = 0.0005        
++tcjswg  = 0.00237         xtis    = 3             
+**************************************************************
+*               layout related parameters 
+**************************************************************
++dmcg    = 9.9e-008        dmci    = 1.62e-007       dmdg    = 0               dmcgt   = 0             
++dwj     = 0               xgw     = 0               xgl     = 0             
+**************************************************************
+*               rf parameters 
+**************************************************************
+**************************************************************
+*               stress parameters 
+**************************************************************
++saref   = 2.61e-007       sbref   = 2.61e-007       wlod    = 0               kvth0   = 1.1e-008      
++lkvth0  = -1e-007         wkvth0  = 1e-006          pkvth0  = -3e-013         llodvth = 0.95          
++wlodvth = 1               stk2    = 0               lodk2   = 1               lodeta0 = 1             
++ku0     = -7e-008         lku0    = 1e-006          wku0    = 2e-007          pku0    = 8.5e-013      
++llodku0 = 1               wlodku0 = 1               kvsat   = 0.5             steta0  = -1e-007       
++tku0    = 0             
+
+*
+***********************************************************************************
+*                          2.5V(od 3.3V) IO Native NMOS MODEL                    *
+***********************************************************************************
+**
+.model  ntod33ll_ckt  nmos  level = 54
+**************************************************************
+*               model flag parameters 
+**************************************************************
++lmin    = 1.08e-006       lmax    = 1e-004          wmin    = 3.6e-007        wmax    = 0.0001        
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 0               igbmod  = 0               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0             
+**************************************************************
+*               general model parameters 
+**************************************************************
++tnom    = 25              toxe    = '5.63e-009+dtoxe_ntod33ll'       dtox    = -7e-011         epsrox  = 3.9           
++toxref  = 5.63e-009       wint    = -7.2e-009       lint    = -9.5e-008       ll      = 3.8164e-015   
++wl      = -1e-014         lln     = 1.0215          wln     = 1.0888          lw      = -5e-015       
++ww      = -1.6e-014       lwn     = 1               wwn     = 0.9599          lwl     = 0             
++wwl     = 4.44e-021       llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '1e-008+dxl_ntod33ll'        
++xw      = '1.5e-008+dxw_ntod33ll'        dlc     = 1.1e-007        dwc     = 0               dlcig   = 9.5e-009      
++xpart   = 1             
+**************************************************************
+*               dc parameters 
+**************************************************************
++vth0    = '-0.138+dvth0_ntod33ll'          lvth0   = '-2.6e-008+dlvth0_ntod33ll'       wvth0   = '-5e-011+dwvth0_ntod33ll'         pvth0   = '1.33e-014+dpvth0_ntod33ll'     
++k1      = 0.008           k2      = 0.028           lk2     = 1.9e-008        wk2     = 1.4e-008      
++pk2     = -7e-015         k3      = 10              k3b     = -3.248          w0      = 1e-007        
++dvt0    = 2               dvt1    = 0.2             dvt2    = 0               dvt0w   = 0             
++dvt1w   = 0               dvt2w   = 0               dsub    = 0.11789         minv    = -0.23892      
++voffl   = 0               dvtp0   = 0               dvtp1   = 0               lambda  = 0             
++vtl     = 0               lpe0    = 0               lpeb    = 0               vbm     = -3            
++xj      = 3.88e-007       ngate   = 5e+021          ndep    = 5e+016          nsd     = 1e+020        
++phin    = 0               cdsc    = 0.00024         ud      = 0               ud1     = 0             
++up      = 0               lp      = 1e-008          cdscb   = 0               cdscd   = 0.0001        
++cit     = 0               voff    = -0.09           nfactor = 0.5             eta0    = 0.26          
++peta0   = -1.11e-013      etab    = 0.12            u0      = '0.0525+du0_ntod33ll'          lu0     = '1.3e-008+dlu0_ntod33ll'      
++wu0     = '-5e-010+dwu0_ntod33ll'         pu0     = '1e-016+dpu0_ntod33ll'          ua      = 8e-010          lua     = -8e-017       
++wua     = 1.5e-016        pua     = -1.0107e-022    ub      = 1.86e-018       lub     = -3.3e-026     
++wub     = -2.6e-025       pub     = 3.33e-032       uc      = 8e-012          luc     = 1e-017        
++wuc     = -1.4382e-017    eu      = 1.67            vsat    = 82000           pvsat   = 8.88e-010     
++a0      = 2               la0     = -1e-007         pa0     = -5e-013         ags     = 1.72          
++lags    = -9.99e-007      wags    = -4.002e-007     pags    = 1.28e-013       a1      = 0             
++a2      = 1               b0      = 0               b1      = 0               keta    = -0.032        
++lketa   = -2.2e-008       wketa   = 4.14e-009       pketa   = -2e-015         dwg     = 5.9251e-010   
++dwb     = 0               pclm    = 0.2             lpclm   = 2e-007          pdiblc1 = 0.01          
++pdiblc2 = 1e-005          lpdiblc2= 1e-013          pdiblcb = 0               drout   = 0.56          
++pvag    = 3               delta   = 0.005           ldelta  = 1e-009          pscbe1  = 4.24e+008     
++pscbe2  = 1e-008          fprout  = 0               pdits   = 0               pditsd  = 0             
++pditsl  = 0               rsh     = 14.13           rsw     = 137             rdw     = 137           
++rswmin  = 0               prwg    = 0               prwb    = 0               wr      = 1             
++alpha0  = 5e-008          alpha1  = 0.014           lalpha1 = 5.5e-008        walpha1 = 8e-008        
++palpha1 = -5e-015         beta0   = 15              lbeta0  = -1e-006         agidl   = 1e-009        
++bgidl   = 2.5e+009        cgidl   = 0.5             egidl   = 0.5             aigbacc = 0.000949      
++bigbacc = 0.00171         cigbacc = 0.075           nigbacc = 1               aigbinv = 0.0111        
++bigbinv = 0.000949        cigbinv = 0.006           eigbinv = 1.1             nigbinv = 3             
++aigc    = 0.0136          bigc    = 0.00171         cigc    = 0.075           aigsd   = 0.0136        
++bigsd   = 0.00171         cigsd   = 0.075           nigc    = 1               poxedge = 1             
++pigcd   = 1               ntox    = 1             
+**************************************************************
+*               capacitance parameters 
+**************************************************************
++cgso    = '1.5e-010+dcgso_ntod33ll'        cgdo    = '1.5e-010+dcgdo_ntod33ll'        cgbo    = 0               cgdl    = '4.5e-010+dcgdl_ntod33ll'      
++cgsl    = '4.5e-010+dcgsl_ntod33ll'        cf      = '5.902e-011+dcf_ntod33ll'      ckappas = 0.6             ckappad = 0.6           
++vfbcv   = -1              acde    = 0.25            moin    = 25              noff    = 4             
++voffcv  = -0.1          
+**************************************************************
+*               temperature parameters 
+**************************************************************
++tvoff   = 0.004426        kt1     = -0.17           lkt1    = -1.3e-008       wkt1    = 2.9e-009      
++pkt1    = 1.5e-015        kt1l    = -1.8e-008       pkt1l   = 4e-022          kt2     = -0.024938     
++lkt2    = -1e-009         pkt2    = 1.5e-015        ute     = -1.5035         wute    = 9e-009        
++pute    = -2e-014         ua1     = 3.1266e-009     lua1    = -1.424e-015     ub1     = -6.0992e-018  
++lub1    = 2.1035e-024     wub1    = -3.078e-025     pub1    = 5.5e-031        uc1     = -1.9e-011     
++luc1    = -4.856e-017     prt     = 0               at      = 150000          lat     = -0.2          
++wat     = 0.04            pat     = -6e-008       
+**************************************************************
+*               noise parameters 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 500000          ef      = 0.9           
++noia    = 1e+041          noib    = -1e+024         noic    = 5e+007          ntnoi   = 1             
++lintnoi = -1e-007       
+**************************************************************
+*               diode parameters 
+**************************************************************
++jss     = 1.8e-006        jsws    = 6.36e-013       jswgs   = 1.15e-010       njs     = 1             
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 17.1            xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 0               jtsswgd = 0               njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.95            cjs     = '0.000374+dcjs_ntod33ll'      
++mjs     = 0.67            pbsws   = 0.84            cjsws   = '3.57e-011+dcjsws_ntod33ll'       mjsws   = 0.076         
++pbswgs  = 0.174258        cjswgs  = '1.83e-010+dcjswgs_ntod33ll'       mjswgs  = 0.674           tpb     = 0.00211       
++tcj     = 0.00148         tpbsw   = 0.001           tcjsw   = 0.0001          tpbswg  = 0.0005        
++tcjswg  = 0.00237         xtis    = 3             
+**************************************************************
+*               layout related parameters 
+**************************************************************
++dmcg    = 9.9e-008        dmci    = 1.62e-007       dmdg    = 0               dmcgt   = 0             
++dwj     = 0               xgw     = 0               xgl     = 0             
+**************************************************************
+*               rf parameters 
+**************************************************************
+**************************************************************
+*               stress parameters 
+**************************************************************
++saref   = 2.61e-007       sbref   = 2.61e-007       wlod    = 0               kvth0   = 1.1e-008      
++lkvth0  = -1e-007         wkvth0  = 1e-006          pkvth0  = -3e-013         llodvth = 0.95          
++wlodvth = 1               stk2    = 0               lodk2   = 1               lodeta0 = 1             
++ku0     = -7e-008         lku0    = 1e-006          wku0    = 2e-007          pku0    = 8.5e-013      
++llodku0 = 1               wlodku0 = 1               kvsat   = 0.5             steta0  = -1e-007       
++tku0    = 0      
+
+*
+***********************************************************************************
+*                          2.5V(ud 1.8V) IO Native NMOS MODEL                     *
+***********************************************************************************
+**
+.model  ntud18ll_ckt  nmos  level = 54
+**************************************************************
+*               model flag parameters 
+**************************************************************
++lmin    = 1.08e-006       lmax    = 1e-005          wmin    = 3.6e-007        wmax    = 0.0001        
++version = 4.5             binunit = 2               paramchk= 1               mobmod  = 0             
++capmod  = 2               igcmod  = 0               igbmod  = 0               geomod  = 0             
++diomod  = 2               rdsmod  = 1               rbodymod= 0               rgeomod = 1             
++rgatemod= 0               permod  = 1               acnqsmod= 0               trnqsmod= 0             
++tempmod = 0             
+**************************************************************
+*               general model parameters 
+**************************************************************
++tnom    = 25              toxe    = '5.63e-009+dtoxe_ntud18ll'       dtox    = -7e-011         epsrox  = 3.9           
++toxref  = 5.63e-009       wint    = -8.5e-009       lint    = -9.5e-008       ll      = 3.8164e-015   
++wl      = -1e-014         lln     = 1.0215          wln     = 1.05            lw      = -5e-015       
++ww      = -1.6e-014       lwn     = 1               wwn     = 0.96            lwl     = 0             
++wwl     = 5e-021          llc     = 0               wlc     = 0               lwc     = 0             
++wwc     = 0               lwlc    = 0               wwlc    = 0               xl      = '1e-008+dxl_ntud18ll'        
++xw      = '1.5e-008+dxw_ntud18ll'        dlc     = 1.1e-007        dwc     = 0               dlcig   = 9.5e-009      
++xpart   = 1             
+**************************************************************
+*               dc parameters 
+**************************************************************
++vth0    = '-0.138+dvth0_ntud18ll'          lvth0   = '-2.6e-008+dlvth0_ntud18ll'       wvth0   = '-1e-009+dwvth0_ntud18ll'         pvth0   = '1.18e-014+dpvth0_ntud18ll'     
++k1      = 0.008           k2      = 0.028           lk2     = 1.9e-008        wk2     = 1.4e-008      
++pk2     = -7e-015         k3      = 10              k3b     = -3.248          w0      = 1e-007        
++dvt0    = 2               dvt1    = 0.2             dvt2    = 0               dvt0w   = 0             
++dvt1w   = 0               dvt2w   = 0               dsub    = 0.11789         minv    = -0.23892      
++voffl   = 0               dvtp0   = 0               dvtp1   = 0               lambda  = 0             
++vtl     = 0               lpe0    = 0               lpeb    = 0               vbm     = -3            
++xj      = 3.88e-007       ngate   = 5e+021          ndep    = 5e+016          nsd     = 1e+020        
++phin    = 0               cdsc    = 0.00024         ud      = 0               ud1     = 0             
++up      = 0               lp      = 1e-008          cdscb   = 0               cdscd   = 0.0001        
++cit     = 0               voff    = -0.09           nfactor = 0.5             eta0    = 0.15          
++peta0   = -7e-014         etab    = 0.12            u0      = '0.0525+du0_ntud18ll'          lu0     = '1.3e-008+dlu0_ntud18ll'      
++wu0     = '-5e-010+dwu0_ntud18ll'         pu0     = '1.2e-016+dpu0_ntud18ll'        ua      = 8e-010          lua     = -8e-017       
++wua     = 1.5e-016        pua     = -1.0107e-022    ub      = 1.7e-018        lub     = 1.8e-025      
++wub     = -2e-025         pub     = -2.28e-031      uc      = 8e-012          luc     = 1e-017        
++wuc     = -1.4382e-017    eu      = 1.67            vsat    = 82000           pvsat   = 1e-009        
++a0      = 2               la0     = -1e-007         pa0     = -3e-013         ags     = 1.53          
++lags    = 1e-007          wags    = -3.99e-007      pags    = 1.28e-013       a1      = 0             
++a2      = 1               b0      = 0               b1      = 0               keta    = -0.032        
++lketa   = -2.2e-008       wketa   = 4.14e-009       pketa   = -2e-015         dwg     = 5.9251e-010   
++dwb     = 0               pclm    = 0.2             lpclm   = 2e-007          ppclm   = -9e-014       
++pdiblc1 = 0.01            pdiblc2 = 0.0005          lpdiblc2= 6e-009          pdiblcb = 0             
++drout   = 0.56            pvag    = 3               delta   = 0.005           ldelta  = 1e-009        
++pscbe1  = 4.24e+008       pscbe2  = 1e-008          fprout  = 100             pdits   = 0             
++pditsd  = 0               pditsl  = 0               rsh     = 14.13           rsw     = 137           
++rdw     = 137             rswmin  = 0               prwg    = 0               prwb    = 0             
++wr      = 1               alpha0  = 5e-008          alpha1  = 0.014           lalpha1 = 5.5e-008      
++walpha1 = 8e-008          palpha1 = -5e-015         beta0   = 15              lbeta0  = -1e-006       
++agidl   = 1e-009          bgidl   = 2.5e+009        cgidl   = 0.5             egidl   = 0.5           
++aigbacc = 0.000949        bigbacc = 0.00171         cigbacc = 0.075           nigbacc = 1             
++aigbinv = 0.0111          bigbinv = 0.000949        cigbinv = 0.006           eigbinv = 1.1           
++nigbinv = 3               aigc    = 0.0136          bigc    = 0.00171         cigc    = 0.075         
++aigsd   = 0.0136          bigsd   = 0.00171         cigsd   = 0.075           nigc    = 1             
++poxedge = 1               pigcd   = 1               ntox    = 1             
+**************************************************************
+*               capacitance parameters 
+**************************************************************
++cgso    = '1.5e-010+dcgso_ntud18ll'        cgdo    = '1.5e-010+dcgdo_ntud18ll'        cgbo    = 0               cgdl    = '4.5e-010+dcgdl_ntud18ll'      
++cgsl    = '4.5e-010+dcgsl_ntud18ll'        cf      = '5.902e-011+dcf_ntud18ll'      ckappas = 0.6             ckappad = 0.6           
++vfbcv   = -1              acde    = 0.25            moin    = 25              noff    = 4             
++voffcv  = -0.1          
+**************************************************************
+*               temperature parameters 
+**************************************************************
++tvoff   = 0.004426        kt1     = -0.17           lkt1    = -1.3e-008       wkt1    = 2.9e-009      
++pkt1    = 1.5e-015        kt1l    = -1.8e-008       pkt1l   = 4e-022          kt2     = -0.024938     
++lkt2    = -1e-009         pkt2    = 1.5e-015        ute     = -1.5            wute    = 2e-008        
++pute    = -2e-014         ua1     = 3.1266e-009     lua1    = -1.424e-015     ub1     = -7e-018       
++lub1    = 4.4e-024        wub1    = -6e-025         pub1    = 1e-030          uc1     = -1.9e-011     
++luc1    = -4.856e-017     prt     = 0               at      = 150000          lat     = -0.188        
++wat     = 0.02            pat     = -4.4e-008       
+**************************************************************
+*               noise parameters 
+**************************************************************
++fnoimod = 1               tnoimod = 0               em      = 500000          ef      = 0.9           
++noia    = 1e+041          noib    = -1e+024         noic    = 5e+007          ntnoi   = 1             
++lintnoi = -1e-007       
+**************************************************************
+*               diode parameters 
+**************************************************************
++jss     = 1.8e-006        jsws    = 6.36e-013       jswgs   = 1.15e-010       njs     = 1             
++ijthsfwd= 0.1             ijthsrev= 0.1             bvs     = 17.1            xjbvs   = 1             
++jtss    = 0               jtsd    = 0               jtssws  = 0               jtsswd  = 0             
++jtsswgs = 0               jtsswgd = 0               njts    = 20              njtssw  = 20            
++njtsswg = 20              xtss    = 0.02            xtsd    = 0.02            xtssws  = 0.02          
++xtsswd  = 0.02            xtsswgs = 0.02            xtsswgd = 0.02            tnjts   = 0             
++tnjtssw = 0               tnjtsswg= 0               pbs     = 0.95            cjs     = '0.000374+dcjs_ntud18ll'      
++mjs     = 0.67            pbsws   = 0.84            cjsws   = '3.57e-011+dcjsws_ntud18ll'       mjsws   = 0.076         
++pbswgs  = 0.926           cjswgs  = '1.83e-010+dcjswgs_ntud18ll'       mjswgs  = 0.674           tpb     = 0.00211       
++tcj     = 0.00148         tpbsw   = 0.001           tcjsw   = 0.0001          tpbswg  = 0.0005        
++tcjswg  = 0.00237         xtis    = 3             
+**************************************************************
+*               layout related parameters 
+**************************************************************
++dmcg    = 9.9e-008        dmci    = 1.62e-007       dmdg    = 0               dmcgt   = 0             
++dwj     = 0               xgw     = 0               xgl     = 0             
+**************************************************************
+*               rf parameters 
+**************************************************************
+**************************************************************
+*               stress parameters 
+**************************************************************
++saref   = 2.61e-007       sbref   = 2.61e-007       wlod    = 0               kvth0   = 1.1e-008      
++lkvth0  = -1e-007         wkvth0  = 1e-006          pkvth0  = -3e-013         llodvth = 0.95          
++wlodvth = 1               stk2    = 0               lodk2   = 1               lodeta0 = 1             
++ku0     = -7e-008         lku0    = 1e-006          wku0    = 2e-007          pku0    = 8.5e-013      
++llodku0 = 1               wlodku0 = 1               kvsat   = 0.5             steta0  = -1e-007       
++tku0    = 0             

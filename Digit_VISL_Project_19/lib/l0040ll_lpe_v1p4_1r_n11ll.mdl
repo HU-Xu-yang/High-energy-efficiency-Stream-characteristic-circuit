@@ -1,0 +1,35 @@
+****n11ll lpe model parameter 20120706**********************
+.param
++scale_=0.9
++w_='scale_*w/1e-6' l_='scale_*l/1e-6' dps_='scale_*dps/1.0e-6' dpcs_='scale_*dpcs/1.0e-6' dsts_='scale_*dsts/1.0e-6' 
+.param mudps_a=7e-006    mudps_b=10.74    mudps_c=0    mudps_d=0.9926
+.param dvdps_a=0.0023    dvdps_b=9.94    dvdps_c=0    dvdps_d=3.3417
+.param mudpcs_a=0    mudpcs_b=1    dvdpcs_a=0    dvdpcs_b=0
+.param mudsts_a=0.004    mudsts_b=1.632    mudsts_c=-0.0055    mudsts_d=1.003
+.param dvdsts_a=-1.55    dvdsts_b=2.993    dvdsts_c=0.02    dvdsts_d=-19
+.param mu_dps='(mudps_a*pwr(l_,-0.3343)-1e-5)*pwr(log(dps_),mudps_b) + mudps_c*log(dps_) + mudps_d*pwr(l_,-0.0104)'
+.param mu_dpcs='mudpcs_a*dpcs_+mudpcs_b'
+.param mu_dsts='mudsts_a*pwr(log(dsts_),mudsts_b) + mudsts_c*log(dsts_) + mudsts_d'
+.param _mulu0='mu_dps*mu_dpcs*mu_dsts'
+.param _mulu0_b=-0.2    _mulu0_a=1
+*** mulu0 parameter mapping: _u0_*(_mulu0_b*(_mulu0-1)+_mulu0_a)
+.param dv_dps='(dvdps_a*log(l_)+1e-3)*pwr(log(dps_),dvdps_b) + dvdps_c*log(dps_) + dvdps_d*log(l_)+1.561'
+.param dv_dpcs='dvdpcs_a*dpcs_+dvdpcs_b'
+.param dv_dsts='dvdsts_a*pwr(log(dsts_),dvdsts_b) + dvdsts_c*log(dsts_) + dvdsts_d'
+.param _delvto='(dv_dps+dv_dpcs+dv_dsts)/1000'
+.param _delvto_a=-0.29    _delvto_b=0
+*** delvto parameter mapping: _vth0_+_delvto_a*_delvto+_delvto_b
+.param muwl_a1=0    muwl_a2=1    muwl_a3=1    muwl_a4=1
+.param muwl_a5=1    muwl_a6=1    muwl_a7=1    muwl_a8=1
+.param muwl_a9=1
+*** mulu0 w/l parameter mapping: 1+muwl_a1+muwl_a2/(muwl_a3+l_)-muwl_a4/(muwl_a5+l_)+muwl_a6/(muwl_a7+w_)-muwl_a8/(muwl_a9+w_)
+.param dvwl_a1=0    dvwl_a2=1    dvwl_a3=1    dvwl_a4=1
+.param dvwl_a5=1    dvwl_a6=1    dvwl_a7=1    dvwl_a8=1
+.param dvwl_a9=1
+*** delvto w/l parameter mapping: dvwl_a1+dvwl_a2/(dvwl_a3+l_)-dvwl_a4/(dvwl_a5+l_)+dvwl_a6/(dvwl_a7+w_)-dvwl_a8/(dvwl_a9+w_)
+
++lpevth0_n11ll='((_delvto_a*_delvto+_delvto_b+dvwl_a1+dvwl_a2/(dvwl_a3+w_)-dvwl_a4/(dvwl_a5+w_)+dvwl_a6/(dvwl_a7+l_)-dvwl_a8/(dvwl_a9+l_)+_delvto)*lpemod)'
++lpeu0_n11ll='(pwr(_mulu0*((_mulu0_b*(_mulu0-1)+_mulu0_a)*(1+muwl_a1+muwl_a2/(muwl_a3+l_)-muwl_a4/(muwl_a5+l_)+muwl_a6/(muwl_a7+w_)-muwl_a8/(muwl_a9+w_))),lpemod))'
++lpelu0_n11ll='(pwr(_mulu0*((_mulu0_b*(_mulu0-1)+_mulu0_a)*(1+muwl_a1+muwl_a2/(muwl_a3+l_)-muwl_a4/(muwl_a5+l_)+muwl_a6/(muwl_a7+w_)-muwl_a8/(muwl_a9+w_))),lpemod))'
++lpewu0_n11ll='(pwr(_mulu0*((_mulu0_b*(_mulu0-1)+_mulu0_a)*(1+muwl_a1+muwl_a2/(muwl_a3+l_)-muwl_a4/(muwl_a5+l_)+muwl_a6/(muwl_a7+w_)-muwl_a8/(muwl_a9+w_))),lpemod))'
++lpepu0_n11ll='(pwr(_mulu0*((_mulu0_b*(_mulu0-1)+_mulu0_a)*(1+muwl_a1+muwl_a2/(muwl_a3+l_)-muwl_a4/(muwl_a5+l_)+muwl_a6/(muwl_a7+w_)-muwl_a8/(muwl_a9+w_))),lpemod))'

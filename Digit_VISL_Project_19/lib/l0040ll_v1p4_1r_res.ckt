@@ -1,0 +1,1186 @@
+* no part of this file can be released without the consent of smic.
+* 
+************************************************************************************************************
+*  40nm logic low leakage 1p10m(1p9m,1p8m,1p7m,1p6m) salicide 1.1v/1.8v/2.5v spice model (for hspice only) *
+************************************************************************************************************
+* 
+* release version     : 1.4_1r
+* 
+*  release date       : 09/25/2012
+*
+*  simulation tool    : synopsys star-hspice version c-2009.09
+* 
+*   resistor          : 
+*   the valid temperature range is from -40c to 125c
+*
+*        *--------------------------------------------------------------*  
+*        |       resistor type                       |   1.1v/2.5v      | 
+*        |==============================================================|  
+*        | silicide n+ diffusion (three terminal)    |     rndif_3t_ckt | 
+*        |--------------------------------------------------------------|  
+*        | silicide p+ diffusion(three terminal)     |     rpdif_3t_ckt | 
+*        |--------------------------------------------------------------| 
+*        | silicide n+ poly (three terminal)         |     rnpo_3t_ckt  | 
+*        |--------------------------------------------------------------| 
+*        | silicide p+ poly (three terminal)         |     rppo_3t_ckt  | 
+*        |--------------------------------------------------------------| 
+*        | nwell under sti(three terminal)           |     rnwsti_3t_ckt|
+*        |--------------------------------------------------------------| 
+*        | nwell under aa  (three terminal)          |     rnwaa_3t_ckt |
+*        |--------------------------------------------------------------| 
+*        | non-silicide n+ diffusion(three terminal) |  rndifsab_3t_ckt |
+*        |--------------------------------------------------------------| 
+*        | non-silicide p+ diffusion (three terminal)|  rpdifsab_3t_ckt |
+*        |--------------------------------------------------------------| 
+*        | non-silicide n+ poly (three terminal)     |    rnposab_3t_ckt|
+*        |--------------------------------------------------------------| 
+*        | non-silicide p+ poly (three terminal)     |   rpposab_3t_ckt |
+*        |--------------------------------------------------------------| 
+*        | non-silicide hr poly (three terminal)     |   rhrpo_3t_ckt   |
+*        |--------------------------------------------------------------| 
+*        | silicide n+ diffusion (two terminal)      |     rndif_2t_ckt | 
+*        |--------------------------------------------------------------|  
+*        | silicide p+ diffusion(two terminal)       |     rpdif_2t_ckt | 
+*        |--------------------------------------------------------------| 
+*        | silicide n+ poly (two terminal)           |     rnpo_2t_ckt  | 
+*        |--------------------------------------------------------------| 
+*        | silicide p+ poly (two terminal)           |     rppo_2t_ckt  | 
+*        |--------------------------------------------------------------| 
+*        | nwell under sti(two terminal)             |     rnwsti_2t_ckt|
+*        |--------------------------------------------------------------| 
+*        | nwell under aa  (two terminal)            |     rnwaa_2t_ckt |
+*        |--------------------------------------------------------------| 
+*        | non-silicide n+ diffusion(two terminal)   |  rndifsab_2t_ckt |
+*        |--------------------------------------------------------------| 
+*        | non-silicide p+ diffusion (two terminal)  |  rpdifsab_2t_ckt |
+*        |--------------------------------------------------------------| 
+*        | non-silicide n+ poly (two terminal)       |    rnposab_2t_ckt|
+*        |--------------------------------------------------------------| 
+*        | non-silicide p+ poly (two terminal)       |   rpposab_2t_ckt |
+*        |--------------------------------------------------------------| 
+*        | non-silicide hr poly (two terminal)       |   rhrpo_2t_ckt   |
+*        |--------------------------------------------------------------| 
+*        |          metal 1 (two terminal)           |      rm1_2t_ckt  |
+*        |--------------------------------------------------------------|  
+*        |          metal 1 (three terminal)         |      rm1_3t_ckt  |
+*        |--------------------------------------------------------------|   
+*        |          metal 2 (two terminal)           |      rm2_2t_ckt  |
+*        |--------------------------------------------------------------|   
+*        |          metal 2 (three terminal)         |      rm2_3t_ckt  |
+*        |--------------------------------------------------------------|  
+*        |          metal 3 (two terminal)           |      rm3_2t_ckt  |
+*        |--------------------------------------------------------------|   
+*        |          metal 3 (three terminal)         |      rm3_3t_ckt  |
+*        |--------------------------------------------------------------|   
+*        |          metal 4 (two terminal)           |      rm4_2t_ckt  |
+*        |--------------------------------------------------------------|  
+*        |          metal 4 (three terminal)         |      rm4_3t_ckt  |
+*        |--------------------------------------------------------------|   
+*        |          metal 5 (two terminal)           |      rm5_2t_ckt  |
+*        |--------------------------------------------------------------|   
+*        |          metal 5 (three terminal)         |      rm5_3t_ckt  |
+*        |--------------------------------------------------------------|   
+*        |          metal 6 (two terminal)           |      rm6_2t_ckt  |
+*        |--------------------------------------------------------------|    
+*        |          metal 6 (three terminal)         |      rm6_3t_ckt  |
+*        |--------------------------------------------------------------|  
+*        |          metal 7 (two terminal)           |      rm7_2t_ckt  |
+*        |--------------------------------------------------------------|    
+*        |          metal 7 (three terminal)         |      rm7_3t_ckt  |
+*        |--------------------------------------------------------------|   
+*        |          metal 8 (two terminal)           |      rm8_2t_ckt  |
+*        |--------------------------------------------------------------|    
+*        |          metal 8 (three terminal)         |      rm8_3t_ckt  |
+*        |--------------------------------------------------------------|   
+*        |        top metal 1 (two terminal)         |      rtm1_2t_ckt |  
+*        |--------------------------------------------------------------|  
+*        |        top metal 1 (three terminal)       |      rtm1_3t_ckt |
+*        |--------------------------------------------------------------|   
+*        |        top metal 2 (two terminal)         |      rtm2_2t_ckt |  
+*        |--------------------------------------------------------------|  
+*        |        top metal 2 (three terminal)       |      rtm2_3t_ckt |
+*        |--------------------------------------------------------------|  
+*        | Ultra Thick Tope Metal(two terminal)      |      rutm_2t_ckt |  
+*        |--------------------------------------------------------------|  
+*        | Ultra Thick Tope Metal(three terminal)    |      rutm_3t_ckt |  
+*        |--------------------------------------------------------------|  
+*        |  alpa (two terminal,thickness=1.45um)     |      ralpa_2t_ckt|
+*        |--------------------------------------------------------------|  
+*        |  alpa (three terminal,thickness=1.45um)   |      ralpa_3t_ckt|
+*        |--------------------------------------------------------------|  
+*        |  alpa (two terminal,thickness=2.8um)      |  ralpa_2p8_2t_ckt|
+*        |--------------------------------------------------------------|  
+*        |  alpa  (threeterminal,thickness=2.8um)    |  ralpa_2p8_3t_ckt|
+*        *--------------------------------------------------------------*  
+************************************************************************************  
+*          nwell resistor under sti subcircuit netlist(three terminal)                             *  
+************************************************************************************ 
+.subckt rnwsti_3t_ckt n2 n1 sub l=lr w=wr  mismod=1
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 2.034e-5
+************
++rsh = '1103.5+drsh_rnwsti+rshmis'       
++tc1r = 1.15e-03  tc2r = 6.05e-06 
++dw = '2.35e-07+ddw_rnwsti'   dl = 2e-07
++scale_r = 0.9
+*+vc1 = 1.61e-02  vc2 = -4.054e-04
++jc1a = 5.99e-03  jc1b = 3.99e-07
++jc2a = -3.93e-08 jc2b = 6.14e-13
++rvc1 = 'jc1a + jc1b / (l*scale_r)'   rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++tcoef = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))'
++weff = 'w*scale_r-2*dw' leff = 'l*scale_r-2*dl'
+***
+d1 sub n2 nwdioll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'
+r1 n2 na 'rsh*(leff)/4/weff*tcoef*max(min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.1882), 0.807)'
+d2 sub na nwdioll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r2 na nb 'rsh*(leff)/4/weff*tcoef*max(min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.1882), 0.807)'
+d3 sub nb nwdioll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r3 nb nc 'rsh*(leff)/4/weff*tcoef*max(min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.1882), 0.807)'
+d4 sub nc nwdioll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r4 nc n1 'rsh*(leff)/4/weff*tcoef*max(min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.1882), 0.807)'
+d5 sub n1 nwdioll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'
+.ends rnwsti_3t_ckt
+
+************************************************************************************  
+*          nwell resistor under aa subcircuit netlist(three terminal)                              *  
+************************************************************************************ 
+.subckt rnwaa_3t_ckt n2 n1 sub l=lr w=wr  mismod=1
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 6.99e-06
+************
++rsh = '447.5+drsh_rnwaa+rshmis'      
++tc1r = 1.53e-03 tc2r = 5.71e-06 
++dw = '1.18e-7+ddw_rnwaa' dl=0  scale_r = 0.9
+*+vc1 = 4.57e-03 vc2 = 2.01e-04
++jc1a = -9.37e-04 jc1b = 2.15e-07
++jc2a = 9.25e-09 jc2b = -3.67e-14
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++tcoef = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))'
++weff = 'w*scale_r-2*dw' leff = 'l*scale_r-2*dl'
+**
+d1    sub  n2 nwdioll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'
+r1    n2   na 'rsh*(l*scale_r)/4/weff*tcoef*min(max(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 0.85), 1.15)' 
+d2    sub  na nwdioll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r2    na   nb 'rsh*(l*scale_r)/4/weff*tcoef*min(max(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 0.85), 1.15)' 
+d3    sub  nb nwdioll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r3    nb   nc 'rsh*(l*scale_r)/4/weff*tcoef*min(max(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 0.85), 1.15)' 
+d4    sub  nc nwdioll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r4    nc   n1 'rsh*(l*scale_r)/4/weff*tcoef*min(max(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 0.85), 1.15)' 
+d5    sub  n1 nwdioll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'  
+.ends rnwaa_3t_ckt
+
+************************************************************************************  
+*        silicide n+ diffusion resistor subcircuit netlist(three terminal)                          *  
+************************************************************************************ 
+.subckt rndif_3t_ckt n2 n1 sub l=lr w=wr 
+.param
++rsh = '17.9+drsh_rndif' 
++tc1r = 1.71e-03 tc2r = 4.99e-06 
++dw = '-2e-09+ddw_rndif'           scale_r = 0.9
+*+vc1 = 5.17e-05 vc2 = 1.43e-04
++jc1a = 4.7e-05 jc1b = 6.93e-10
++jc2a = 6.15e-09 jc2b = 9.64e-13
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++tcoef = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))'
++weff = 'w*scale_r-2*dw'
+d1 sub n2 ndio11ll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'
+r1 n2 na 'rsh*(l*scale_r)/4/weff*tcoef*min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.10)'
+d2 sub na ndio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r2 na nb 'rsh*(l*scale_r)/4/weff*tcoef*min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.10)'
+d3 sub nb ndio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r3 nb nc 'rsh*(l*scale_r)/4/weff*tcoef*min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.10)'
+d4 sub nc ndio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r4 nc n1 'rsh*(l*scale_r)/4/weff*tcoef*min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.10)'
+d5 sub n1 ndio11ll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'
+.ends rndif_3t_ckt
+
+************************************************************************************  
+*      non-silicide n+ diffusion resistor subcircuit netlist(three terminal)                        *  
+************************************************************************************ 
+.subckt rndifsab_3t_ckt n2 n1 sub l=lr w=wr  mismod=1
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 4.06e-06
+*****base model parameter***** 
++rsh = '106.6+drsh_rndifsab+rshmis' tc1r = 1.09e-03 tc2r = 3.95e-07
++dw = '-9e-09+ddw_rndifsab' dl = -1e-07     scale_r = 0.9
+*+vc1 = 1.34e-03 vc2 = 2.51e-03 
++jc1a = 1.29e-03 jc1b = 2.05e-10
++jc2a = 7.84e-09 jc2b = 7.87e-15
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff     = 'w*scale_r-2*dw'                leff   = 'l*scale_r-2*dl'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
+**
+d1    sub  n2 ndio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'  
+r1    n2   nb 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.12)'
+d2    sub  nb ndio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r2    nb   nc 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.12)'
+d3    sub  nc ndio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r3    nc   nd 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.12)'
+d4    sub  nd ndio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r4    nd   n1 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.12)'
+d5    sub  n1 ndio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'  
+.ends rndifsab_3t_ckt
+   
+************************************************************************************  
+*        silicide p+ diffusion resistor subcircuit netlist(three terminal)                          *  
+************************************************************************************ 
+.subckt rpdif_3t_ckt n2 n1 sub l=lr w=wr  
+.param  
++rsh      = '13.9+drsh_rpdif'      tc1r   = 1.78e-03       tc2r = -1.73e-07   
++dw       = '-1.98e-8+ddw_rpdif'          scale_r = 0.9  
+*+vc1     = 4.81e-06                vc2   = 2.4e-04  
++jc1a     = 1.32e-05               jc1b   = -1.13e-9  
++jc2a     = 1.92e-08                jc2b   = 9.36e-13
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff      = 'w*scale_r-2*dw'   
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
+**
+d1    n2  sub pdio11ll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'
+r1    n2   na 'rsh*(l*scale_r)/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 1.12)' 
+d2    na  sub pdio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r2    na   nb 'rsh*(l*scale_r)/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 1.12)' 
+d3    nb  sub pdio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r3    nb   nc 'rsh*(l*scale_r)/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 1.12)' 
+d4    nc  sub pdio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r4    nc   n1 'rsh*(l*scale_r)/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 1.12)' 
+d5    n1  sub pdio11ll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'   
+.ends rpdif_3t_ckt
+  
+************************************************************************************  
+*      non-silicide p+ diffusion resistor subcircuit netlist (three terminal)                       *  
+************************************************************************************ 
+.subckt rpdifsab_3t_ckt n2 n1 sub l=lr w=wr  mismod=1
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 2.48e-05
+*****base model parameter*****  
++rsh      = '211.7+drsh_rpdifsab+rshmis'   tc1r   = 1.46e-03       tc2r = 8.16e-07   
++dw       = '-1e-08+ddw_rpdifsab'    dl   = -4.53e-08      scale_r = 0.9
+*+vc1     = -8.74e-04                 vc2   = 1.73e-03  
++jc1a     = -7.63e-04                jc1b   = -4.69e-10   
++jc2a     = 3.27e-09                 jc2b   = 1.15e-14
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff      = 'w*scale_r-2*dw'                 leff   = 'l*scale_r-2*dl'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
+**
+d1    n2   sub pdio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'
+r1    n2   na 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.2)'
+d2    na   sub pdio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r2    na   nb 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.2)'
+d3    nb   sub pdio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r3    nb   nc 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.2)'
+d4    nc   sub pdio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r4    nc   n1 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.2)'
+d5    n1   sub pdio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'
+.ends rpdifsab_3t_ckt
+  
+************************************************************************************  
+*          silicide n+ poly resistor subcircuit netlist (three terminal)           *  
+************************************************************************************ 
+.subckt rnpo_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0  
+.param  
++rsh = '16.0+drsh_rnpo' tc1r = 1.66e-03 tc2r = -2.95e-07 dw = '0+ddw_rnpo' scale_r = 0.9
+*+vc1 = 2.52e-03 vc2 = 1.46e-03
++jc1a = -1.25e-03 jc1b = 3.29e-07
++jc2a = 6.17e-08 jc2b = 2.95e-12
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'          
++weff      = 'w*scale_r-2*dw'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox      = '9.878e-05+dcox_rnpo'             capsw   = '(8.208e-11+dcapsw_rnpo)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r' 
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.26)'  
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r' 
+.ends rnpo_3t_ckt
+  
+************************************************************************************  
+*        non-silicide n+ poly resistor subcircuit netlist (three terminal)         *  
+************************************************************************************ 
+.subckt rnposab_3t_ckt n2 n1 sub l=lr w=wr mismod=1 flag_cc=0
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 6.9e-06
+*****base model parameter*****  
++rsh = '192.3+drsh_rnposab+rshmis' tc1r = -2.6e-05 tc2r = -2.24e-07
++dw = '1.265e-08+ddw_rnposab'   dl = -6.24e-09  scale_r = 0.9
+*+vc1 = 3.09e-04 vc2 = -6.05e-04
++jc1a = 1.16e-03 jc1b = -6.2e-09
++jc2a = -5.5e-10 jc2b = -5.74e-15
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff     = 'w*scale_r-2*dw'                leff   = 'l*scale_r-2*dl'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox      = '9.878e-5+dcox_rnposab'              capsw   = '(8.8208e-11+dcapsw_rnposab)*flag_cc'
+**
+c1    n2 sub 'cox*weff*leff/2+capsw*weff+capsw*leff' 
+r1    n2 n1 'rsh*leff/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1),1.10)'
+c2    n1 sub 'cox*weff*leff/2+capsw*weff+capsw*leff'
+.ends rnposab_3t_ckt
+  
+************************************************************************************  
+*          silicide p+ poly resistor subcircuit netlist (three terminal)           *  
+************************************************************************************ 
+.subckt rppo_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0
+.param  
++rsh      = '12.82+drsh_rppo'      tc1r   = 1.92e-03       tc2r = -3.4e-07  
++dw       = '-3.76e-09+ddw_rppo'      scale_r = 0.9
+*+vc1     = 2.48e-03                vc2   = 2.04e-03  
++jc1a     = -1.19e-03              jc1b   = 3.2e-07    
++jc2a     = 8.12e-08               jc2b   = 4.34e-12
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'       
++weff      = 'w*scale_r-2*dw' 
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox      = '9.878e-5+dcox_rppo'              capsw   = '(8.208e-11+dcapsw_rppo)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r' 
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.22)'  
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r' 
+.ends rppo_3t_ckt
+ 
+************************************************************************************  
+*        non-silicide p+ poly resistor subcircuit netlist (three terminal)         *  
+************************************************************************************ 
+.subckt rpposab_3t_ckt n2 n1 sub l=lr w=wr mismod=1 flag_cc=0
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 2.628e-5
+*****base model parameter*****  
++rsh      = '624+drsh_rpposab+rshmis'   tc1r   = -1.1e-04       tc2r = -1.67e-07   
++dw       = '9.2e-09+ddw_rpposab'    dl   = -1e-9            scale_r = 0.9
+*+vc1     = -1.04e-03                vc2   = -5.19e-05  
++jc1a     = 5.73e-04                jc1b   = -6.82e-09    
++jc2a     = -2.96e-10               jc2b   = 2.19e-16
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff     = 'w*scale_r-2*dw'                leff   = 'l*scale_r-2*dl'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox      = '9.878e-5+dcox_rpposab'              capsw   = '(8.208e-11+dcapsw_rpposab)*flag_cc'
+**
+******noise parameters*******
+*+noise=1 kf=5e-24 af=1.99 lf=1.1 wf=1.1 ef=1 freq=1000
+*gn n2 n1 noise='noise*kf*pwr(abs(i(r1)),af)/(pwr(leff,lf)*pwr(weff,wf)*pwr(hertz,ef))'
+**
+c1    n2 sub 'cox*weff*leff/2+capsw*weff+capsw*leff' 
+r1    n2 n1 'rsh*leff/weff*tcoef*max(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1),0.892)'
+c2    n1 sub 'cox*weff*leff/2+capsw*weff+capsw*leff'
+.ends rpposab_3t_ckt 
+
+****************************************************************** 
+*        non-silicide hr poly resistance (three terminal)        * 
+******************************************************************
+.subckt rhrpo_3t_ckt n2 n1 sub l=lr w=wr  mismod=1  flag_cc=0
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 1.525e-5
+************
++rsh  = '1033+drsh_rhrpo+rshmis'      tc1r = -4.66e-04    tc2r = 4.83e-07                  
++dw   = '-6.01e-09+ddw_rhrpo'           dl   = 9e-08       scale_r = 0.9
+*+vc1     = 9.37e-05                vc2   = -1.43e-03  
++jc1a = 1.24e-03                          jc1b = -7.24e-09
++jc2a = -1.57e-08                         jc2b = 2.24e-14
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff     = 'w*scale_r-2*dw'                leff   = 'l*scale_r-2*dl'
+*+tcoef(temper)   = '1.0+(temper-25.0)*(rtc1+rtc2*(temper-25.0))'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox      = '9.878e-5+dcox_rhrpo'              capsw   = '(8.208e-11+dcapsw_rhrpo)*flag_cc'
+*
+c1    n2 sub 'cox*weff*leff/2+capsw*weff+capsw*leff'
+*r1    n2 n1  'rsh*leff/weff*tcoef(temper)*max(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 0.89)'
+r1    n2 n1 'rsh*leff/weff*tcoef*max(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1),0.892)'
+c2    n1 sub 'cox*weff*leff/2+capsw*weff+capsw*leff'
+.ends rhrpo_3t_ckt
+
+************************************************************************************  
+*          nwell resistor under sti subcircuit netlist(two terminal)               *  
+************************************************************************************ 
+.subckt rnwsti_2t_ckt n2 n1 l=lr w=wr  mismod=1
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 2.034e-5
+************
++rsh = '1103.5+drsh_rnwsti+rshmis'       
++tc1r = 1.15e-03  tc2r = 6.05e-06 
++dw = '2.35e-07+ddw_rnwsti'   dl = 2e-07
++scale_r = 0.9
+*+vc1 = 1.61e-02  vc2 = -4.054e-04
++jc1a = 5.99e-03  jc1b = 3.99e-07
++jc2a = -3.93e-08 jc2b = 6.14e-13
++rvc1 = 'jc1a + jc1b / (l*scale_r)'   rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++tcoef = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))'
++weff = 'w*scale_r-2*dw' leff = 'l*scale_r-2*dl'
+***
+*d1 0 n2 nwdioll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'
+r1 n2 na 'rsh*(leff)/4/weff*tcoef*max(min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.1882), 0.807)'
+*d2 0 na nwdioll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r2 na nb 'rsh*(leff)/4/weff*tcoef*max(min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.1882), 0.807)'
+*d3 0 nb nwdioll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r3 nb nc 'rsh*(leff)/4/weff*tcoef*max(min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.1882), 0.807)'
+*d4 0 nc nwdioll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r4 nc n1 'rsh*(leff)/4/weff*tcoef*max(min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.1882), 0.807)'
+*d5 0 n1 nwdioll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'
+.ends rnwsti_2t_ckt
+
+************************************************************************************  
+*          nwell resistor under aa subcircuit netlist(two terminal)                *  
+************************************************************************************ 
+.subckt rnwaa_2t_ckt n2 n1  l=lr w=wr  mismod=1
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 6.99e-06
+************
++rsh = '447.5+drsh_rnwaa+rshmis'      
++tc1r = 1.53e-03 tc2r = 5.71e-06 
++dw = '1.18e-7+ddw_rnwaa' dl=0  scale_r = 0.9
+*+vc1 = 4.57e-03 vc2 = 2.01e-04
++jc1a = -9.37e-04 jc1b = 2.15e-07
++jc2a = 9.25e-09 jc2b = -3.67e-14
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++tcoef = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))'
++weff = 'w*scale_r-2*dw' leff = 'l*scale_r-2*dl'
+**
+*d1    0  n2 nwdioll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'
+r1    n2   na 'rsh*(l*scale_r)/4/weff*tcoef*min(max(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 0.85), 1.15)' 
+*d2    0  na nwdioll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r2    na   nb 'rsh*(l*scale_r)/4/weff*tcoef*min(max(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 0.85), 1.15)' 
+*d3    0  nb nwdioll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r3    nb   nc 'rsh*(l*scale_r)/4/weff*tcoef*min(max(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 0.85), 1.15)' 
+*d4    0  nc nwdioll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r4    nc   n1 'rsh*(l*scale_r)/4/weff*tcoef*min(max(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 0.85), 1.15)' 
+*d5    0  n1 nwdioll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'  
+.ends rnwaa_2t_ckt
+
+************************************************************************************  
+*        silicide n+ diffusion resistor subcircuit netlist(two terminal)           *  
+************************************************************************************ 
+.subckt rndif_2t_ckt n2 n1  l=lr w=wr 
+.param
++rsh = '17.9+drsh_rndif' 
++tc1r = 1.71e-03 tc2r = 4.99e-06 
++dw = '-2e-09+ddw_rndif'           scale_r = 0.9
+*+vc1 = 5.17e-05 vc2 = 1.43e-04
++jc1a = 4.7e-05 jc1b = 6.93e-10
++jc2a = 6.15e-09 jc2b = 9.64e-13
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++tcoef = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))'
++weff = 'w*scale_r-2*dw'
+*d1 0 n2 ndio11ll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'
+r1 n2 na 'rsh*(l*scale_r)/4/weff*tcoef*min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.10)'
+*d2 0 na ndio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r2 na nb 'rsh*(l*scale_r)/4/weff*tcoef*min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.10)'
+*d3 0 nb ndio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r3 nb nc 'rsh*(l*scale_r)/4/weff*tcoef*min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.10)'
+*d4 0 nc ndio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r4 nc n1 'rsh*(l*scale_r)/4/weff*tcoef*min((1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1)), 1.10)'
+*d5 0 n1 ndio11ll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'
+.ends rndif_2t_ckt
+
+************************************************************************************  
+*      non-silicide n+ diffusion resistor subcircuit netlist(two terminal)         *  
+************************************************************************************ 
+.subckt rndifsab_2t_ckt n2 n1 l=lr w=wr  mismod=1
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 4.06e-06
+*****base model parameter***** 
++rsh = '106.6+drsh_rndifsab+rshmis' tc1r = 1.09e-03 tc2r = 3.95e-07
++dw = '-9e-09+ddw_rndifsab' dl = -1e-07     scale_r = 0.9
+*+vc1 = 1.34e-03 vc2 = 2.51e-03 
++jc1a = 1.29e-03 jc1b = 2.05e-10
++jc2a = 7.84e-09 jc2b = 7.87e-15
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff     = 'w*scale_r-2*dw'                leff   = 'l*scale_r-2*dl'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
+**
+*d1    0  n2 ndio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'  
+r1    n2   nb 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.12)'
+*d2    0  nb ndio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r2    nb   nc 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.12)'
+*d3    0  nc ndio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r3    nc   nd 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.12)'
+*d4    0  nd ndio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r4    nd   n1 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.12)'
+*d5    0  n1 ndio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'  
+.ends rndifsab_2t_ckt
+   
+************************************************************************************  
+*        silicide p+ diffusion resistor subcircuit netlist(two termina             *  
+************************************************************************************ 
+.subckt rpdif_2t_ckt n2 n1 l=lr w=wr  
+.param  
++rsh      = '13.9+drsh_rpdif'      tc1r   = 1.78e-03       tc2r = -1.73e-07   
++dw       = '-1.98e-8+ddw_rpdif'          scale_r = 0.9  
+*+vc1     = 4.81e-06                vc2   = 2.4e-04  
++jc1a     = 1.32e-05               jc1b   = -1.13e-9  
++jc2a     = 1.92e-08                jc2b   = 9.36e-13
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff      = 'w*scale_r-2*dw'   
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
+**
+*d1    n2  0 pdio11ll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'
+r1    n2   na 'rsh*(l*scale_r)/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 1.12)' 
+*d2    na  0 pdio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r2    na   nb 'rsh*(l*scale_r)/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 1.12)' 
+*d3    nb  0 pdio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r3    nb   nc 'rsh*(l*scale_r)/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 1.12)' 
+*d4    nc  0 pdio11ll area='(w-(2/scale_r)*dw)*l/5' pj='2*l/5'
+r4    nc   n1 'rsh*(l*scale_r)/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1), 1.12)' 
+*d5    n1  0 pdio11ll area='(w-(2/scale_r)*dw)*l/5' pj='(w-(2/scale_r)*dw)+2*l/5'   
+.ends rpdif_2t_ckt
+  
+************************************************************************************  
+*      non-silicide p+ diffusion resistor subcircuit netlist (two terminal)        *  
+************************************************************************************ 
+.subckt rpdifsab_2t_ckt n2 n1  l=lr w=wr  mismod=1
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 2.48e-05
+*****base model parameter*****  
++rsh      = '211.7+drsh_rpdifsab+rshmis'   tc1r   = 1.46e-03       tc2r = 8.16e-07   
++dw       = '-1e-08+ddw_rpdifsab'    dl   = -4.53e-08      scale_r = 0.9
+*+vc1     = -8.74e-04                 vc2   = 1.73e-03  
++jc1a     = -7.63e-04                jc1b   = -4.69e-10   
++jc2a     = 3.27e-09                 jc2b   = 1.15e-14
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff      = 'w*scale_r-2*dw'                 leff   = 'l*scale_r-2*dl'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
+**
+*d1    n2   0 pdio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'
+r1    n2   na 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.2)'
+*d2    na   0 pdio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r2    na   nb 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.2)'
+*d3    nb   0 pdio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r3    nb   nc 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.2)'
+*d4    nc   0 pdio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='2*(l-(2/scale_r)*dl)/5'
+r4    nc   n1 'rsh*leff/4/weff*tcoef*min(1.0+rvc1*v(n2,n1)+rvc2*v(n2,n1)*v(n2,n1),1.2)'
+*d5    n1   0 pdio11ll area='(w-(2/scale_r)*dw)*(l-(2/scale_r)*dl)/5' pj='(w-(2/scale_r)*dw)+2*(l-(2/scale_r)*dl)/5'
+.ends rpdifsab_2t_ckt
+  
+************************************************************************************  
+*          silicide n+ poly resistor subcircuit netlist (two terminal)             *  
+************************************************************************************ 
+.subckt rnpo_2t_ckt n2 n1 l=lr w=wr flag_cc=0  
+.param  
++rsh = '16.0+drsh_rnpo' tc1r = 1.66e-03 tc2r = -2.95e-07 dw = '0+ddw_rnpo' scale_r = 0.9
+*+vc1 = 2.52e-03 vc2 = 1.46e-03
++jc1a = -1.25e-03 jc1b = 3.29e-07
++jc2a = 6.17e-08 jc2b = 2.95e-12
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'          
++weff      = 'w*scale_r-2*dw'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox      = '9.878e-05+dcox_rnpo'             capsw   = '(8.208e-11+dcapsw_rnpo)*flag_cc'
+**
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.26)'  
+.ends rnpo_2t_ckt
+  
+************************************************************************************  
+*        non-silicide n+ poly resistor subcircuit netlist (two terminal)           *  
+************************************************************************************ 
+.subckt rnposab_2t_ckt n2 n1  l=lr w=wr mismod=1 flag_cc=0
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 6.9e-06
+*****base model parameter*****  
++rsh = '192.3+drsh_rnposab+rshmis' tc1r = -2.6e-05 tc2r = -2.24e-07
++dw = '1.265e-08+ddw_rnposab'   dl = -6.24e-09  scale_r = 0.9
+*+vc1 = 3.09e-04 vc2 = -6.05e-04
++jc1a = 1.16e-03 jc1b = -6.2e-09
++jc2a = -5.5e-10 jc2b = -5.74e-15
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff     = 'w*scale_r-2*dw'                leff   = 'l*scale_r-2*dl'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox      = '9.878e-5+dcox_rnposab'              capsw   = '(8.8208e-11+dcapsw_rnposab)*flag_cc'
+**
+r1    n2 n1 'rsh*leff/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1),1.10)'
+.ends rnposab_2t_ckt
+  
+************************************************************************************  
+*          silicide p+ poly resistor subcircuit netlist (two terminal)             *  
+************************************************************************************ 
+.subckt rppo_2t_ckt n2 n1  l=lr w=wr flag_cc=0
+.param  
++rsh      = '12.82+drsh_rppo'      tc1r   = 1.92e-03       tc2r = -3.4e-07  
++dw       = '-3.76e-09+ddw_rppo'      scale_r = 0.9
+*+vc1     = 2.48e-03                vc2   = 2.04e-03  
++jc1a     = -1.19e-03              jc1b   = 3.2e-07    
++jc2a     = 8.12e-08               jc2b   = 4.34e-12
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'       
++weff      = 'w*scale_r-2*dw' 
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox      = '9.878e-5+dcox_rppo'              capsw   = '(8.208e-11+dcapsw_rppo)*flag_cc'
+**
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.22)'  
+.ends rppo_2t_ckt
+ 
+************************************************************************************  
+*        non-silicide p+ poly resistor subcircuit netlist (two terminal)           *  
+************************************************************************************ 
+.subckt rpposab_2t_ckt n2 n1  l=lr w=wr mismod=1 flag_cc=0
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 2.628e-5
+*****base model parameter*****  
++rsh      = '624+drsh_rpposab+rshmis'   tc1r   = -1.1e-04       tc2r = -1.67e-07   
++dw       = '9.2e-09+ddw_rpposab'    dl   = -1e-9            scale_r = 0.9
+*+vc1     = -1.04e-03                vc2   = -5.19e-05  
++jc1a     = 5.73e-04                jc1b   = -6.82e-09    
++jc2a     = -2.96e-10               jc2b   = 2.19e-16
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff     = 'w*scale_r-2*dw'                leff   = 'l*scale_r-2*dl'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox      = '9.878e-5+dcox_rpposab'              capsw   = '(8.208e-11+dcapsw_rpposab)*flag_cc'
+**
+******noise parameters*******
+*+noise=1 kf=5e-24 af=1.99 lf=1.1 wf=1.1 ef=1 freq=1000
+*gn n2 n1 noise='noise*kf*pwr(abs(i(r1)),af)/(pwr(leff,lf)*pwr(weff,wf)*pwr(hertz,ef))'
+r1    n2 n1 'rsh*leff/weff*tcoef*max(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1),0.892)'
+.ends rpposab_2t_ckt 
+
+****************************************************************** 
+*        non-silicide hr poly resistance (two terminal)          * 
+******************************************************************
+.subckt rhrpo_2t_ckt n2 n1  l=lr w=wr  mismod=1  flag_cc=0
+.param
+*****mismatch parameters*****
++rshmis = 'arsh*geo_fac*sigma_mis_r*mismod'
++geo_fac = '1/sqrt(weff*leff)'
++arsh = 1.525e-5
+************
++rsh  = '1033+drsh_rhrpo+rshmis'      tc1r = -4.66e-04    tc2r = 4.83e-07                  
++dw   = '-6.01e-09+ddw_rhrpo'           dl   = 9e-08       scale_r = 0.9
+*+vc1     = 9.37e-05                vc2   = -1.43e-03  
++jc1a = 1.24e-03                          jc1b = -7.24e-09
++jc2a = -1.57e-08                         jc2b = 2.24e-14
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff     = 'w*scale_r-2*dw'                leff   = 'l*scale_r-2*dl'
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox      = '9.878e-5+dcox_rhrpo'              capsw   = '(8.208e-11+dcapsw_rhrpo)*flag_cc'
+**
+r1      n2 n1 'rsh*leff/weff*tcoef*max(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1),0.892)'
+.ends rhrpo_2t_ckt
+  
+********************************************************************************* 
+*          metal 1 resistance (two terminal, width 0.063um,space 0.063um)       *  
+********************************************************************************* 
+.subckt rm1_2t_ckt n2 n1 l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.28+drsh_rm1'      tc1r  = 2.27e-03   tc2r  = -4e-07  
++dw        = '0+ddw_rm1'            scale_r = 0.9
+*+vc1r     = -0.013               vc2r      = 0.018
++jc1a     = 0          jc1b      = -3.76e-04
++jc2a     = 0          jc2b      = 4.67e-06
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'   
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '7.952e-05+dcox_rm1'            capsw  = '(1.065e-10+dcapsw_rm1)*flag_cc'
+**  
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends rm1_2t_ckt
+
+********************************************************************************* 
+*          metal 1 resistance (three terminal, width 0.063um,space 0.063um)     *  
+********************************************************************************* 
+.subckt rm1_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.28+drsh_rm1'      tc1r  = 2.27e-03   tc2r  = -4e-07  
++dw        = '0+ddw_rm1'     scale_r = 0.9
+*+vc1r     = -0.013               vc2r      = 0.018
++jc1a     = 0          jc1b      = -3.76e-04
++jc2a     = 0          jc2b      = 4.67e-06
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'  
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '7.952e-05+dcox_rm1'            capsw  = '(1.065e-10+dcapsw_rm1)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends rm1_3t_ckt
+
+********************************************************************************* 
+*          metal 2 resistance (two terminal,width 0.063um,space 0.063um)        *  
+********************************************************************************* 
+.subckt rm2_2t_ckt n2 n1  l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm2'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm2'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '4.841e-05+dcox_rm2'            capsw  = '(9.573e-11+dcapsw_rm2)*flag_cc'
+**   
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends rm2_2t_ckt
+
+********************************************************************************* 
+*          metal 2 resistance (three terminal,width 0.063um,space 0.063um)      *  
+********************************************************************************* 
+.subckt rm2_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm2'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm2'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '4.841e-05+dcox_rm2'            capsw  = '(9.573e-11+dcapsw_rm2)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends rm2_3t_ckt
+
+********************************************************************************* 
+*          metal 3 resistance (two terminal,width 0.063um,space 0.063um)        *  
+********************************************************************************* 
+.subckt rm3_2t_ckt n2 n1  l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm3'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm3'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '3.317e-05+dcox_rm3'            capsw  = '(9.605e-11+dcapsw_rm3)*flag_cc'
+**  
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends rm3_2t_ckt
+
+********************************************************************************* 
+*          metal 3 resistance (three terminal,width 0.063um,space 0.063um)      *  
+********************************************************************************* 
+.subckt rm3_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm3'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm3'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '3.317e-05+dcox_rm3'            capsw  = '(9.605e-11+dcapsw_rm3)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends rm3_3t_ckt
+
+********************************************************************************* 
+*          metal 4 resistance (two terminal,width 0.063um,space 0.063um)        *  
+********************************************************************************* 
+.subckt rm4_2t_ckt n2 n1  l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm4'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm4'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '2.624e-05+dcox_rm4'            capsw  = '(9.621e-11+dcapsw_rm4)*flag_cc'
+**  
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends rm4_2t_ckt
+
+********************************************************************************* 
+*          metal 4 resistance (three terminal,width 0.063um,space 0.063um)      *  
+********************************************************************************* 
+.subckt rm4_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm4'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm4'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '2.624e-05+dcox_rm4'            capsw  = '(9.621e-11+dcapsw_rm4)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends rm4_3t_ckt
+
+********************************************************************************* 
+*          metal 5 resistance (two terminal,width 0.063um,space 0.063um)        *  
+********************************************************************************* 
+.subckt rm5_2t_ckt n2 n1  l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm5'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm5'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '2.048e-05+dcox_rm5'            capsw  = '(9.634e-11+dcapsw_rm5)*flag_cc'
+**
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends rm5_2t_ckt
+
+********************************************************************************* 
+*          metal 5 resistance (three terminal,width 0.063um,space 0.063um)      *  
+********************************************************************************* 
+.subckt rm5_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm5'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm5'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '2.048e-05+dcox_rm5'            capsw  = '(9.634e-11+dcapsw_rm5)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends rm5_3t_ckt
+
+********************************************************************************* 
+*          metal 6 resistance (two terminal,width 0.063um,space 0.063um)        *  
+********************************************************************************* 
+.subckt rm6_2t_ckt n2 n1  l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm6'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm6'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '1.714e-05+dcox_rm6'            capsw  = '(9.642e-11+dcapsw_rm6)*flag_cc'
+**   
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends rm6_2t_ckt
+
+********************************************************************************* 
+*          metal 6 resistance (three terminal,width 0.063um,space 0.063um)      *  
+********************************************************************************* 
+.subckt rm6_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm6'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm6'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '1.714e-05+dcox_rm6'            capsw  = '(9.642e-11+dcapsw_rm6)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends rm6_3t_ckt
+
+********************************************************************************* 
+*          metal 7 resistance (two terminal,width 0.063um,space 0.063um)        *  
+********************************************************************************* 
+.subckt rm7_2t_ckt n2 n1  l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm7'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm7'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '1.473e-05+dcox_rm7'            capsw  = '(9.661e-11+dcapsw_rm7)*flag_cc'
+** 
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends rm7_2t_ckt
+
+********************************************************************************* 
+*          metal 7 resistance (three terminal,width 0.063um,space 0.063um)      *  
+********************************************************************************* 
+.subckt rm7_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm7'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm7'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '1.473e-05+dcox_rm7'            capsw  = '(9.661e-11+dcapsw_rm7)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends rm7_3t_ckt
+
+********************************************************************************* 
+*          metal 8 resistance (two terminal,width 0.063um,space 0.063um)        *  
+********************************************************************************* 
+.subckt rm8_2t_ckt n2 n1  l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm8'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm8'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '1.294e-05+dcox_rm8'            capsw  = '(1.008e-10+dcapsw_rm8)*flag_cc'
+**   
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends rm8_2t_ckt
+
+********************************************************************************* 
+*          metal 8 resistance (three terminal,width 0.063um,space 0.063um)      *  
+********************************************************************************* 
+.subckt rm8_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.2527+drsh_rm8'      tc1r  = 2.52e-03           tc2r  = -4.38e-07   
++dw        = '0+ddw_rm8'     scale_r = 0.9
+*+vc1      = -0.024                       vc2  = 0.0187
++jc1a      = 0               jc1b  = -3.8e-4
++jc2a      = 0               jc2b  = 4.76e-6
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '1.294e-05+dcox_rm8'            capsw  = '(1.008e-10+dcapsw_rm8)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends rm8_3t_ckt
+
+********************************************************************************* 
+*        top metal 1 resistance  (two terminal,width 0.36um,space 0.36um)       *  
+********************************************************************************* 
+.subckt rtm1_2t_ckt n2 n1 l=lr w=wr flag_cc=0
+.param  
++rsh       = '0.022+drsh_rtm1'      tc1r  =3.57e-03   tc2r  = 1.27e-07 
++dw        = '0+ddw_rtm1'     scale_r = 0.9
+*+vc1r     = -1.16e-4            vc2r      = 0.012
++jc1a     = 0            jc1b      = -3.76e-07
++jc2a     = 0            jc2b      = 1.28e-07
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
+*+weff      = '(w+0.022*2e-6)*scale_r-2*dw'    
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '9.825e-06+dcox_rtm1'             capsw  = '(1.580e-10+dcapsw_rtm1)*flag_cc'
+** 
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends rtm1_2t_ckt
+
+********************************************************************************* 
+*        top metal 1 resistance  (three terminal,width 0.36um,space 0.36um)     *  
+********************************************************************************* 
+.subckt rtm1_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0
+.param  
++rsh       = '0.022+drsh_rtm1'      tc1r  =3.57e-03   tc2r  = 1.27e-07 
++dw        = '0+ddw_rtm1'     scale_r = 0.9
+*+vc1r     = -1.16e-4            vc2r      = 0.012
++jc1a     = 0            jc1b      = -3.76e-07
++jc2a     = 0            jc2b      = 1.28e-07
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
+*+weff      = '(w+0.022*2e-6)*scale_r-2*dw'    
++weff      = 'w*scale_r-2*dw'             
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '9.825e-06+dcox_rtm1'             capsw  = '(1.580e-10+dcapsw_rtm1)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends rtm1_3t_ckt
+
+********************************************************************************* 
+*        top metal 2 resistance  (two terminal,width 0.36um,space 0.36um)       *  
+********************************************************************************* 
+.subckt rtm2_2t_ckt n2 n1 l=lr w=wr flag_cc=0
+.param  
++rsh       = '0.022+drsh_rtm2'      tc1r  =3.57e-03   tc2r  = 1.27e-07 
++dw        = '0+ddw_rtm2'     scale_r = 0.9
+*+vc1r     = -1.16e-4            vc2r      = 0.012
++jc1a     = 0            jc1b      = -3.76e-07
++jc2a     = 0            jc2b      = 1.28e-07
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
+*+weff      = '(w+0.022*2e-6)*scale_r-2*dw'    
++weff      = 'w*scale_r-2*dw'           
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '6.900e-06+dcox_rtm2'             capsw  = '(1.585e-10+dcapsw_rtm2)*flag_cc'
+**  
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends rtm2_2t_ckt
+
+********************************************************************************* 
+*        top metal 2 resistance   (three terminal,width 0.36um,space 0.36um)    *  
+********************************************************************************* 
+.subckt rtm2_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0
+.param  
++rsh       = '0.022+drsh_rtm2'      tc1r  =3.57e-03   tc2r  = 1.27e-07 
++dw        = '0+ddw_rtm2'     scale_r = 0.9
+*+vc1r     = -1.16e-4            vc2r      = 0.012
++jc1a     = 0            jc1b      = -3.76e-07
++jc2a     = 0            jc2b      = 1.28e-07
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
+*+weff      = '(w+0.022*2e-6)*scale_r-2*dw'    
++weff      = 'w*scale_r-2*dw'             
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '6.900e-06+dcox_rtm2'             capsw  = '(1.585e-10+dcapsw_rtm2)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends rtm2_3t_ckt
+
+********************************************************************************* 
+*    alpa 2t resistance (width 1.8um,thickness=1.45um,standard option)          *  
+********************************************************************************* 
+.subckt ralpa_2t_ckt n2 n1 l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.022+drsh_ralpa'      tc1r  = 3.88e-03           tc2r  = 7.14e-8
++dw        = '0+ddw_ralpa'     scale_r = 0.9
+*+vc1      = -2e-4                   vc2  = 5.97e-4
++jc1a      = 0                       jc1b  = 6.6e-6
++jc2a      = 0                       jc2b  = 6.26e-7
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '5.278e-06+dcox_ralpa'             capsw  = '(8.406e-11+dcapsw_ralpa)*flag_cc'
+**   
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends ralpa_2t_ckt
+
+********************************************************************************* 
+*       alpa 3t resistance (width 1.8um,thickness=1.45um,standard option)       *                                      
+********************************************************************************* 
+.subckt ralpa_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.022+drsh_ralpa'      tc1r  = 3.88e-03           tc2r  = 7.14e-8
++dw        = '0+ddw_ralpa'     scale_r = 0.9
+*+vc1      = -2e-4                   vc2  = 5.97e-4
++jc1a      = 0                       jc1b  = 6.6e-6
++jc2a      = 0                       jc2b  = 6.26e-7
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '5.278e-06+dcox_ralpa'             capsw  = '(8.406e-11+dcapsw_ralpa)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends ralpa_3t_ckt
+
+********************************************************************************* 
+*          alpa 2t resistance (width 1.8um,thickness=2.8um)                                 *      
+********************************************************************************* 
+.subckt ralpa_2p8_2t_ckt n2 n1  l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.01+drsh_ralpa_2p8'      tc1r  = 3.88e-03           tc2r  = 7.14e-8
++dw        = '0+ddw_ralpa_2p8'     scale_r = 0.9
+*+vc1      = -2e-4                   vc2  = 5.97e-4
++jc1a      = 0                       jc1b  = 6.6e-6
++jc2a      = 0                       jc2b  = 6.26e-7
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '5.278e-06+dcox_ralpa_2p8'             capsw  = '(8.406e-11+dcapsw_ralpa_2p8)*flag_cc'
+**    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends  ralpa_2p8_2t_ckt
+
+********************************************************************************* 
+*          alpa 3t resistance (width 1.8um,thickness=2.8um)                                 *             
+********************************************************************************* 
+.subckt ralpa_2p8_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0  
+.param  
++rsh       = '0.01+drsh_ralpa_2p8'      tc1r  = 3.88e-03           tc2r  = 7.14e-8
++dw        = '0+ddw_ralpa_2p8'     scale_r = 0.9
+*+vc1      = -2e-4                   vc2  = 5.97e-4
++jc1a      = 0                       jc1b  = 6.6e-6
++jc2a      = 0                       jc2b  = 6.26e-7
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
++weff      = 'w*scale_r-2*dw'              
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '5.278e-06+dcox_ralpa_2p8'             capsw  = '(8.406e-11+dcapsw_ralpa_2p8)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends ralpa_2p8_3t_ckt
+
+********************************************************************************* 
+*                     utm resistance  (two terminal,thickness 3.4um)                             *  
+********************************************************************************* 
+.subckt rutm_2t_ckt n2 n1 l=lr w=wr flag_cc=0
+.param  
++rsh       = '0.005+drsh_rutm'      tc1r  =3.57e-03   tc2r  = 1.27e-07 
++dw        = '0+ddw_rutm'     scale_r = 0.9
+*+vc1r     = -1.16e-4            vc2r      = 0.012
++jc1a     = 0            jc1b      = -3.76e-07
++jc2a     = 0            jc2b      = 1.28e-07
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
+*+weff      = '(w+0.022*2e-6)*scale_r-2*dw'    
++weff      = 'w*scale_r-2*dw'           
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '6.900e-06+dcox_rutm'             capsw  = '(1.585e-10+dcapsw_rutm)*flag_cc'
+**  
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+.ends rutm_2t_ckt
+
+********************************************************************************* 
+*                      utm resistance  (three terminal,thickness 3.4um)                           *  
+********************************************************************************* 
+.subckt rutm_3t_ckt n2 n1 sub l=lr w=wr flag_cc=0
+.param  
++rsh       = '0.005+drsh_rutm'      tc1r  =3.57e-03   tc2r  = 1.27e-07 
++dw        = '0+ddw_rutm'     scale_r = 0.9
+*+vc1r     = -1.16e-4            vc2r      = 0.012
++jc1a     = 0            jc1b      = -3.76e-07
++jc2a     = 0            jc2b      = 1.28e-07
++rvc1 = 'jc1a + jc1b / (l*scale_r)' rvc2 = '(jc2a + jc2b / (scale_r*l)) / (scale_r*l)'     
+*+weff      = '(w+0.022*2e-6)*scale_r-2*dw'    
++weff      = 'w*scale_r-2*dw'             
++tcoef     = '1.0+(temper-25.0)*(tc1r+tc2r*(temper-25.0))' 
++cox       = '6.900e-06+dcox_rutm'             capsw  = '(1.585e-10+dcapsw_rutm)*flag_cc'
+**
+c1 n2 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'    
+r1 n2 n1 'rsh*l*scale_r/weff*tcoef*min(1.0+rvc1*abs(v(n2,n1))+rvc2*v(n2,n1)*v(n2,n1), 1.1)'
+c2 n1 sub 'cox*weff*l*scale_r/2+capsw*weff+capsw*l*scale_r'  
+.ends rutm_3t_ckt

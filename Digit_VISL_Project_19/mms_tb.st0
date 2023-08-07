@@ -1,0 +1,713 @@
+***** HSPICE -- J-2014.09-SP2-2 64-BIT (Apr 17 2015) win64 ******
+ Input File: mms_tb.sp
+ lic:
+ lic: FLEXlm: v10.9.8
+ lic: USER:   shuangwen            HOSTNAME: Lenovo-XiaoXin
+ lic: HOSTID: "004238abc614 005056c00001 005056c00008 004238abc610 004238abc611 024238abc610" PID:
+ lic: Using FLEXlm license file:
+ lic: 27000@Lenovo-XiaoXin
+ lic: Checkout 1 hspice
+ lic: License/Maintenance for hspice will expire on 30-dec-2030/2019.2019
+ lic: 1(in_use)/99(total) FLOATING license(s) on SERVER 27000@Lenovo-XiaoXin
+ lic:
+ init: begin read circuit files,  cpu clock=  1.16E-01
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\behave\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\behave\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\AD\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\XILINX\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\TLINE\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\TI\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\SIGNET\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\PCI\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\LIN_TEC
+                         H\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\PET\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\DI0\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\COMLINE
+                         \
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\BURR_BR
+                         M\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\BJT\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\behave\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\AD\
+       option runlvl
+       option converge =     5.00
+       option list
+       option node
+       option post =     2.00
+       option probe
+       option gmindc =    1.000E-14
+       option scale =    0.900
+ init: end read circuit files,  cpu clock=  1.34E-01 peak memory=        48 mb
+ init: begin check errors,  cpu clock=  1.34E-01
+ init: end check errors,  cpu clock=  3.95E-01 peak memory=       101 mb
+ init: begin setup matrix, pivot=     0 cpu clock=  3.95E-01
+       establish matrix -- done,  cpu clock=  4.04E-01 peak memory=       101 mb
+       re-order matrix -- done,  cpu clock=  4.67E-01 peak memory=       107 mb
+ init: end setup matrix,  cpu clock=  4.67E-01 peak memory=       108 mb
+ dcop: begin dcop,  cpu clock=  5.39E-01
+ dcop: begin gshunt ramping
+ dcop: gshunt =      0.1000000E-03, gmin =      0.1000000E-13, iter =        5
+ dcop: gshunt =      0.1000000E-04, gmin =      0.1000000E-13, iter =        5
+ dcop: gshunt =      0.1000000E-05, gmin =      0.1000000E-13, iter =        5
+ dcop: gshunt =      0.1000000E-06, gmin =      0.1000000E-13, iter =        5
+ dcop: gshunt =      0.1000000E-07, gmin =      0.1000000E-13, iter =       31
+ dcop: gshunt =      0.1000000E-07, gmin =      0.9500000E-13, iter =       69
+ dcop: gshunt =      0.5050000E-07, gmin =      0.9500000E-13, iter =      200
+ dcop: gshunt =      0.5050000E-07, gmin =      0.9025000E-12, iter =       13
+ dcop: gshunt =      0.2550250E-07, gmin =      0.9025000E-12, iter =        6
+ dcop: gshunt =      0.2550250E-07, gmin =      0.4512500E-12, iter =        3
+ dcop: gshunt =      0.1287876E-07, gmin =      0.4512500E-12, iter =        7
+ dcop: gshunt =      0.1287876E-07, gmin =      0.2256250E-12, iter =        3
+ dcop: gshunt =      0.6503775E-08, gmin =      0.2256250E-12, iter =        9
+ dcop: gshunt =      0.6503775E-08, gmin =      0.1128125E-12, iter =        3
+ dcop: gshunt =      0.1674722E-08, gmin =      0.1128125E-12, iter =       31
+ dcop: gshunt =      0.1674722E-08, gmin =      0.1071719E-11, iter =       92
+ dcop: gshunt =      0.3847796E-08, gmin =      0.1071719E-11, iter =       79
+ dcop: gshunt =      0.3847796E-08, gmin =      0.1018133E-10, iter =       74
+ dcop: gshunt =      0.5042987E-08, gmin =      0.1018133E-10, iter =       45
+ dcop: gshunt =      0.3910300E-08, gmin =      0.1018133E-10, iter =        7
+ dcop: gshunt =      0.3910300E-08, gmin =      0.5090664E-11, iter =        4
+ dcop: gshunt =      0.3032022E-08, gmin =      0.5090664E-11, iter =        8
+ dcop: gshunt =      0.3032022E-08, gmin =      0.2545332E-11, iter =        4
+ dcop: gshunt =      0.2351011E-08, gmin =      0.2545332E-11, iter =       47
+ dcop: gshunt =      0.2351011E-08, gmin =      0.2418065E-10, iter =       43
+ dcop: gshunt =      0.1822959E-08, gmin =      0.2418065E-10, iter =       43
+ dcop: gshunt =      0.1822959E-08, gmin =      0.2297162E-09, iter =       37
+ dcop: gshunt =      0.1413511E-08, gmin =      0.2297162E-09, iter =       39
+ dcop: gshunt =      0.1413511E-08, gmin =      0.2182304E-08, iter =       46
+ dcop: gshunt =      0.1096028E-08, gmin =      0.2182304E-08, iter =        5
+ dcop: gshunt =      0.1096028E-08, gmin =      0.1091152E-08, iter =        7
+ dcop: gshunt =      0.8498531E-09, gmin =      0.1091152E-08, iter =        6
+ dcop: gshunt =      0.8498531E-09, gmin =      0.5455760E-09, iter =       39
+ dcop: gshunt =      0.8498531E-09, gmin =      0.5182972E-08, iter =       35
+ dcop: gshunt =      0.6589708E-09, gmin =      0.5182972E-08, iter =        5
+ dcop: gshunt =      0.6589708E-09, gmin =      0.2591486E-08, iter =        7
+ dcop: gshunt =      0.5109618E-09, gmin =      0.2591486E-08, iter =        6
+ dcop: gshunt =      0.5109618E-09, gmin =      0.1295743E-08, iter =       10
+ dcop: gshunt =      0.3961966E-09, gmin =      0.1295743E-08, iter =        6
+ dcop: gshunt =      0.3961966E-09, gmin =      0.6478715E-09, iter =       45
+ dcop: gshunt =      0.3961966E-09, gmin =      0.6154779E-08, iter =       37
+ dcop: gshunt =      0.3072084E-09, gmin =      0.6154779E-08, iter =        4
+ dcop: gshunt =      0.3072084E-09, gmin =      0.3077390E-08, iter =        8
+ dcop: gshunt =      0.2382075E-09, gmin =      0.3077390E-08, iter =        4
+ dcop: gshunt =      0.2382075E-09, gmin =      0.1538695E-08, iter =       13
+ dcop: gshunt =      0.1847046E-09, gmin =      0.1538695E-08, iter =        5
+ dcop: gshunt =      0.1847046E-09, gmin =      0.7693474E-09, iter =       35
+ dcop: gshunt =      0.1847046E-09, gmin =      0.7308801E-08, iter =       61
+ dcop: gshunt =      0.1432188E-09, gmin =      0.7308801E-08, iter =        4
+ dcop: gshunt =      0.1432188E-09, gmin =      0.3654400E-08, iter =        7
+ dcop: gshunt =      0.1110509E-09, gmin =      0.3654400E-08, iter =        4
+ dcop: gshunt =      0.1110509E-09, gmin =      0.1827200E-08, iter =       14
+ dcop: gshunt =      0.8610821E-10, gmin =      0.1827200E-08, iter =        5
+ dcop: gshunt =      0.8610821E-10, gmin =      0.9136001E-09, iter =       37
+ dcop: gshunt =      0.8610821E-10, gmin =      0.8679201E-08, iter =       57
+ dcop: gshunt =      0.9733244E-10, gmin =      0.8679201E-08, iter =       16
+ dcop: gshunt =      0.8530863E-10, gmin =      0.8679201E-08, iter =        4
+ dcop: gshunt =      0.8530863E-10, gmin =      0.4339600E-08, iter =        7
+ dcop: gshunt =      0.7477016E-10, gmin =      0.4339600E-08, iter =        4
+ dcop: gshunt =      0.7477016E-10, gmin =      0.2169800E-08, iter =       12
+ dcop: gshunt =      0.6553354E-10, gmin =      0.2169800E-08, iter =        4
+ dcop: gshunt =      0.6553354E-10, gmin =      0.1084900E-08, iter =       36
+ dcop: gshunt =      0.6553354E-10, gmin =      0.1030655E-07, iter =      126
+ dcop: gshunt =      0.5743796E-10, gmin =      0.1030655E-07, iter =        4
+ dcop: gshunt =      0.5743796E-10, gmin =      0.5153275E-08, iter =        7
+ dcop: gshunt =      0.5034245E-10, gmin =      0.5153275E-08, iter =        4
+ dcop: gshunt =      0.5034245E-10, gmin =      0.2576638E-08, iter =        9
+ dcop: gshunt =      0.4412348E-10, gmin =      0.2576638E-08, iter =        4
+ dcop: gshunt =      0.4412348E-10, gmin =      0.1288319E-08, iter =       47
+ dcop: gshunt =      0.4412348E-10, gmin =      0.1223903E-07, iter =      122
+ dcop: gshunt =      0.4692201E-10, gmin =      0.1223903E-07, iter =       37
+ dcop: gshunt =      0.4373397E-10, gmin =      0.1223903E-07, iter =        3
+ dcop: gshunt =      0.4373397E-10, gmin =      0.6119515E-08, iter =        7
+ dcop: gshunt =      0.4076254E-10, gmin =      0.6119515E-08, iter =        3
+ dcop: gshunt =      0.4076254E-10, gmin =      0.3059757E-08, iter =        8
+ dcop: gshunt =      0.3799299E-10, gmin =      0.3059757E-08, iter =        4
+ dcop: gshunt =      0.3799299E-10, gmin =      0.1529879E-08, iter =       16
+ dcop: gshunt =      0.3412094E-10, gmin =      0.1529879E-08, iter =        4
+ dcop: gshunt =      0.3412094E-10, gmin =      0.7649393E-09, iter =       36
+ dcop: gshunt =      0.3412094E-10, gmin =      0.7266923E-08, iter =       67
+ dcop: gshunt =      0.3064350E-10, gmin =      0.7266923E-08, iter =        3
+ dcop: gshunt =      0.3064350E-10, gmin =      0.3633462E-08, iter =        8
+ dcop: gshunt =      0.2752046E-10, gmin =      0.3633462E-08, iter =        4
+ dcop: gshunt =      0.2752046E-10, gmin =      0.1816731E-08, iter =       15
+ dcop: gshunt =      0.2471571E-10, gmin =      0.1816731E-08, iter =        4
+ dcop: gshunt =      0.2471571E-10, gmin =      0.9083654E-09, iter =       34
+ dcop: gshunt =      0.2471571E-10, gmin =      0.8629472E-08, iter =       49
+ dcop: gshunt =      0.2597785E-10, gmin =      0.8629472E-08, iter =       20
+ dcop: gshunt =      0.2452171E-10, gmin =      0.8629472E-08, iter =        3
+ dcop: gshunt =      0.2452171E-10, gmin =      0.4314736E-08, iter =        7
+ dcop: gshunt =      0.2314718E-10, gmin =      0.4314736E-08, iter =        3
+ dcop: gshunt =      0.2314718E-10, gmin =      0.2157368E-08, iter =       13
+ dcop: gshunt =      0.2184971E-10, gmin =      0.2157368E-08, iter =        4
+ dcop: gshunt =      0.2184971E-10, gmin =      0.1078684E-08, iter =       36
+ dcop: gshunt =      0.2184971E-10, gmin =      0.1024750E-07, iter =       43
+ dcop: gshunt =      0.2062496E-10, gmin =      0.1024750E-07, iter =        3
+ dcop: gshunt =      0.2062496E-10, gmin =      0.5123749E-08, iter =        7
+ dcop: gshunt =      0.1946886E-10, gmin =      0.5123749E-08, iter =        3
+ dcop: gshunt =      0.1946886E-10, gmin =      0.2561874E-08, iter =        9
+ dcop: gshunt =      0.1837757E-10, gmin =      0.2561874E-08, iter =        3
+ dcop: gshunt =      0.1837757E-10, gmin =      0.1280937E-08, iter =       41
+ dcop: gshunt =      0.1837757E-10, gmin =      0.1216890E-07, iter =      155
+ dcop: gshunt =      0.1734745E-10, gmin =      0.1216890E-07, iter =        3
+ dcop: gshunt =      0.1734745E-10, gmin =      0.6084452E-08, iter =        7
+ dcop: gshunt =      0.1637506E-10, gmin =      0.6084452E-08, iter =        3
+ dcop: gshunt =      0.1637506E-10, gmin =      0.3042226E-08, iter =        9
+ dcop: gshunt =      0.1545719E-10, gmin =      0.3042226E-08, iter =        3
+ dcop: gshunt =      0.1545719E-10, gmin =      0.1521113E-08, iter =       16
+ dcop: gshunt =      0.1415755E-10, gmin =      0.1521113E-08, iter =        4
+ dcop: gshunt =      0.1415755E-10, gmin =      0.7605565E-09, iter =       35
+ dcop: gshunt =      0.1415755E-10, gmin =      0.7225286E-08, iter =       39
+ dcop: gshunt =      0.1296718E-10, gmin =      0.7225286E-08, iter =        3
+ dcop: gshunt =      0.1296718E-10, gmin =      0.3612643E-08, iter =        8
+ dcop: gshunt =      0.1187690E-10, gmin =      0.3612643E-08, iter =        3
+ dcop: gshunt =      0.1187690E-10, gmin =      0.1806322E-08, iter =       15
+ dcop: gshunt =      0.1087829E-10, gmin =      0.1806322E-08, iter =        4
+ dcop: gshunt =      0.1087829E-10, gmin =      0.9031608E-09, iter =       34
+ dcop: gshunt =      0.1087829E-10, gmin =      0.8580028E-08, iter =       18
+ dcop: gshunt =      0.9963646E-11, gmin =      0.8580028E-08, iter =        3
+ dcop: gshunt =      0.9963646E-11, gmin =      0.4290014E-08, iter =        7
+ dcop: gshunt =      0.9125904E-11, gmin =      0.4290014E-08, iter =        3
+ dcop: gshunt =      0.9125904E-11, gmin =      0.2145007E-08, iter =       13
+ dcop: gshunt =      0.8358598E-11, gmin =      0.2145007E-08, iter =        4
+ dcop: gshunt =      0.8358598E-11, gmin =      0.1072503E-08, iter =       38
+ dcop: gshunt =      0.8358598E-11, gmin =      0.1018878E-07, iter =      102
+ dcop: gshunt =      0.7655808E-11, gmin =      0.1018878E-07, iter =        3
+ dcop: gshunt =      0.7655808E-11, gmin =      0.5094391E-08, iter =        7
+ dcop: gshunt =      0.7012108E-11, gmin =      0.5094391E-08, iter =        3
+ dcop: gshunt =      0.7012108E-11, gmin =      0.2547196E-08, iter =       10
+ dcop: gshunt =      0.6422530E-11, gmin =      0.2547196E-08, iter =        3
+ dcop: gshunt =      0.6422530E-11, gmin =      0.1273598E-08, iter =       44
+ dcop: gshunt =      0.6422530E-11, gmin =      0.1209918E-07, iter =      139
+ dcop: gshunt =      0.5882524E-11, gmin =      0.1209918E-07, iter =        3
+ dcop: gshunt =      0.5882524E-11, gmin =      0.6049590E-08, iter =        7
+ dcop: gshunt =      0.5387922E-11, gmin =      0.6049590E-08, iter =        3
+ dcop: gshunt =      0.5387922E-11, gmin =      0.3024795E-08, iter =        9
+ dcop: gshunt =      0.4934906E-11, gmin =      0.3024795E-08, iter =        3
+ dcop: gshunt =      0.4934906E-11, gmin =      0.1512397E-08, iter =       16
+ dcop: gshunt =      0.4312516E-11, gmin =      0.1512397E-08, iter =        4
+ dcop: gshunt =      0.4312516E-11, gmin =      0.7561987E-09, iter =       36
+ dcop: gshunt =      0.4312516E-11, gmin =      0.7183888E-08, iter =       26
+ dcop: gshunt =      0.3768622E-11, gmin =      0.7183888E-08, iter =        3
+ dcop: gshunt =      0.3768622E-11, gmin =      0.3591944E-08, iter =        8
+ dcop: gshunt =      0.3293323E-11, gmin =      0.3591944E-08, iter =        3
+ dcop: gshunt =      0.3293323E-11, gmin =      0.1795972E-08, iter =       16
+ dcop: gshunt =      0.2877970E-11, gmin =      0.1795972E-08, iter =        3
+ dcop: gshunt =      0.2877970E-11, gmin =      0.8979860E-09, iter =       40
+ dcop: gshunt =      0.2877970E-11, gmin =      0.8530867E-08, iter =       32
+ dcop: gshunt =      0.2515000E-11, gmin =      0.8530867E-08, iter =        3
+ dcop: gshunt =      0.2515000E-11, gmin =      0.4265433E-08, iter =        7
+ dcop: gshunt =      0.2197809E-11, gmin =      0.4265433E-08, iter =        3
+ dcop: gshunt =      0.2197809E-11, gmin =      0.2132717E-08, iter =       13
+ dcop: gshunt =      0.1920621E-11, gmin =      0.2132717E-08, iter =        3
+ dcop: gshunt =      0.1920621E-11, gmin =      0.1066358E-08, iter =       36
+ dcop: gshunt =      0.1920621E-11, gmin =      0.1013040E-07, iter =      140
+ dcop: gshunt =      0.1678393E-11, gmin =      0.1013040E-07, iter =        3
+ dcop: gshunt =      0.1678393E-11, gmin =      0.5065202E-08, iter =        7
+ dcop: gshunt =      0.1466714E-11, gmin =      0.5065202E-08, iter =        3
+ dcop: gshunt =      0.1466714E-11, gmin =      0.2532601E-08, iter =       10
+ dcop: gshunt =      0.1281732E-11, gmin =      0.2532601E-08, iter =        3
+ dcop: gshunt =      0.1281732E-11, gmin =      0.1266301E-08, iter =       41
+ dcop: gshunt =      0.1281732E-11, gmin =      0.1202986E-07, iter =       47
+ dcop: gshunt =      0.1120080E-11, gmin =      0.1202986E-07, iter =        3
+ dcop: gshunt =      0.1120080E-11, gmin =      0.6014928E-08, iter =        7
+ dcop: gshunt =      0.9788157E-12, gmin =      0.6014928E-08, iter =        3
+ dcop: gshunt =      0.9788157E-12, gmin =      0.3007464E-08, iter =        9
+ dcop: gshunt =      0.8553676E-12, gmin =      0.3007464E-08, iter =        3
+ dcop: gshunt =      0.8553676E-12, gmin =      0.1503732E-08, iter =       16
+ dcop: gshunt =      0.6935492E-12, gmin =      0.1503732E-08, iter =        3
+ dcop: gshunt =      0.6935492E-12, gmin =      0.7518659E-09, iter =       34
+ dcop: gshunt =      0.6935492E-12, gmin =      0.7142726E-08, iter =       73
+ dcop: gshunt =      0.5623437E-12, gmin =      0.7142726E-08, iter =        3
+ dcop: gshunt =      0.5623437E-12, gmin =      0.3571363E-08, iter =        8
+ dcop: gshunt =      0.4559596E-12, gmin =      0.3571363E-08, iter =        3
+ dcop: gshunt =      0.4559596E-12, gmin =      0.1785682E-08, iter =       16
+ dcop: gshunt =      0.3697012E-12, gmin =      0.1785682E-08, iter =        3
+ dcop: gshunt =      0.3697012E-12, gmin =      0.8928408E-09, iter =       39
+ dcop: gshunt =      0.3697012E-12, gmin =      0.8481988E-08, iter =       32
+ dcop: gshunt =      0.2997612E-12, gmin =      0.8481988E-08, iter =        3
+ dcop: gshunt =      0.2997612E-12, gmin =      0.4240994E-08, iter =        7
+ dcop: gshunt =      0.2430524E-12, gmin =      0.4240994E-08, iter =        3
+ dcop: gshunt =      0.2430524E-12, gmin =      0.2120497E-08, iter =       14
+ dcop: gshunt =      0.1970718E-12, gmin =      0.2120497E-08, iter =        3
+ dcop: gshunt =      0.1970718E-12, gmin =      0.1060248E-08, iter =       38
+ dcop: gshunt =      0.1970718E-12, gmin =      0.1007236E-07, iter =       85
+ dcop: gshunt =      0.1597898E-12, gmin =      0.1007236E-07, iter =        3
+ dcop: gshunt =      0.1597898E-12, gmin =      0.5036180E-08, iter =        7
+ dcop: gshunt =      0.1295607E-12, gmin =      0.5036180E-08, iter =        3
+ dcop: gshunt =      0.1295607E-12, gmin =      0.2518090E-08, iter =       10
+ dcop: gshunt =      0.1050505E-12, gmin =      0.2518090E-08, iter =        3
+ dcop: gshunt =      0.1050505E-12, gmin =      0.1259045E-08, iter =       36
+ dcop: gshunt =      0.1050505E-12, gmin =      0.1196093E-07, iter =       44
+ dcop: gshunt =      0.8517703E-13, gmin =      0.1196093E-07, iter =        3
+ dcop: gshunt =      0.8517703E-13, gmin =      0.5980464E-08, iter =        7
+ dcop: gshunt =      0.6906325E-13, gmin =      0.5980464E-08, iter =        3
+ dcop: gshunt =      0.6906325E-13, gmin =      0.2990232E-08, iter =        9
+ dcop: gshunt =      0.5599787E-13, gmin =      0.2990232E-08, iter =        3
+ dcop: gshunt =      0.5599787E-13, gmin =      0.1495116E-08, iter =       16
+ dcop: gshunt =      0.4010736E-13, gmin =      0.1495116E-08, iter =        3
+ dcop: gshunt =      0.4010736E-13, gmin =      0.7475580E-09, iter =       34
+ dcop: gshunt =      0.4010736E-13, gmin =      0.7101801E-08, iter =      149
+ dcop: gshunt =      0.2872611E-13, gmin =      0.7101801E-08, iter =        3
+ dcop: gshunt =      0.2872611E-13, gmin =      0.3550900E-08, iter =        8
+ dcop: gshunt =      0.2057450E-13, gmin =      0.3550900E-08, iter =        3
+ dcop: gshunt =      0.2057450E-13, gmin =      0.1775450E-08, iter =       16
+ dcop: gshunt =      0.1473608E-13, gmin =      0.1775450E-08, iter =        3
+ dcop: gshunt =      0.1473608E-13, gmin =      0.8877251E-09, iter =       34
+ dcop: gshunt =      0.1473608E-13, gmin =      0.8433389E-08, iter =       49
+ dcop: gshunt =      0.1055443E-13, gmin =      0.8433389E-08, iter =        3
+ dcop: gshunt =      0.1055443E-13, gmin =      0.4216694E-08, iter =        7
+ dcop: gshunt =      0.7559398E-14, gmin =      0.4216694E-08, iter =        3
+ dcop: gshunt =      0.7559398E-14, gmin =      0.2108347E-08, iter =       14
+ dcop: gshunt =      0.5414269E-14, gmin =      0.2108347E-08, iter =        3
+ dcop: gshunt =      0.5414269E-14, gmin =      0.1054174E-08, iter =       32
+ dcop: gshunt =      0.5414269E-14, gmin =      0.1001465E-07, iter =       35
+ dcop: gshunt =      0.3877863E-14, gmin =      0.1001465E-07, iter =        3
+ dcop: gshunt =      0.3877863E-14, gmin =      0.5007325E-08, iter =        7
+ dcop: gshunt =      0.2777442E-14, gmin =      0.5007325E-08, iter =        3
+ dcop: gshunt =      0.2777442E-14, gmin =      0.2503662E-08, iter =       10
+ dcop: gshunt =      0.1989288E-14, gmin =      0.2503662E-08, iter =        3
+ dcop: gshunt =      0.1989288E-14, gmin =      0.1251831E-08, iter =       33
+ dcop: gshunt =      0.1989288E-14, gmin =      0.1189240E-07, iter =       70
+ dcop: gshunt =      0.1424788E-14, gmin =      0.1189240E-07, iter =        3
+ dcop: gshunt =      0.1424788E-14, gmin =      0.5946198E-08, iter =        7
+ dcop: gshunt =      0.1020476E-14, gmin =      0.5946198E-08, iter =        3
+ dcop: gshunt =      0.1020476E-14, gmin =      0.2973099E-08, iter =        9
+ dcop: gshunt =      0.0000000E+00, gmin =      0.1000000E-13, iter =      178
+ dcop: gshunt ramping succeeded
+ dcop: end dcop,  cpu clock=  3.40E+01 peak memory=       106 mb  tot_iter=    4884
+ output: mms_tb.mt0
+ sweep: tran tran0    begin, stop_t=  2.25E-04 #sweeps=**** cpu clock=  3.40E+01
+ tran: time= 2.2500E-05 tot_iter=    2027 conv_iter=     621 cpu clock= 3.93E+01
+ tran: time= 4.5000E-05 tot_iter=    3808 conv_iter=    1172 cpu clock= 4.33E+01
+ tran: time= 6.7500E-05 tot_iter=    5727 conv_iter=    1766 cpu clock= 4.77E+01
+ tran: time= 9.0000E-05 tot_iter=    7657 conv_iter=    2362 cpu clock= 5.21E+01
+ tran: time= 1.1250E-04 tot_iter=   10294 conv_iter=    3145 cpu clock= 5.91E+01
+ tran: time= 1.3500E-04 tot_iter=   12099 conv_iter=    3706 cpu clock= 6.32E+01
+ tran: time= 1.5750E-04 tot_iter=   14066 conv_iter=    4313 cpu clock= 6.76E+01
+ tran: time= 1.8000E-04 tot_iter=   15860 conv_iter=    4874 cpu clock= 7.16E+01
+ tran: time= 2.0250E-04 tot_iter=   18283 conv_iter=    5612 cpu clock= 7.76E+01
+ tran: time= 2.2500E-04 tot_iter=   19433 conv_iter=    6008 cpu clock= 8.05E+01
+ sweep: tran tran0    end,  cpu clock=  8.06E+01 peak memory=       105 mb
+>info:         ***** hspice job concluded
+ init: begin read circuit files,  cpu clock=  8.06E+01
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\behave\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\behave\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\AD\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\XILINX\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\TLINE\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\TI\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\SIGNET\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\PCI\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\LIN_TEC
+                         H\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\PET\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\DI0\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\COMLINE
+                         \
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\BURR_BR
+                         M\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\BJT\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\behave\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\AD\
+       option runlvl
+       option converge =     5.00
+       option list
+       option node
+       option post =     2.00
+       option probe
+       option gmindc =    1.000E-14
+       option scale =    0.900
+ init: end read circuit files,  cpu clock=  8.06E+01 peak memory=        70 mb
+ init: begin check errors,  cpu clock=  8.06E+01
+ init: end check errors,  cpu clock=  8.08E+01 peak memory=       107 mb
+ init: begin setup matrix, pivot=     0 cpu clock=  8.08E+01
+       establish matrix -- done,  cpu clock=  8.08E+01 peak memory=       104 mb
+       re-order matrix -- done,  cpu clock=  8.09E+01 peak memory=       109 mb
+ init: end setup matrix,  cpu clock=  8.09E+01 peak memory=       110 mb
+ dcop: begin dcop,  cpu clock=  8.10E+01
+ dcop: begin gshunt ramping
+ dcop: gshunt =      0.1000000E-03, gmin =      0.1000000E-13, iter =        5
+ dcop: gshunt =      0.1000000E-04, gmin =      0.1000000E-13, iter =        6
+ dcop: gshunt =      0.1000000E-05, gmin =      0.1000000E-13, iter =        7
+ dcop: gshunt =      0.1000000E-06, gmin =      0.1000000E-13, iter =       39
+ dcop: gshunt =      0.1000000E-06, gmin =      0.9500000E-13, iter =       59
+ dcop: gshunt =      0.5050000E-06, gmin =      0.9500000E-13, iter =       38
+ dcop: gshunt =      0.2550250E-06, gmin =      0.9500000E-13, iter =        7
+ dcop: gshunt =      0.2550250E-06, gmin =      0.4750000E-13, iter =        3
+ dcop: gshunt =      0.1287876E-06, gmin =      0.4750000E-13, iter =       14
+ dcop: gshunt =      0.1287876E-06, gmin =      0.2375000E-13, iter =        3
+ dcop: gshunt =      0.6503775E-07, gmin =      0.2375000E-13, iter =       46
+ dcop: gshunt =      0.6503775E-07, gmin =      0.2256250E-12, iter =       79
+ dcop: gshunt =      0.9372519E-07, gmin =      0.2256250E-12, iter =       31
+ dcop: gshunt =      0.6820851E-07, gmin =      0.2256250E-12, iter =        8
+ dcop: gshunt =      0.6820851E-07, gmin =      0.1128125E-12, iter =        3
+ dcop: gshunt =      0.4963874E-07, gmin =      0.1128125E-12, iter =       40
+ dcop: gshunt =      0.4963874E-07, gmin =      0.1071719E-11, iter =      122
+ dcop: gshunt =      0.5799514E-07, gmin =      0.1071719E-11, iter =       62
+ dcop: gshunt =      0.5799514E-07, gmin =      0.1018133E-10, iter =       53
+ dcop: gshunt =      0.4931109E-07, gmin =      0.1018133E-10, iter =       45
+ dcop: gshunt =      0.4931109E-07, gmin =      0.9672262E-10, iter =      122
+ dcop: gshunt =      0.5321891E-07, gmin =      0.9672262E-10, iter =       35
+ dcop: gshunt =      0.4883604E-07, gmin =      0.9672262E-10, iter =        8
+ dcop: gshunt =      0.4883604E-07, gmin =      0.4836131E-10, iter =        4
+ dcop: gshunt =      0.4481411E-07, gmin =      0.4836131E-10, iter =        8
+ dcop: gshunt =      0.4481411E-07, gmin =      0.2418065E-10, iter =        4
+ dcop: gshunt =      0.4112342E-07, gmin =      0.2418065E-10, iter =        8
+ dcop: gshunt =      0.4112342E-07, gmin =      0.1209033E-10, iter =        4
+ dcop: gshunt =      0.3604330E-07, gmin =      0.1209033E-10, iter =        7
+ dcop: gshunt =      0.3604330E-07, gmin =      0.6045164E-11, iter =        4
+ dcop: gshunt =      0.2936447E-07, gmin =      0.6045164E-11, iter =       40
+ dcop: gshunt =      0.2936447E-07, gmin =      0.5742905E-10, iter =       81
+ dcop: gshunt =      0.3236995E-07, gmin =      0.5742905E-10, iter =       64
+ dcop: gshunt =      0.2907096E-07, gmin =      0.5742905E-10, iter =       37
+ dcop: gshunt =      0.2907096E-07, gmin =      0.5455760E-09, iter =       65
+ dcop: gshunt =      0.3055550E-07, gmin =      0.5455760E-09, iter =       36
+ dcop: gshunt =      0.2884277E-07, gmin =      0.5455760E-09, iter =       59
+ dcop: gshunt =      0.2884277E-07, gmin =      0.5182972E-08, iter =      169
+ dcop: gshunt =      0.2961350E-07, gmin =      0.5182972E-08, iter =       78
+ dcop: gshunt =      0.2961350E-07, gmin =      0.4923824E-07, iter =       93
+ dcop: gshunt =      0.2870053E-07, gmin =      0.4923824E-07, iter =        4
+ dcop: gshunt =      0.2870053E-07, gmin =      0.2461912E-07, iter =        6
+ dcop: gshunt =      0.2781572E-07, gmin =      0.2461912E-07, iter =        4
+ dcop: gshunt =      0.2781572E-07, gmin =      0.1230956E-07, iter =        7
+ dcop: gshunt =      0.2695818E-07, gmin =      0.1230956E-07, iter =        5
+ dcop: gshunt =      0.2695818E-07, gmin =      0.6154779E-08, iter =        7
+ dcop: gshunt =      0.2571152E-07, gmin =      0.6154779E-08, iter =        5
+ dcop: gshunt =      0.2571152E-07, gmin =      0.3077390E-08, iter =       41
+ dcop: gshunt =      0.2571152E-07, gmin =      0.2923520E-07, iter =       67
+ dcop: gshunt =      0.2452252E-07, gmin =      0.2923520E-07, iter =        4
+ dcop: gshunt =      0.2452252E-07, gmin =      0.1461760E-07, iter =        7
+ dcop: gshunt =      0.2338850E-07, gmin =      0.1461760E-07, iter =        5
+ dcop: gshunt =      0.2338850E-07, gmin =      0.7308801E-08, iter =        7
+ dcop: gshunt =      0.2230693E-07, gmin =      0.7308801E-08, iter =        5
+ dcop: gshunt =      0.2230693E-07, gmin =      0.3654400E-08, iter =       36
+ dcop: gshunt =      0.2230693E-07, gmin =      0.3471680E-07, iter =       32
+ dcop: gshunt =      0.2127536E-07, gmin =      0.3471680E-07, iter =        4
+ dcop: gshunt =      0.2127536E-07, gmin =      0.1735840E-07, iter =        7
+ dcop: gshunt =      0.2029151E-07, gmin =      0.1735840E-07, iter =        5
+ dcop: gshunt =      0.2029151E-07, gmin =      0.8679201E-08, iter =        7
+ dcop: gshunt =      0.1935315E-07, gmin =      0.8679201E-08, iter =        5
+ dcop: gshunt =      0.1935315E-07, gmin =      0.4339600E-08, iter =       43
+ dcop: gshunt =      0.1935315E-07, gmin =      0.4122620E-07, iter =       46
+ dcop: gshunt =      0.1845818E-07, gmin =      0.4122620E-07, iter =        4
+ dcop: gshunt =      0.1845818E-07, gmin =      0.2061310E-07, iter =        7
+ dcop: gshunt =      0.1760460E-07, gmin =      0.2061310E-07, iter =        5
+ dcop: gshunt =      0.1760460E-07, gmin =      0.1030655E-07, iter =        8
+ dcop: gshunt =      0.1679049E-07, gmin =      0.1030655E-07, iter =        5
+ dcop: gshunt =      0.1679049E-07, gmin =      0.5153275E-08, iter =       47
+ dcop: gshunt =      0.1679049E-07, gmin =      0.4895612E-07, iter =       95
+ dcop: gshunt =      0.1601404E-07, gmin =      0.4895612E-07, iter =        4
+ dcop: gshunt =      0.1601404E-07, gmin =      0.2447806E-07, iter =        7
+ dcop: gshunt =      0.1527348E-07, gmin =      0.2447806E-07, iter =        5
+ dcop: gshunt =      0.1527348E-07, gmin =      0.1223903E-07, iter =        8
+ dcop: gshunt =      0.1456718E-07, gmin =      0.1223903E-07, iter =        5
+ dcop: gshunt =      0.1456718E-07, gmin =      0.6119515E-08, iter =       48
+ dcop: gshunt =      0.1456718E-07, gmin =      0.5813539E-07, iter =      100
+ dcop: gshunt =      0.1389353E-07, gmin =      0.5813539E-07, iter =        4
+ dcop: gshunt =      0.1389353E-07, gmin =      0.2906769E-07, iter =        7
+ dcop: gshunt =      0.1325104E-07, gmin =      0.2906769E-07, iter =        4
+ dcop: gshunt =      0.1325104E-07, gmin =      0.1453385E-07, iter =        8
+ dcop: gshunt =      0.1263826E-07, gmin =      0.1453385E-07, iter =        5
+ dcop: gshunt =      0.1263826E-07, gmin =      0.7266923E-08, iter =        8
+ dcop: gshunt =      0.1176159E-07, gmin =      0.7266923E-08, iter =        6
+ dcop: gshunt =      0.1176159E-07, gmin =      0.3633462E-08, iter =       40
+ dcop: gshunt =      0.1176159E-07, gmin =      0.3451789E-07, iter =      119
+ dcop: gshunt =      0.1094574E-07, gmin =      0.3451789E-07, iter =        4
+ dcop: gshunt =      0.1094574E-07, gmin =      0.1725894E-07, iter =        8
+ dcop: gshunt =      0.1018648E-07, gmin =      0.1725894E-07, iter =        5
+ dcop: gshunt =      0.1018648E-07, gmin =      0.8629472E-08, iter =       10
+ dcop: gshunt =      0.9479884E-08, gmin =      0.8629472E-08, iter =        5
+ dcop: gshunt =      0.9479884E-08, gmin =      0.4314736E-08, iter =       34
+ dcop: gshunt =      0.9479884E-08, gmin =      0.4098999E-07, iter =       67
+ dcop: gshunt =      0.8822303E-08, gmin =      0.4098999E-07, iter =        4
+ dcop: gshunt =      0.8822303E-08, gmin =      0.2049500E-07, iter =        9
+ dcop: gshunt =      0.8210335E-08, gmin =      0.2049500E-07, iter =        5
+ dcop: gshunt =      0.8210335E-08, gmin =      0.1024750E-07, iter =       13
+ dcop: gshunt =      0.7640817E-08, gmin =      0.1024750E-07, iter =        6
+ dcop: gshunt =      0.7640817E-08, gmin =      0.5123749E-08, iter =       41
+ dcop: gshunt =      0.7640817E-08, gmin =      0.4867561E-07, iter =       33
+ dcop: gshunt =      0.7110805E-08, gmin =      0.4867561E-07, iter =        4
+ dcop: gshunt =      0.7110805E-08, gmin =      0.2433781E-07, iter =       10
+ dcop: gshunt =      0.6617557E-08, gmin =      0.2433781E-07, iter =        5
+ dcop: gshunt =      0.6617557E-08, gmin =      0.1216890E-07, iter =       14
+ dcop: gshunt =      0.6158524E-08, gmin =      0.1216890E-07, iter =        5
+ dcop: gshunt =      0.6158524E-08, gmin =      0.6084452E-08, iter =       39
+ dcop: gshunt =      0.6158524E-08, gmin =      0.5780229E-07, iter =       60
+ dcop: gshunt =      0.6365089E-08, gmin =      0.5780229E-07, iter =       36
+ dcop: gshunt =      0.6122253E-08, gmin =      0.5780229E-07, iter =        4
+ dcop: gshunt =      0.6122253E-08, gmin =      0.2890115E-07, iter =       10
+ dcop: gshunt =      0.5888681E-08, gmin =      0.2890115E-07, iter =        4
+ dcop: gshunt =      0.5888681E-08, gmin =      0.1445057E-07, iter =       13
+ dcop: gshunt =      0.5664020E-08, gmin =      0.1445057E-07, iter =        4
+ dcop: gshunt =      0.5664020E-08, gmin =      0.7225286E-08, iter =       13
+ dcop: gshunt =      0.5339886E-08, gmin =      0.7225286E-08, iter =        9
+ dcop: gshunt =      0.5339886E-08, gmin =      0.3612643E-08, iter =       34
+ dcop: gshunt =      0.5339886E-08, gmin =      0.3432011E-07, iter =       79
+ dcop: gshunt =      0.5034301E-08, gmin =      0.3432011E-07, iter =        4
+ dcop: gshunt =      0.5034301E-08, gmin =      0.1716006E-07, iter =       10
+ dcop: gshunt =      0.4746203E-08, gmin =      0.1716006E-07, iter =        4
+ dcop: gshunt =      0.4746203E-08, gmin =      0.8580028E-08, iter =       12
+ dcop: gshunt =      0.4474593E-08, gmin =      0.8580028E-08, iter =        5
+ dcop: gshunt =      0.4474593E-08, gmin =      0.4290014E-08, iter =       38
+ dcop: gshunt =      0.4474593E-08, gmin =      0.4075513E-07, iter =      200
+ dcop: gshunt =      0.4596817E-08, gmin =      0.4075513E-07, iter =       12
+ dcop: gshunt =      0.4452133E-08, gmin =      0.4075513E-07, iter =        4
+ dcop: gshunt =      0.4452133E-08, gmin =      0.2037757E-07, iter =       10
+ dcop: gshunt =      0.4312003E-08, gmin =      0.2037757E-07, iter =        4
+ dcop: gshunt =      0.4312003E-08, gmin =      0.1018878E-07, iter =       14
+ dcop: gshunt =      0.4176284E-08, gmin =      0.1018878E-07, iter =        4
+ dcop: gshunt =      0.4176284E-08, gmin =      0.5094391E-08, iter =       38
+ dcop: gshunt =      0.4176284E-08, gmin =      0.4839672E-07, iter =       37
+ dcop: gshunt =      0.4044836E-08, gmin =      0.4839672E-07, iter =        4
+ dcop: gshunt =      0.4044836E-08, gmin =      0.2419836E-07, iter =       10
+ dcop: gshunt =      0.3917526E-08, gmin =      0.2419836E-07, iter =        4
+ dcop: gshunt =      0.3917526E-08, gmin =      0.1209918E-07, iter =       14
+ dcop: gshunt =      0.3794222E-08, gmin =      0.1209918E-07, iter =        4
+ dcop: gshunt =      0.3794222E-08, gmin =      0.6049590E-08, iter =       38
+ dcop: gshunt =      0.3794222E-08, gmin =      0.5747110E-07, iter =       36
+ dcop: gshunt =      0.3674800E-08, gmin =      0.5747110E-07, iter =        4
+ dcop: gshunt =      0.3674800E-08, gmin =      0.2873555E-07, iter =       11
+ dcop: gshunt =      0.3559136E-08, gmin =      0.2873555E-07, iter =        4
+ dcop: gshunt =      0.3559136E-08, gmin =      0.1436778E-07, iter =       14
+ dcop: gshunt =      0.3447113E-08, gmin =      0.1436778E-07, iter =        4
+ dcop: gshunt =      0.3447113E-08, gmin =      0.7183888E-08, iter =       20
+ dcop: gshunt =      0.3284367E-08, gmin =      0.7183888E-08, iter =        6
+ dcop: gshunt =      0.3284367E-08, gmin =      0.3591944E-08, iter =       36
+ dcop: gshunt =      0.3284367E-08, gmin =      0.3412347E-07, iter =      128
+ dcop: gshunt =      0.3129305E-08, gmin =      0.3412347E-07, iter =        4
+ dcop: gshunt =      0.3129305E-08, gmin =      0.1706173E-07, iter =       12
+ dcop: gshunt =      0.2981564E-08, gmin =      0.1706173E-07, iter =        4
+ dcop: gshunt =      0.2981564E-08, gmin =      0.8530867E-08, iter =       13
+ dcop: gshunt =      0.2840798E-08, gmin =      0.8530867E-08, iter =        5
+ dcop: gshunt =      0.2840798E-08, gmin =      0.4265433E-08, iter =       39
+ dcop: gshunt =      0.2840798E-08, gmin =      0.4052162E-07, iter =       53
+ dcop: gshunt =      0.2706677E-08, gmin =      0.4052162E-07, iter =        4
+ dcop: gshunt =      0.2706677E-08, gmin =      0.2026081E-07, iter =       11
+ dcop: gshunt =      0.2578889E-08, gmin =      0.2026081E-07, iter =        4
+ dcop: gshunt =      0.2578889E-08, gmin =      0.1013040E-07, iter =       14
+ dcop: gshunt =      0.2457134E-08, gmin =      0.1013040E-07, iter =        5
+ dcop: gshunt =      0.2457134E-08, gmin =      0.5065202E-08, iter =       38
+ dcop: gshunt =      0.2457134E-08, gmin =      0.4811942E-07, iter =       71
+ dcop: gshunt =      0.2341127E-08, gmin =      0.4811942E-07, iter =        4
+ dcop: gshunt =      0.2341127E-08, gmin =      0.2405971E-07, iter =       11
+ dcop: gshunt =      0.2230598E-08, gmin =      0.2405971E-07, iter =        4
+ dcop: gshunt =      0.2230598E-08, gmin =      0.1202986E-07, iter =       42
+ dcop: gshunt =      0.2230598E-08, gmin =      0.1142836E-06, iter =       37
+ dcop: gshunt =      0.2125286E-08, gmin =      0.1142836E-06, iter =        4
+ dcop: gshunt =      0.2125286E-08, gmin =      0.5714181E-07, iter =        8
+ dcop: gshunt =      0.2024947E-08, gmin =      0.5714181E-07, iter =        4
+ dcop: gshunt =      0.2024947E-08, gmin =      0.2857091E-07, iter =       11
+ dcop: gshunt =      0.1929345E-08, gmin =      0.2857091E-07, iter =        4
+ dcop: gshunt =      0.1929345E-08, gmin =      0.1428545E-07, iter =       52
+ dcop: gshunt =      0.1929345E-08, gmin =      0.1357118E-06, iter =       66
+ dcop: gshunt =      0.1838256E-08, gmin =      0.1357118E-06, iter =        4
+ dcop: gshunt =      0.1838256E-08, gmin =      0.6785590E-07, iter =        8
+ dcop: gshunt =      0.1751468E-08, gmin =      0.6785590E-07, iter =        4
+ dcop: gshunt =      0.1751468E-08, gmin =      0.3392795E-07, iter =       11
+ dcop: gshunt =      0.1668777E-08, gmin =      0.3392795E-07, iter =        4
+ dcop: gshunt =      0.1668777E-08, gmin =      0.1696398E-07, iter =       13
+ dcop: gshunt =      0.1550597E-08, gmin =      0.1696398E-07, iter =        4
+ dcop: gshunt =      0.1550597E-08, gmin =      0.8481988E-08, iter =       40
+ dcop: gshunt =      0.1550597E-08, gmin =      0.8057888E-07, iter =       62
+ dcop: gshunt =      0.1440787E-08, gmin =      0.8057888E-07, iter =        4
+ dcop: gshunt =      0.1440787E-08, gmin =      0.4028944E-07, iter =        9
+ dcop: gshunt =      0.1338752E-08, gmin =      0.4028944E-07, iter =        4
+ dcop: gshunt =      0.1338752E-08, gmin =      0.2014472E-07, iter =       12
+ dcop: gshunt =      0.1243944E-08, gmin =      0.2014472E-07, iter =        4
+ dcop: gshunt =      0.1243944E-08, gmin =      0.1007236E-07, iter =       13
+ dcop: gshunt =      0.1111803E-08, gmin =      0.1007236E-07, iter =        5
+ dcop: gshunt =      0.1111803E-08, gmin =      0.5036180E-08, iter =       38
+ dcop: gshunt =      0.1111803E-08, gmin =      0.4784371E-07, iter =       36
+ dcop: gshunt =      0.9936992E-09, gmin =      0.4784371E-07, iter =        4
+ dcop: gshunt =      0.9936992E-09, gmin =      0.2392186E-07, iter =       12
+ dcop: gshunt =      0.8881411E-09, gmin =      0.2392186E-07, iter =        4
+ dcop: gshunt =      0.8881411E-09, gmin =      0.1196093E-07, iter =       15
+ dcop: gshunt =      0.7937961E-09, gmin =      0.1196093E-07, iter =        5
+ dcop: gshunt =      0.7937961E-09, gmin =      0.5980464E-08, iter =       42
+ dcop: gshunt =      0.7937961E-09, gmin =      0.5681441E-07, iter =       59
+ dcop: gshunt =      0.8362513E-09, gmin =      0.5681441E-07, iter =       15
+ dcop: gshunt =      0.7873933E-09, gmin =      0.5681441E-07, iter =        4
+ dcop: gshunt =      0.7873933E-09, gmin =      0.2840720E-07, iter =       12
+ dcop: gshunt =      0.7413897E-09, gmin =      0.2840720E-07, iter =        4
+ dcop: gshunt =      0.7413897E-09, gmin =      0.1420360E-07, iter =       46
+ dcop: gshunt =      0.7413897E-09, gmin =      0.1349342E-06, iter =       41
+ dcop: gshunt =      0.6980740E-09, gmin =      0.1349342E-06, iter =        3
+ dcop: gshunt =      0.6980740E-09, gmin =      0.6746711E-07, iter =        8
+ dcop: gshunt =      0.6572889E-09, gmin =      0.6746711E-07, iter =        4
+ dcop: gshunt =      0.6572889E-09, gmin =      0.3373355E-07, iter =       11
+ dcop: gshunt =      0.6188868E-09, gmin =      0.3373355E-07, iter =        4
+ dcop: gshunt =      0.6188868E-09, gmin =      0.1686678E-07, iter =       14
+ dcop: gshunt =      0.5646490E-09, gmin =      0.1686678E-07, iter =        4
+ dcop: gshunt =      0.5646490E-09, gmin =      0.8433389E-08, iter =       39
+ dcop: gshunt =      0.5646490E-09, gmin =      0.8011719E-07, iter =       90
+ dcop: gshunt =      0.5151645E-09, gmin =      0.8011719E-07, iter =        4
+ dcop: gshunt =      0.5151645E-09, gmin =      0.4005860E-07, iter =       10
+ dcop: gshunt =      0.4700167E-09, gmin =      0.4005860E-07, iter =        4
+ dcop: gshunt =      0.4700167E-09, gmin =      0.2002930E-07, iter =       12
+ dcop: gshunt =      0.4288255E-09, gmin =      0.2002930E-07, iter =        4
+ dcop: gshunt =      0.4288255E-09, gmin =      0.1001465E-07, iter =       49
+ dcop: gshunt =      0.1000000E-03
+ dcop: gshunt =      0.1000000E-04
+ dcop: gshunt =      0.1000000E-05
+ dcop: gshunt =      0.1000000E-06
+ dcop: gshunt =      0.1000000E-07
+ dcop: gshunt =      0.1000000E-08
+ dcop: gshunt =      0.1000000E-09
+ dcop: gshunt =      0.1000000E-10
+ dcop: gshunt =      0.1000000E-11
+ dcop: gshunt =      0.1000000E-12
+ dcop: gshunt =      0.1000000E-13
+ dcop: gshunt =      0.1000000E-14
+ dcop: gshunt =      0.1000000E-15
+ dcop: gshunt =      0.0000000E+00
+ dcop: gshunt ramping succeeded
+ dcop: end dcop,  cpu clock=  1.18E+02 peak memory=       110 mb  tot_iter=    5626
+ output: mms_tb.mt1
+ sweep: tran tran0    begin, stop_t=  2.25E-05 #sweeps=**** cpu clock=  1.18E+02
+ tran: time= 2.2500E-06 tot_iter=    2541 conv_iter=     717 cpu clock= 1.25E+02
+ tran: time= 4.5000E-06 tot_iter=    4808 conv_iter=    1361 cpu clock= 1.30E+02
+ tran: time= 6.7500E-06 tot_iter=    7430 conv_iter=    2092 cpu clock= 1.36E+02
+ tran: time= 9.0000E-06 tot_iter=    9801 conv_iter=    2766 cpu clock= 1.42E+02
+ tran: time= 1.1250E-05 tot_iter=   13081 conv_iter=    3683 cpu clock= 1.50E+02
+ tran: time= 1.3500E-05 tot_iter=   15372 conv_iter=    4330 cpu clock= 1.55E+02
+ tran: time= 1.5750E-05 tot_iter=   17987 conv_iter=    5060 cpu clock= 1.61E+02
+ tran: time= 1.8000E-05 tot_iter=   20617 conv_iter=    5803 cpu clock= 1.67E+02
+ tran: time= 2.0250E-05 tot_iter=   23697 conv_iter=    6662 cpu clock= 1.75E+02
+ tran: time= 2.2500E-05 tot_iter=   24951 conv_iter=    7059 cpu clock= 1.78E+02
+ sweep: tran tran0    end,  cpu clock=  1.78E+02 peak memory=       108 mb
+>info:         ***** hspice job concluded
+ init: begin read circuit files,  cpu clock=  1.78E+02
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\behave\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\behave\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\AD\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\XILINX\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\TLINE\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\TI\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\SIGNET\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\PCI\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\LIN_TEC
+                         H\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\PET\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\DI0\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\COMLINE
+                         \
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\BURR_BR
+                         M\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\BJT\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\behave\
+       option search = D:\synopsys\Hspice_J-2014.09-SP2-2\parts\AD\
+       option runlvl
+       option converge =     5.00
+       option list
+       option node
+       option post =     2.00
+       option probe
+       option gmindc =    1.000E-14
+       option scale =    0.900
+ init: end read circuit files,  cpu clock=  1.78E+02 peak memory=        65 mb
+ init: begin check errors,  cpu clock=  1.78E+02
+ init: end check errors,  cpu clock=  1.78E+02 peak memory=       104 mb
+ init: begin setup matrix, pivot=     0 cpu clock=  1.78E+02
+       establish matrix -- done,  cpu clock=  1.78E+02 peak memory=       101 mb
+       re-order matrix -- done,  cpu clock=  1.78E+02 peak memory=       104 mb
+ init: end setup matrix,  cpu clock=  1.79E+02 peak memory=       105 mb
+ dcop: begin dcop,  cpu clock=  1.79E+02
+ dcop: begin gshunt ramping
+ dcop: gshunt =      0.1000000E-03, gmin =      0.1000000E-13, iter =        9
+ dcop: gshunt =      0.1000000E-04, gmin =      0.1000000E-13, iter =       46
+ dcop: gshunt =      0.1000000E-04, gmin =      0.9500000E-13, iter =       77
+ dcop: gshunt =      0.5050000E-04, gmin =      0.9500000E-13, iter =       88
+ dcop: gshunt =      0.2550250E-04, gmin =      0.9500000E-13, iter =       10
+ dcop: gshunt =      0.2550250E-04, gmin =      0.4750000E-13, iter =        3
+ dcop: gshunt =      0.1287876E-04, gmin =      0.4750000E-13, iter =       15
+ dcop: gshunt =      0.1287876E-04, gmin =      0.2375000E-13, iter =        3
+ dcop: gshunt =      0.6503775E-05, gmin =      0.2375000E-13, iter =      104
+ dcop: gshunt =      0.6503775E-05, gmin =      0.2256250E-12, iter =      145
+ dcop: gshunt =      0.9372519E-05, gmin =      0.2256250E-12, iter =       63
+ dcop: gshunt =      0.6820851E-05, gmin =      0.2256250E-12, iter =       13
+ dcop: gshunt =      0.6820851E-05, gmin =      0.1128125E-12, iter =        3
+ dcop: gshunt =      0.4963874E-05, gmin =      0.1128125E-12, iter =       49
+ dcop: gshunt =      0.4963874E-05, gmin =      0.1071719E-11, iter =      200
+ dcop: gshunt =      0.5799514E-05, gmin =      0.1071719E-11, iter =       67
+ dcop: gshunt =      0.5799514E-05, gmin =      0.1018133E-10, iter =      119
+ dcop: gshunt =      0.4931109E-05, gmin =      0.1018133E-10, iter =        8
+ dcop: gshunt =      0.4931109E-05, gmin =      0.5090664E-11, iter =        3
+ dcop: gshunt =      0.4192737E-05, gmin =      0.5090664E-11, iter =        8
+ dcop: gshunt =      0.4192737E-05, gmin =      0.2545332E-11, iter =        3
+ dcop: gshunt =      0.3564927E-05, gmin =      0.2545332E-11, iter =       10
+ dcop: gshunt =      0.3564927E-05, gmin =      0.1272666E-11, iter =        3
+ dcop: gshunt =      0.2764222E-05, gmin =      0.1272666E-11, iter =       10
+ dcop: gshunt =      0.2764222E-05, gmin =      0.6363330E-12, iter =        3
+ dcop: gshunt =      0.1832930E-05, gmin =      0.6363330E-12, iter =        7
+ dcop: gshunt =      0.1832930E-05, gmin =      0.3181665E-12, iter =        3
+ dcop: gshunt =      0.9066330E-06, gmin =      0.3181665E-12, iter =        6
+ dcop: gshunt =      0.9066330E-06, gmin =      0.1590833E-12, iter =        3
+ dcop: gshunt =      0.2193634E-06, gmin =      0.1590833E-12, iter =        8
+ dcop: gshunt =      0.2193634E-06, gmin =      0.7954163E-13, iter =        3
+ dcop: gshunt =      0.2193634E-07, gmin =      0.7954163E-13, iter =       67
+ dcop: gshunt =      0.2193634E-07, gmin =      0.7556454E-12, iter =      130
+ dcop: gshunt =      0.1107785E-06, gmin =      0.7556454E-12, iter =      177
+ dcop: gshunt =      0.1107785E-06, gmin =      0.7178632E-11, iter =      100
+ dcop: gshunt =      0.1596417E-06, gmin =      0.7178632E-11, iter =       41
+ dcop: gshunt =      0.1161793E-06, gmin =      0.7178632E-11, iter =       50
+ dcop: gshunt =      0.1161793E-06, gmin =      0.6819700E-10, iter =      126
+ dcop: gshunt =      0.1357374E-06, gmin =      0.6819700E-10, iter =       92
+ dcop: gshunt =      0.1357374E-06, gmin =      0.6478715E-09, iter =       84
+ dcop: gshunt =      0.1464943E-06, gmin =      0.6478715E-09, iter =       42
+ dcop: gshunt =      0.1344297E-06, gmin =      0.6478715E-09, iter =       61
+ dcop: gshunt =      0.1344297E-06, gmin =      0.6154779E-08, iter =       94
+ dcop: gshunt =      0.1398588E-06, gmin =      0.6154779E-08, iter =       93
+ dcop: gshunt =      0.1398588E-06, gmin =      0.5847040E-07, iter =       44
+ dcop: gshunt =      0.1335238E-06, gmin =      0.5847040E-07, iter =       66
+ dcop: gshunt =      0.1335238E-06, gmin =      0.5554688E-06, iter =       40
+ dcop: gshunt =      0.1274757E-06, gmin =      0.5554688E-06, iter =        6
+ dcop: gshunt =      0.1274757E-06, gmin =      0.2777344E-06, iter =       10
+ dcop: gshunt =      0.1217017E-06, gmin =      0.2777344E-06, iter =        5
+ dcop: gshunt =      0.1217017E-06, gmin =      0.1388672E-06, iter =       50
+ dcop: gshunt =      0.1161891E-06, gmin =      0.1388672E-06, iter =        4
+ dcop: gshunt =      0.1161891E-06, gmin =      0.6943361E-07, iter =        6
+ dcop: gshunt =      0.1082948E-06, gmin =      0.6943361E-07, iter =        5
+ dcop: gshunt =      0.1082948E-06, gmin =      0.3471680E-07, iter =        6
+ dcop: gshunt =      0.9725795E-07, gmin =      0.3471680E-07, iter =        4
+ dcop: gshunt =      0.9725795E-07, gmin =      0.1735840E-07, iter =        5
+ dcop: gshunt =      0.8238987E-07, gmin =      0.1735840E-07, iter =        4
+ dcop: gshunt =      0.8238987E-07, gmin =      0.8679201E-08, iter =        5
+ dcop: gshunt =      0.6349714E-07, gmin =      0.8679201E-08, iter =        5
+ dcop: gshunt =      0.6349714E-07, gmin =      0.4339600E-08, iter =        4
+ dcop: gshunt =      0.4165644E-07, gmin =      0.4339600E-08, iter =        5
+ dcop: gshunt =      0.4165644E-07, gmin =      0.2169800E-08, iter =        4
+ dcop: gshunt =      0.2016400E-07, gmin =      0.2169800E-08, iter =        5
+ dcop: gshunt =      0.2016400E-07, gmin =      0.1084900E-08, iter =        4
+ dcop: gshunt =      0.4558725E-08, gmin =      0.1084900E-08, iter =        6
+ dcop: gshunt =      0.4558725E-08, gmin =      0.5424500E-09, iter =        5
+ dcop: gshunt =      0.4558725E-09, gmin =      0.5424500E-09, iter =       11
+ dcop: gshunt =      0.4558725E-09, gmin =      0.2712250E-09, iter =        6
+ dcop: gshunt =      0.4558725E-10, gmin =      0.2712250E-09, iter =        6
+ dcop: gshunt =      0.4558725E-10, gmin =      0.1356125E-09, iter =        5
+ dcop: gshunt =      0.4558725E-11, gmin =      0.1356125E-09, iter =        7
+ dcop: gshunt =      0.4558725E-11, gmin =      0.6780625E-10, iter =        5
+ dcop: gshunt =      0.4558725E-12, gmin =      0.6780625E-10, iter =        5
+ dcop: gshunt =      0.4558725E-12, gmin =      0.3390313E-10, iter =        5
+ dcop: gshunt =      0.4558725E-13, gmin =      0.3390313E-10, iter =        4
+ dcop: gshunt =      0.4558725E-13, gmin =      0.1695156E-10, iter =        5
+ dcop: gshunt =      0.4558725E-14, gmin =      0.1695156E-10, iter =        3
+ dcop: gshunt =      0.4558725E-14, gmin =      0.8475782E-11, iter =        5
+ dcop: gshunt =      0.0000000E+00, gmin =      0.1000000E-13, iter =        7
+ dcop: gshunt ramping succeeded
+ dcop: end dcop,  cpu clock=  1.96E+02 peak memory=       105 mb  tot_iter=    2621
+ output: mms_tb.mt2
+ sweep: tran tran0    begin, stop_t=  4.50E-08 #sweeps=  46 cpu clock=  1.96E+02
+ tran: time= 4.5023E-09 tot_iter=    1909 conv_iter=     609 cpu clock= 2.02E+02
+ tran: time= 9.0000E-09 tot_iter=    3518 conv_iter=    1122 cpu clock= 2.07E+02
+ tran: time= 1.3505E-08 tot_iter=    5308 conv_iter=    1691 cpu clock= 2.12E+02
+ tran: time= 1.8000E-08 tot_iter=    7077 conv_iter=    2256 cpu clock= 2.17E+02
+ tran: time= 2.2504E-08 tot_iter=    9631 conv_iter=    3058 cpu clock= 2.26E+02
+ tran: time= 2.7002E-08 tot_iter=   11259 conv_iter=    3581 cpu clock= 2.31E+02
+ tran: time= 3.1505E-08 tot_iter=   13015 conv_iter=    4138 cpu clock= 2.36E+02
+ tran: time= 3.6000E-08 tot_iter=   14658 conv_iter=    4661 cpu clock= 2.41E+02
+ tran: time= 4.0500E-08 tot_iter=   17001 conv_iter=    5396 cpu clock= 2.48E+02
+ tran: time= 4.5000E-08 tot_iter=   17962 conv_iter=    5722 cpu clock= 2.51E+02
+ sweep: tran tran0    end,  cpu clock=  2.51E+02 peak memory=       105 mb
+>info:         ***** hspice job concluded
+ lic: Release hspice token(s)

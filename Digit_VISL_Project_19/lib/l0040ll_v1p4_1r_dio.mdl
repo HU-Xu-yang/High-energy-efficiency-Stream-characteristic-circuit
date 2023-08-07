@@ -1,0 +1,398 @@
+* No part of this file can be released without the consent of SMIC.
+*
+************************************************************************************************************
+*  40nm Logic Low Leakage 1P10M(1P9M,1P8M,1P7M,1P6M) Salicide 1.1V/1.8V/2.5V SPICE Model (for HSPICE only) *
+************************************************************************************************************
+*
+* Release version    : 1.4_1r
+*
+* Release date       : 09/25/2012
+*
+* Simulation tool    : Synopsys Star-HSPICE version C-2009.09
+*
+* Model type         : 
+* Junction Diode     : HSPICE Level 3
+*
+* Model name:
+*   Junction Diode   :
+*        *------------------------------------------------* 
+*        | Junction Diode type |     1.1V     |   2.5V    |  
+*        |================================================|
+*        |                     |   ndio11ll   |           |
+*        |      N+/PWELL       | ndio11llHVT  | ndio25ll  |
+*        |                     | ndio11llLVT  |           |
+*        |------------------------------------------------|
+*        |                     |   pdio11ll   |           |
+*        |      P+/NWELL       | pdio11llHVT  | pdio25ll  | 
+*        |                     | pdio11llLVT  |           |
+*        |------------------------------------------------|
+*        |   Native N+/Psub    |  ntdio11ll   | ntdio25ll |
+*        |------------------------------------------------|
+*        |      Nwell/Pwell    |          nwdioll         |  
+*        |------------------------------------------------|
+*        |      n+/rwell       |   dnd11ll    |  dnd25ll  |   
+*        |------------------------------------------------|
+*        |    rwell/dnwell     |          rwd11ll         |   
+*        |------------------------------------------------|
+*        |     dnwell/psub     |          dnwd11ll        | 
+*        *------------------------------------------------*
+*        |     nwell/psub      |parasitic_nwd | (na)      |
+*        |------------------------------------------------|
+*        |    rwell/dnwell     |parasitic_rwd | (na)      |
+*        |------------------------------------------------|
+*        |     dnwell/psub     |parasitic_dnwd| (na)      |
+*        *------------------------------------------------*
+
+*
+*   The valid temperature range is from -40C to 125C 
+* 
+***********************************************************************************
+*                            1.1v n+/pwell diode model                            *
+***********************************************************************************
+*
+.model ndio11ll d
++level = 3                     
++ibv = 277.8                   ikr = 2.7778E5                
++is = 'dis_ndio11ll+1.71349E-8'               jsw = 'djsw_ndio11ll+2.56848E-14'             n = 'dn_ndio11ll+0.92934'                   
++rs = 1.66844E-10              vb = 9.3                      area = 3.6E-9                 
++pj = 2.4E-4                   jtun = 0                      jtunsw = 0                    
++ntun = 30                     
++tt = 0                        cj = 'dcj_ndio11ll+1.473228E-3'              pb = 0.458831                 
++mj = 0.258409                 fc = 0                        fcs = 0                       
++cjsw = 'dcjsw_ndio11ll+5.14781E-11'            mjsw = 0.22454                php = 0.9848                  
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.11                     gap1 = 7.02E-4                gap2 = 1.108E3                
++xti = 3.38                    cta = 5.575224E-4             ctp = 9.706073E-3             
++tcv = 0                       tm1 = 0                       tm2 = 0                       
++tpb = 7.97258E-4              tphp = 1.69169e-3             trs = 4.783111E-3             
++ttt1 = 0                      ttt2 = 0                      xtitun = 3                           
+*     
+************************************************************************************
+*                            1.1v n+/pwell hvt diode model                        *
+***********************************************************************************
+*
+.model ndio11llhvt d
++level = 3                     
++ibv = 277.8                   ikr = 2.7778E5                
++is = 'dis_ndio11llhvt+1.85973E-8'               jsw = 'djsw_ndio11llhvt+9.1548E-15'              n = 'dn_ndio11llhvt+0.893926'                  
++rs = 1.965497E-10             vb = 9.3                      area = 3.6E-9                 
++pj = 2.4E-4                   jtun = 0                      jtunsw = 0                    
++ntun = 30                     
++tt = 0                        cj = 'dcj_ndio11llhvt+1.504653E-3'              pb = 0.495432                 
++mj = 0.271939                 fc = 0                        fcs = 0                       
++cjsw = 'dcjsw_ndio11llhvt+5.701237E-11'           mjsw = 0.279405               php = 0.93907                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.11                     gap1 = 7.02E-4                gap2 = 1.108E3                
++xti = 4.88                    cta = 8.055109E-4             ctp = 1.053088E-3             
++tcv = 0                       tm1 = 0                       tm2 = 0                       
++tpb = 1.194821E-3             tphp = 4.67432E-4             trs = 4.794471E-3             
++ttt1 = 0                      ttt2 = 0                      xtitun = 3               
+*     
+***********************************************************************************
+*                            1.1v n+/pwell lvt diode model                        *
+***********************************************************************************
+*
+.model ndio11lllvt d
++level = 3                     
++ibv = 277.8                   ikr = 2.7778E5                
++is = 'dis_ndio11lllvt+2.192675E-8'              jsw = 'djsw_ndio11lllvt+1.66848E-14'             n = 'dn_ndio11lllvt+0.916382'                  
++rs = 1.824127E-10             vb = 9.3                      area = 3.6E-9                 
++pj = 2.4E-4                   jtun = 0                      jtunsw = 0                    
++ntun = 30                     
++tt = 0                        cj = 'dcj_ndio11lllvt+1.497809E-3'              pb = 0.535463                 
++mj = 0.27193                  fc = 0                        fcs = 0                       
++cjsw = 'dcjsw_ndio11lllvt+5.010512E-11'           mjsw = 0.202349               php = 0.932                   
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.11                     gap1 = 7.02E-4                gap2 = 1.108E3                
++xti = 3.38                    cta = 6.308669E-4             ctp = 6.440152E-4             
++tcv = 0                       tm1 = 0                       tm2 = 0                       
++tpb = 9.569575E-4             tphp = 1.128011E-3            trs = 5.178787E-4             
++ttt1 = 0                      ttt2 = 0                      xtitun = 3   
+* 
+***********************************************************************************
+*                            2.5v n+/pwell diode model                            *
+***********************************************************************************
+*
+.model ndio25ll d
++level = 3                     
++ibv = 277.8                   ikr = 2.78E5                  
++is = 'dis_ndio25ll+2.308258E-7'              jsw = 'djsw_ndio25ll+1.01297E-13'             n = 'dn_ndio25ll+0.980683'                 
++rs = 1.388665E-10             vb = 9.45                     area = 3.6E-9                 
++pj = 2.4E-4                   
++cj = 'dcj_ndio25ll+1.322092E-3'              pb = 0.583233                 mj = 0.236285                 
++fc = 0                        fcs = 0                       cjsw = 'dcjsw_ndio25ll+8.04844E-11'            
++mjsw = 0.22034                php = 0.392174                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.16                     xti = 3                       cta = 8.075215E-4             
++ctp = 3.398484E-4             tpb = 1.578537E-3             tphp = 6.48798E-4             
++trs = -6.5E-4                                  
+*         
+***********************************************************************************
+*                            1.1v p+/nwell diode model                            * 
+***********************************************************************************
+*
+.model pdio11ll d
++level = 3                     
++ibv = 277.8                   ikr = 2.7778E5                
++is = 'dis_pdio11ll+4.378592E-8'              jsw = 'djsw_pdio11ll+1.2E-13'                 n = 'dn_pdio11ll+0.999269'                  
++rs = 1.927372E-10             vb = 8.55                     area = 3.6E-9                 
++pj = 2.4E-4                   jtun = 0                      jtunsw = 0                    
++ntun = 30                     
++tt = 0                        cj = 'dcj_pdio11ll+1.410098E-3'              pb = 0.789952                 
++mj = 0.358642                 fc = 0                        fcs = 0                       
++cjsw = 'dcjsw_pdio11ll+5.495582E-11'           mjsw = 0.122442               php = 0.278277                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.11                     gap1 = 7.02E-4                gap2 = 1.108E3                
++xti = 6.68536                 cta = 7.072399E-4             ctp = 8.21187E-4              
++tcv = 0                       tm1 = 0                       tm2 = 0                       
++tpb = 1.306596E-3             tphp = 1.08E-3                trs = 4.090284E-3             
++ttt1 = 0                      ttt2 = 0                      xtitun = 3   
+*
+***********************************************************************************
+*                            1.1v p+/nwell hvt diode model                        * 
+***********************************************************************************
+*
+.model pdio11llhvt d
++level = 3                     
++ibv = 277.8                   ikr = 2.7778E5                
++is = 'dis_pdio11llhvt+1.382677E-8'              jsw = 'djsw_pdio11llhvt+1.2E-13'                 n = 'dn_pdio11llhvt+0.967337'                  
++rs = 1.969881E-10             vb = 8.55                     area = 3.6E-9                 
++pj = 2.4E-4                   jtun = 0                      jtunsw = 0                    
++ntun = 30                     
++tt = 0                        cj = 'dcj_pdio11llhvt+1.398522E-3'              pb = 0.785273                 
++mj = 0.356722                 fc = 0                        fcs = 0                       
++cjsw = 'dcjsw_pdio11llhvt+5.240103E-11'           mjsw = 9.66028E-2             php = 0.397351                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.11                     gap1 = 7.02E-4                gap2 = 1.108E3                
++xti = 6.68536                 cta = 6.734626E-4             ctp = 2.832762E-3             
++tcv = 0                       tm1 = 0                       tm2 = 0                       
++tpb = 1.195637E-3             tphp = 1.3467e-3              trs = 1.523669E-3             
++ttt1 = 0                      ttt2 = 0                      xtitun = 3  
+*
+************************************************************************************
+*                            1.1v p+/nwell lvt diode model                        * 
+***********************************************************************************
+*
+.model pdio11lllvt d
++level = 3                     
++ibv = 277.8                   ikr = 2.7778E5                
++is = 'dis_pdio11lllvt+1.418025E-8'              jsw = 'djsw_pdio11lllvt+1.2E-13'                 n = 'dn_pdio11lllvt+0.998267'                  
++rs = 1.9E-10                  vb = 8.55                     area = 3.6E-9                 
++pj = 2.4E-4                   jtun = 0                      jtunsw = 0                    
++ntun = 30                     
++tt = 0                        cj = 'dcj_pdio11lllvt+1.404341E-3'              pb = 0.730806                 
++mj = 0.355864                 fc = 0                        fcs = 0                       
++cjsw = 'dcjsw_pdio11lllvt+5.484233E-11'           mjsw = 0.231                  php = 0.98205                 
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.11                     gap1 = 7.02E-4                gap2 = 1.108E3                
++xti = 6.68536                 cta = 6.842681E-4             ctp = 3.489605E-4             
++tcv = 0                       tm1 = 0                       tm2 = 0                       
++tpb = 1.005803E-3             tphp = 1.967E-3               trs = 2.974752E-3             
++ttt1 = 0                      ttt2 = 0                      xtitun = 3                    
+*
+***********************************************************************************
+*                            2.5v p+/nwell diode model                            * 
+***********************************************************************************
+*
+.model pdio25ll d
++level = 3                     
++ibv = 277.8                   ikr = 2.78E5                  
++is = 'dis_pdio25ll+1.5934E-7'                jsw = 'djsw_pdio25ll+1.01297E-13'             n = 'dn_pdio25ll+0.983873'                  
++rs = 1.18892E-10              vb = 8.55                     area = 3.6E-9                 
++pj = 2.4E-4                   
++cj = 'dcj_pdio25ll+1.23277E-3'               pb = 0.728959                 mj = 0.316785                 
++fc = 0                        fcs = 0                       cjsw = 'dcjsw_pdio25ll+5.792877E-11'           
++mjsw = 0.178399               php = 0.93005                 
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.16                     xti = 3                       cta = 8.478976E-4             
++ctp = 5.029756E-4             tpb = 1.659304E-3             tphp = 2.82876E-3             
++trs = -5.395E-4               
+*
+***********************************************************************************
+*                            1.1v native n+/psub diode model                     *
+***********************************************************************************
+*
+.model ntdio11ll d
++level = 3                     
++ibv = 277.8                   ikr = 2.7778E5                
++is = 'dis_ntdio11ll+1.7981E-6'                jsw = 'djsw_ntdio11ll+1.34625E-13'             n = 'dn_ntdio11ll+1.04436'                   
++rs = 2.319845E-8              vb = 15.25                    area = 3.6E-9                 
++pj = 2.4E-4                   jtun = 0                      jtunsw = 0                    
++ntun = 30                     
++tt = 0                        cj = 'dcj_ntdio11ll+2.920893E-4'              pb = 0.706508                 
++mj = 0.164302                 fc = 0                        fcs = 0                       
++cjsw = 'dcjsw_ntdio11ll+2.937015E-11'           mjsw = 0.17363                php = 0.341208                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.11                     gap1 = 7.02E-4                gap2 = 1.108E3                
++xti = 7.624005                cta = 5.6943E-4               ctp = 8.201018E-4             
++tcv = 0                       tm1 = 0                       tm2 = 0                       
++tpb = 2.270663E-3             tphp = 3.026661E-4            trs = 0.013                   
++ttt1 = 0                      ttt2 = 0                      xtitun = 3                
+*         
+***********************************************************************************
+*                            2.5v native n+/pwell diode model                     *
+***********************************************************************************
+*
+.model ntdio25ll d
++level = 3                     
++ibv = 277.8                   ikr = 2.78E5                  
++is = 'dis_ntdio25ll+1.38E-6'                  jsw = 'djsw_ntdio25ll+4.59E-13'                n = 'dn_ntdio25ll+0.991'                     
++rs = 1.501E-8                 vb = 15.25                    area = 3.6E-9                 
++pj = 2.4E-4                   
++cj = 'dcj_ntdio25ll+3.278926E-4'              pb = 0.585893                 mj = 0.135308                 
++fc = 0                        fcs = 0                       cjsw = 'dcjsw_ntdio25ll+4.168795E-11'           
++mjsw = 0.160048               php = 0.182312                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.16                     xti = 3                       cta = 8.076552E-4             
++ctp = 1.857636E-3             tpb = 2.821205E-3             tphp = 2.55E-4                
++trs = 8.592518E-3     
+*
+************************************************************************************
+*                             nwell/psub diode model                               *
+************************************************************************************
+*
+.model nwdioll d
++level = 3                     
++ibv = 14.7                    ikr = 1.47E4                  
++is = 'dis_nwdioll+3.554044E-8'              jsw = 'djsw_nwdioll+8.96673E-15'             n = 'dn_nwdioll+0.798625'                  
++rs = 3.534807E-8              vb = 11.7                     area = 6.8E-8                 
++pj = 1.14E-3                  jtun = 0                      jtunsw = 0                    
++ntun = 30                     
++tt = 0                        cj = 'dcj_nwdioll+3.930475E-4'              pb = 0.58343               
++mj = 0.182957                 fc = 0                        fcs = 0                       
++cjsw = 'dcjsw_nwdioll+4.353507E-10'           mjsw = 0.306795               php = 0.829365                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.16                     xti = 4.32865                 cta = 1.439326E-3             
++ctp = 7.940107E-4             tpb = 1.66519E-4              tphp = 2.089155E-3            
++trs = 9.149066E-3               
+*                      
+***********************************************************************************
+*                             n+/rwell diode model                                *
+***********************************************************************************
+*
+.model dnd11ll d
++level = 3                     
++ibv = 167                     ikr = 1.67E5                  
++is = 'dis_dnd11ll+3.577424E-8'              jsw = 'djsw_dnd11ll+2.56848E-14'             n = 'dn_dnd11ll+0.92934'                   
++rs = 1.66844E-10              vb = 9.45                     area = 6E-9                   
++pj = 3.2E-4                   jtun = 0                      jtunsw = 0                    
++ntun = 30                     
++tt = 0                        cj = 'dcj_dnd11ll+1.269311E-3'              pb = 0.585724                 
++mj = 0.329274                 fc = 0                        fcs = 0                       
++cjsw = 'dcjsw_dnd11ll+3.303023E-11'           mjsw = 0.284823               php = 0.961025                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.11                     gap1 = 7.02E-4                gap2 = 1.108E3                
++xti = 3                       cta = 8.323178E-4             ctp = 3.189907E-4             
++tcv = 0                       tm1 = 0                       tm2 = 0                       
++tpb = 1.055336E-3             tphp = 2.30601E-3             trs = 4.876898E-3             
++ttt1 = 0                      ttt2 = 0                      xtitun = 3                    
+*   
+***********************************************************************************
+*                        2.5v n+/rwell diode model                                *
+***********************************************************************************
+*
+.model dnd25ll d
++level = 3                     
++ibv = 166.67                  ikr = 1.67E5                  
++is = 'dis_dnd25ll+1.808258E-7'              jsw = 'djsw_dnd25ll+1.01297E-13'             n = 'dn_dnd25ll+0.950683'                  
++rs = 1.388665E-10             vb = 9.45                     area = 6E-9                   
++pj = 3.2E-4                   
++cj = 'dcj_dnd25ll+1.136073E-3'              pb = 0.705157                 mj = 0.301                    
++fc = 0                        fcs = 0                       cjsw = 'dcjsw_dnd25ll+7.175469E-11'           
++mjsw = 0.233238               php = 0.32428                 
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.16                     xti = 3                       cta = 8.401407E-4             
++ctp = 1.889887E-4             tpb = 1.723563E-3             tphp = 3.68184E-5             
++trs = 1.8E-4                  
+*
+***********************************************************************************
+*                             rwell/dnwell diode model                            *
+***********************************************************************************
+*
+.model rwd11ll d
++level = 3                     
++ibv = 277.8                   ikr = 2.7778E5                
++is = 'dis_rwd11ll+3.778926E-6'              jsw = 'djsw_rwd11ll+5.041E-15'               n = 'dn_rwd11ll+1.105655'                  
++rs = 3.856188E-8              vb = 11.25                    area = 6E-9                   
++pj = 3.2E-4                   
++cj = 'dcj_rwd11ll+4.235641E-4'              pb = 0.930769                 mj = 0.813276                 
++fc = 0                        fcs = 0                       cjsw = 'dcjsw_rwd11ll+1.725468E-9'            
++mjsw = 0.141306               php = 0.973236                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.16                     xti = 3                       cta = 1.01927E-3              
++ctp = 6.709302E-4             tpb = 1.387259E-3             tphp = 5.492691E-4            
++trs = 8.668012E-3                                          
+*
+************************************************************************************
+*                             dnwell/psub diode model                             *
+***********************************************************************************
+*
+.model dnwd11ll d
++level = 3                     
++ibv = 166.7                   ikr = 1.67E5                  
++is = 'dis_dnwd11ll+1.90515E-6'               jsw = 'djsw_dnwd11ll+7.01E-12'                n = 'dn_dnwd11ll+1'                         
++rs = 3.97562E-8               vb = 11.7                     area = 6E-9                   
++pj = 3.2E-4                   
++cj = 'dcj_dnwd11ll+2.663317E-4'              pb = 0.301545                 mj = 0.170356                 
++fc = 0                        fcs = 0                       cjsw = 'dcjsw_dnwd11ll+9.916506E-10'           
++mjsw = 0.814658               php = 0.961115                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.16                     xti = 3                       cta = 5.514434E-4             
++ctp = 1.571847E-3             tpb = 3.909587E-4             tphp = 1.88464E-3             
++trs = 6.075878E-3  
+*
+************************************************************************************
+*                             nwell/psub diode model                               *
+************************************************************************************
+*
+.model parasitic_nwd d
++level = 3                     
++ibv = 14.7                    ikr = 1.47E4                  
++is = 'dis_nwdioll+3.554044E-8'              jsw = 'djsw_nwdioll+8.96673E-15'             n = 'dn_nwdioll+0.798625'                  
++rs = 3.534807E-8              vb = 11.7                     area = 6.8E-8                 
++pj = 1.14E-3                  jtun = 0                      jtunsw = 0                    
++ntun = 30                     
++tt = 0                        cj = 'dcj_nwdioll+3.930475E-4'              pb = 0.58343               
++mj = 0.182957                 fc = 0                        fcs = 0                       
++cjsw = 'dcjsw_nwdioll+4.353507E-10'           mjsw = 0.306795               php = 0.829365                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.16                     xti = 4.32865                 cta = 1.439326E-3             
++ctp = 7.940107E-4             tpb = 1.66519E-4              tphp = 2.089155E-3            
++trs = 9.149066E-3    
+*
+***********************************************************************************
+*                             rwell/dnwell diode model                            *
+***********************************************************************************
+*
+.model parasitic_rwd d
++level = 3                     
++ibv = 277.8                   ikr = 2.7778E5                
++is = 'dis_rwd11ll+3.778926E-6'              jsw = 'djsw_rwd11ll+5.041E-15'               n = 'dn_rwd11ll+1.105655'                  
++rs = 3.856188E-8              vb = 11.25                    area = 6E-9                   
++pj = 3.2E-4                   
++cj = 'dcj_rwd11ll+4.235641E-4'              pb = 0.930769                 mj = 0.813276                 
++fc = 0                        fcs = 0                       cjsw = 'dcjsw_rwd11ll+1.725468E-9'            
++mjsw = 0.141306               php = 0.973236                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.16                     xti = 3                       cta = 1.01927E-3              
++ctp = 6.709302E-4             tpb = 1.387259E-3             tphp = 5.492691E-4            
++trs = 8.668012E-3                                          
+*
+************************************************************************************
+*                             dnwell/psub diode model                             *
+***********************************************************************************
+*
+.model parasitic_dnwd d
++level = 3                     
++ibv = 166.7                   ikr = 1.67E5                  
++is = 'dis_dnwd11ll+1.90515E-6'               jsw = 'djsw_dnwd11ll+7.01E-12'                n = 'dn_dnwd11ll+1'                         
++rs = 3.97562E-8               vb = 11.7                     area = 6E-9                   
++pj = 3.2E-4                   
++cj = 'dcj_dnwd11ll+2.663317E-4'              pb = 0.301545                 mj = 0.170356                 
++fc = 0                        fcs = 0                       cjsw = 'dcjsw_dnwd11ll+9.916506E-10'           
++mjsw = 0.814658               php = 0.961115                
++tlev = 1                      tlevc = 1                     tref = 25                     
++eg = 1.16                     xti = 3                       cta = 5.514434E-4             
++ctp = 1.571847E-3             tpb = 3.909587E-4             tphp = 1.88464E-3             
++trs = 6.075878E-3  
+*           

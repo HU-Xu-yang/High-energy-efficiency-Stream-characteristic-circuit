@@ -1,0 +1,30 @@
+****P11LL LPE Model Parameter **********************
+.param
++scale_=0.9
++w_='scale_*w/1e-6' l_='scale_*l/1e-6' dps_='scale_*dps/1.0e-6' dpcs_='scale_*dpcs/1.0e-6' dsts_='scale_*dsts/1.0e-6' 
+.param dvdps_a=0.004779    dvdps_e=-0.4322    dvdps_f=0.01    dvdps_b=6.5
+.param dvdps_c=0    dvdps_d=0.4188    dvdps_g=-0.4666    dvdps_h=-1
+.param mudps_a=9.4266e-005    mudps_e=-0.07393    mudps_f=0.000105    mudps_b=9.8
+.param mudps_c=0    mudps_d=0.08661    mudps_g=-0.09683    mudps_h=0.9
+.param dvdpcs_a=0    dvdpcs_b=1    dvdpcs_c=0    mudpcs_a=0
+.param mudpcs_b=1    mudpcs_c=1    dvdsts_a=0.85    dvdsts_c=-0.3
+.param dvdsts_d=-0.042    mudsts_a=-1    mudsts_b=-0.00125    mudsts_c=-0.00205
+.param mudsts_d=0.00236
+.param mu_dps='(mudps_a*pwr(l_,mudps_e)-mudps_f)*pwr(log(dps_),mudps_b) + mudps_c*log(dps_) + mudps_d*pwr(l_,mudps_g)+mudps_h'
+.param mu_dpcs='mudpcs_a*(dpcs_-mudpcs_b) + mudpcs_c'
+.param mu_dsts='mudsts_a*pwr(log(0.01*dsts_),mudsts_b/((pwr(10*l_*0.54/w_,0.3))*dsts_)) + mudsts_c*log(dsts_) + mudsts_d'
+.param _mulu0='mu_dps*mu_dpcs*mu_dsts'
+.param _mulu0_b=0.05    _mulu0_a=1
+*** mulu0 parameter mapping: _u0_*(_mulu0_b*(_mulu0-1)+_mulu0_a)
+.param dv_dps='(dvdps_a*pwr(l_,dvdps_e)-dvdps_f)*pwr(log(dps_),dvdps_b) + dvdps_c*log(dps_) + dvdps_d*pwr(l_,dvdps_g)+dvdps_h'
+.param dv_dpcs='dvdpcs_a*(dpcs_-dvdpcs_b) + dvdpcs_c'
+.param dv_dsts='dvdsts_a*pwr(log(dsts_),0.5697*pwr(l_,-0.4894)) + dvdsts_c*log(dsts_) + dvdsts_d'
+.param _delvto='(dv_dps+dv_dpcs+dv_dsts)/1000'
+.param _delvto_a=-0.12    _delvto_b=0
+*** delvto parameter mapping: _vth0_+_delvto_a*_delvto+_delvto_b
+
++LPEVTH0_P11LL='((_delvto_a*_delvto+_delvto_b+_delvto)*LPEMOD)'
++LPEU0_P11LL='(pwr((_mulu0*(_mulu0_b*(_mulu0-1)+_mulu0_a)),LPEMOD))'
++LPELU0_P11LL='(pwr((_mulu0*(_mulu0_b*(_mulu0-1)+_mulu0_a)),LPEMOD))'
++LPEWU0_P11LL='(pwr((_mulu0*(_mulu0_b*(_mulu0-1)+_mulu0_a)),LPEMOD))'
++LPEPU0_P11LL='(pwr((_mulu0*(_mulu0_b*(_mulu0-1)+_mulu0_a)),LPEMOD))'

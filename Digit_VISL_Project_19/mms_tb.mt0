@@ -1,0 +1,4 @@
+$DATA1 SOURCE='HSPICE' VERSION='J-2014.09-SP2-2 64-BIT'
+.TITLE '.title mms testbench'
+ avg_power        temper           alter#          
+ -5.102e-009        40.0000        1               
